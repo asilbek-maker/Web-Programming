@@ -1,45 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>My Profile</title>
+  <meta charset="UTF-8">
+  <title>A — Portfolio</title>
 </head>
-
 <body>
 
-    <h1>Asilbek Kholboev</h1>
+  <header>
+    <h1>Asilbek</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    <img 
-        src="https://picsum.photos/200/200"
-        alt="Profile photo of Asilbek Kholboev"
-        width="200"
-        height="200"
-    >
+  <main>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>I am a computer science student specializing in front-end development. I love building web applications using modern <abbr title="HyperText Markup Language">HTML</abbr> standards and responsive design. Currently, I am focused on mastering <mark>Web Accessibility (a11y)</mark> to make the web usable for everyone.</p>
 
-    <p>
-        I am a student interested in <strong>Computer Engineering</strong>
-        and I enjoy learning <em>new technologies and programming skills</em>.
-    </p>
+      <figure>
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/063/544/872/small/back-view-of-man-working-from-home-at-desk-with-computer-and-lamp-photo.jpg" alt="Asilbek working on a web development project" width="400" height="250">
+        <figcaption>Figure 1: Developing layout structures during a front-end workshop.</figcaption>
+      </figure>
+    </section>
 
-    <h2>My Skills</h2>
+    <section id="projects">
+      <h2>Projects</h2>
+      <article>
+        <header>
+          <h3>Interactive FAQ Widget</h3>
+          <p><time datetime="2026-09">September 2026</time></p>
+        </header>
+        <p>Built an accessible collapsible question-and-answer interface utilizing native <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> elements with zero custom JavaScript dependencies.</p>
+      </article>
+    </section>
 
-    <ul>
-        <li>HTML</li>
-        <li>Pyhton</li>
-        <li>JavaScript</li>
-    </ul>
+    <aside id="skills">
+      <h2>Skills</h2>
+      <ul>
+        <li>Semantic HTML5</li>
+        <li>CSS Grid amp; Flexbox</li>
+        <li>JavaScript </li>
+        <li>GitHub</li>
+      </ul>
+    </aside>
 
-    <a 
-        href="https://gachon.ac.kr"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        Visit my university
-    </a>
+    <section id="contact">
+      <h2>Contact</h2>
+      <address>
+        Email: <a href="mailto:asilbek@gachon.ac.kr">asilbek@gachon.ac.kr</a><br>
+        Location: Seoul, South Korea
+      </address>
+    </section>
+  </main>
 
-    <footer>
-        <p>&copy; 2026 Asilbek Kholboev</p>
-    </footer>
+  <footer>
+    <p>&copy; 2026 Asilbek. All rights reserved.</p>
+  </footer>
 
 </body>
 </html>

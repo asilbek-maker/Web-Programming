@@ -1,23 +1,55 @@
-<section id="faq">
-  <h2>Frequently Asked Questions</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
 
-  <details open>
-    <summary>What is semantic HTML?</summary>
-    <p>Semantic HTML means choosing tags based on their structural meaning (like <code>&lt;header&gt;</code>, <code>&lt;article&gt;</code>, or <code>&lt;nav&gt;</code>) rather than how they visually look.</p>
-  </details>
+    .margin-box {
+      background-color: #fde68a;
+      padding: 30px;
+      text-align: center;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .border-box {
+      background-color: #6b7280;
+      padding: 20px;
+      color: white;
+    }
+    .padding-box {
+      background-color: #bfdbfe;
+      padding: 24px;
+      color: #1e3a8a;
+    }
+    .content-box {
+      background-color: #ddd6fe;
+      padding: 20px;
+      color: #4c1d95;
+    }
 
-  <details>
-    <summary>What is the difference between class and ID in HTML?</summary>
-    <p>An <code>id</code> must be unique to a single element on a page, whereas a <code>class</code> can be reused across multiple elements to apply shared styles or behavior.</p>
-  </details>
-
-  <details>
-    <summary>Why should I use the &lt;main&gt; element?</summary>
-    <p>The <code>&lt;main&gt;</code> element represents the dominant, unique content of the body. It helps screen readers skip repetitive navigation links and jump straight to the page's core content.</p>
-  </details>
-
-  <details>
-    <summary>What is CSS Grid used for?</summary>
-    <p>CSS Grid is a two-dimensional layout system used to arrange elements in columns and rows, making it ideal for overall page layouts and complex UI components.</p>
-  </details>
-</section>
+    .layer-label {
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: block;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="margin-box">
+    <span class="layer-label">Margin</span>
+    <div class="border-box">
+      <span class="layer-label">Border</span>
+      <div class="padding-box">
+        <span class="layer-label">Padding</span>
+        <div class="content-box">
+          <span class="layer-label">Content</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8">
+<style>
+  /* Declare :root variables for light mode */
+  :root {
+    --primary: #0f766e;
+    --accent: #14b8a6;
+    --bg: #f0fdfa;
+    --text: #1e293b;
+    --radius: 8px;
+    --spacing: 16px;
+  }
+
+  /* Redefine color tokens for dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --primary: #14b8a6;
+      --accent: #2dd4bf;
+      --bg: #0f172a;
+      --text: #f8fafc;
+    }
+  }
+
+  body { 
+    background: var(--bg); 
+    color: var(--text); 
+    font-family: sans-serif; 
+    padding: var(--spacing); 
+  }
+
+  .btn {
+    background: var(--primary);
+    border-radius: var(--radius);
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .btn:hover {
+    background: var(--accent);
+  }
+
+  .card {
+    background: var(--bg);
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    padding: var(--spacing); 
+    margin-top: var(--spacing);
+  }
+</style>
+</head>
+<body>
+  <button class="btn">Click Me</button>
+  <div class="card">A themed card using CSS variables</div>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Color Palette</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      padding: 24px;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      background-color: #f8fafc;
+      color: #1e293b;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    input[type="text"] {
+      padding: 10px 14px;
+      font-size: 16px;
+      border: 2px solid #cbd5e1;
+      border-radius: 8px;
+      outline: none;
+      width: 180px;
+    }
+
+    button {
+      padding: 10px 18px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .add-btn {
+      background: #2563eb;
+      color: white;
+    }
+
+    .add-btn:hover {
+      background: #1d4ed8;
+    }
+
+    .export-btn {
+      background: #16a34a;
+      color: white;
+    }
+
+    .export-btn:hover {
+      background: #15803d;
+    }
+
+    .palette-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 150px;
+    }
+
+    .color-box {
+      width: 100px;
+      height: 100px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .color-box.expanded {
+      width: 140px;
+      height: 140px;
+      transform: scale(1.05);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Interactive Color Palette</h1>
+
+  <div class="controls">
+    <input id="color-input" type="text" placeholder="#FF5733" maxlength="7">
+    <button id="add-btn" class="add-btn">Add Color</button>
+    <button id="export-btn" class="export-btn">Export as PNG</button>
+  </div>
+
+  <div id="palette" class="palette-container"></div>
+
+  <script>
+    const DEFAULT_COLORS = ['#EF4444', '#F97316', '#F59E0B', '#10B981', '#3B82F6', '#6366F1'];
+
+    const paletteContainer = document.querySelector('#palette');
+    const colorInput = document.querySelector('#color-input');
+    const addBtn = document.querySelector('#add-btn');
+    const exportBtn = document.querySelector('#export-btn');
+
+    let colors = JSON.parse(localStorage.getItem('colorPalette')) || DEFAULT_COLORS;
+
+    function savePalette() {
+      localStorage.setItem('colorPalette', JSON.stringify(colors));
+    }
+
+    function createBox(hexColor) {
+      const box = document.createElement('div');
+      box.className = 'color-box';
+      box.style.backgroundColor = hexColor;
+
+      box.addEventListener('click', () => {
+        box.classList.toggle('expanded');
+        box.textContent = box.classList.contains('expanded') ? hexColor : '';
+      });
+
+      box.addEventListener('dblclick', () => {
+        const index = colors.indexOf(hexColor);
+        if (index !== -1) {
+          colors.splice(index, 1);
+          savePalette();
+        }
+        box.remove();
+      });
+
+      return box;
+    }
+
+    function renderPalette() {
+      paletteContainer.innerHTML = '';
+      colors.forEach(hexColor => {
+        const box = createBox(hexColor);
+        paletteContainer.appendChild(box);
+      });
+    }
+
+    function handleAddColor() {
+      let hex = colorInput.value.trim();
+      
+      if (hex && !hex.startsWith('#')) {
+        hex = '#' + hex;
+      }
+
+      const isValidHex = /^#([0-9A-F]{3}){1,2}$/i.test(hex);
+
+      if (!isValidHex) {
+        alert('Please enter a valid Hex color code (e.g., #FF5733 or #000)');
+        return;
+      }
+
+      colors.push(hex);
+      savePalette();
+
+      const box = createBox(hex);
+      paletteContainer.appendChild(box);
+      colorInput.value = '';
+    }
+
+    addBtn.addEventListener('click', handleAddColor);
+    colorInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleAddColor();
+    });
+
+    exportBtn.addEventListener('click', () => {
+      if (colors.length === 0) {
+        alert('No colors to export!');
+        return;
+      }
+
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const boxWidth = 120;
+      const boxHeight = 120;
+      const padding = 20;
+
+      canvas.width = colors.length * boxWidth + (colors.length + 1) * padding;
+      canvas.height = boxHeight + padding * 2;
+
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      colors.forEach((color, i) => {
+        const x = padding + i * (boxWidth + padding);
+        const y = padding;
+
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.roundRect(x, y, boxWidth, boxHeight, 12);
+        ctx.fill();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 16px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(color, x + boxWidth / 2, y + boxHeight / 2);
+      });
+
+      const link = document.createElement('a');
+      link.download = 'color-palette.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+
+    renderPalette();
+  </script>
+
+</body>
+</html>

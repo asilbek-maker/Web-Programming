@@ -2,57 +2,68 @@ if (window.location.pathname.endsWith('/') || window.location.pathname.endsWith(
     return;
 }
 document.addEventListener("DOMContentLoaded", function () {
+    const currentPath = window.location.pathname;
+
+    // Bosh sahifada bo'lsak, tepadagi menyuni ko'rsatmaymiz
+    if (currentPath.endsWith('/') || currentPath.endsWith('/index.html')) {
+        return;
+    }
+
+    // Navigatsiya uslublari (CSS)
     const style = document.createElement('style');
     style.innerHTML = `
         .nav-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px;
-            background-color: #f3f4f6;
+            gap: 12px;
+            background-color: transparent;
             padding: 20px 10px;
             width: 100%;
             box-sizing: border-box;
         }
-
         .nav-card {
             display: inline-block;
             background-color: #ffffff;
-            color: #111827;
-            font-weight: bold;
-            font-size: 16px;
+            color: #1e293b;
+            font-weight: 600;
+            font-size: 15px;
             text-decoration: none;
-            padding: 14px 28px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             transition: all 0.2s ease-in-out;
-            border: 1px solid #e5e7eb;
         }
-
         .nav-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            background-color: #f9fafb;
+            background-color: #f8fafc;
+            border-color: #cbd5e1;
+            color: #2563eb;
         }
     `;
     document.head.appendChild(style);
 
+    // Navigatsiya menyusini yaratish
     const nav = document.createElement('nav');
     nav.className = 'nav-container';
 
-    const links = [
-        { name: '🏠 Home', url: '/Web-Programming/' },
-        { name: 'Week 2', url: '/Web-Programming/Week2/' },
-        { name: 'Week 3', url: '/Web-Programming/Week3/' },
-        { name: 'Week 4', url: '/Web-Programming/Week4/' },
-        { name: 'Week 5', url: '/Web-Programming/Week5/' }
-    ];
+    // Barcha haftalar ro'yxati (yangi week qo'shsangiz faqat shu massivga qo'shib qo'yasiz)
+    const weeks = ['Week2', 'Week3', 'Week4', 'Week5', 'Week6'];
 
-    links.forEach(link => {
+    // Home tugmasi
+    const homeLink = document.createElement('a');
+    homeLink.className = 'nav-card';
+    homeLink.href = '/Web-Programming/';
+    homeLink.textContent = '🏠 Home';
+    nav.appendChild(homeLink);
+
+    // Week tugmalari
+    weeks.forEach(week => {
         const a = document.createElement('a');
         a.className = 'nav-card';
-        a.href = link.url;
-        a.textContent = link.name;
+        a.href = `/Web-Programming/${week}/`;
+        a.textContent = week.replace('Week', 'Week ');
         nav.appendChild(a);
     });
 

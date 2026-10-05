@@ -17,7 +17,7 @@
 
         .container {
             max-width: 700px;
-            margin: auto;
+            margin: 0 auto;
         }
 
         h1 {
@@ -29,20 +29,15 @@
             margin-bottom: 35px;
         }
 
-        .tasks {
-            max-width: 600px;
-            margin: auto;
-        }
-
         .task {
             display: block;
             background: white;
             color: #222;
             text-decoration: none;
-            padding: 18px;
-            margin: 12px 0;
-            border-radius: 10px;
-            font-size: 18px;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 12px;
+            font-size: 20px;
             font-weight: bold;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             transition: 0.2s;
@@ -50,16 +45,7 @@
 
         .task:hover {
             background: #e9e9e9;
-            transform: translateY(-2px);
-        }
-
-        .loading {
-            color: #777;
-            font-size: 18px;
-        }
-
-        .error {
-            color: #d00;
+            transform: translateY(-3px);
         }
     </style>
 </head>
@@ -72,90 +58,19 @@
 
         <p>My Week 5 Friday exercises</p>
 
-        <div class="tasks" id="tasks">
-            <div class="loading">Loading exercises...</div>
-        </div>
+        <a class="task" href="ex1.html">
+            📝 Exercise 1
+        </a>
+
+        <a class="task" href="ex2.html">
+            📝 Exercise 2
+        </a>
+
+        <a class="task" href="ex3.html">
+            📝 Exercise 3
+        </a>
 
     </div>
-
-
-    <script>
-
-        const username = "asilbek-maker";
-        const repository = "Web-Programming";
-
-        const folder = "Week5 Friday";
-
-        const apiURL =
-            `https://api.github.com/repos/${username}/${repository}/contents/${encodeURIComponent(folder)}?ref=main`;
-
-        const tasksContainer = document.getElementById("tasks");
-
-
-        fetch(apiURL)
-            .then(response => {
-
-                if (!response.ok) {
-                    throw new Error("Could not load exercises.");
-                }
-
-                return response.json();
-
-            })
-
-            .then(files => {
-
-                tasksContainer.innerHTML = "";
-
-                const htmlFiles = files
-                    .filter(file =>
-                        file.type === "file" &&
-                        file.name.toLowerCase().endsWith(".html") &&
-                        file.name.toLowerCase() !== "index.html"
-                    )
-                    .sort((a, b) =>
-                        a.name.localeCompare(b.name, undefined, {
-                            numeric: true
-                        })
-                    );
-
-
-                if (htmlFiles.length === 0) {
-
-                    tasksContainer.innerHTML =
-                        '<div class="loading">No exercises found.</div>';
-
-                    return;
-                }
-
-
-                htmlFiles.forEach((file, index) => {
-
-                    const link = document.createElement("a");
-
-                    link.className = "task";
-
-                    link.href = encodeURIComponent(file.name);
-
-                    link.textContent =
-                        `📚 Exercise ${index + 1} — ${file.name}`;
-
-                    tasksContainer.appendChild(link);
-
-                });
-
-            })
-
-            .catch(error => {
-
-                tasksContainer.innerHTML =
-                    '<div class="error">Could not load exercises.</div>';
-
-                console.error(error);
-
-            });
-
-    </script>
 
 </body>
 </html>

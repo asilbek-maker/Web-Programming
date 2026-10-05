@@ -1,3 +1,6 @@
+if (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('/index.html')) {
+    return;
+}
 document.addEventListener("DOMContentLoaded", function () {
     const style = document.createElement('style');
     style.innerHTML = `

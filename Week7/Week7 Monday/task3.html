@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 7 Monday - Task 3: Wire the Form</title>
+    <link rel="stylesheet" href="tasks.css">
+</head>
+<body>
+    <main>
+        <header>
+            <p class="eyebrow">Week 7 Monday · Task 3 of 6</p>
+            <h1>JS DOM — Wire the Form</h1>
+        </header>
+        <section class="panel">
+            <h2>Handle form submission</h2>
+            <p>Submit a search to see JavaScript prevent the page reload, read the query, and update the page using the DOM.</p>
+            <form class="demo-form" id="task-form">
+                <label for="search-input">Search books</label>
+                <input id="search-input" type="search" placeholder="Try a book title" minlength="2" required>
+                <button type="submit">Submit search</button>
+            </form>
+            <p class="demo-status" id="status" role="status" aria-live="polite">Waiting for a search.</p>
+            <section class="results" id="results" aria-label="Submitted search"></section>
+        </section>
+        <section class="panel">
+            <h2>DOM event handling</h2>
+            <pre>form.addEventListener("submit", (event) =&gt; {
+  event.preventDefault();
+  const query = input.value.trim();
+  status.textContent = `Searching for ${query}`;
+});</pre>
+        </section>
+        <nav class="navigation" aria-label="Task navigation">
+            <a href="index.html">Back to Monday tasks</a>
+            <a href="task2.html">Previous: Task 2</a>
+            <a href="task4.html">Next: Task 4</a>
+            <a href="index.html#bonus-heading">Open bonus Book Finder</a>
+        </nav>
+    </main>
+    <script>
+        const form = document.getElementById('task-form');
+        const input = document.getElementById('search-input');
+        const status = document.getElementById('status');
+        const results = document.getElementById('results');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const query = input.value.trim();
+            if (query.length < 2) {
+                status.textContent = 'Enter at least 2 characters.';
+                return;
+            }
+            const card = document.createElement('article');
+            card.className = 'book-card';
+            const content = document.createElement('div');
+            content.className = 'book-info';
+            const title = document.createElement('h3');
+            title.textContent = `Search query: ${query}`;
+            content.appendChild(title);
+            card.appendChild(content);
+            results.replaceChildren(card);
+            status.textContent = 'Form submitted without reloading the page.';
+        });
+    </script>
+</body>
+</html>

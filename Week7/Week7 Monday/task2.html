@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 7 Monday - Task 2: CSS Layout & Cards</title>
+    <link rel="stylesheet" href="tasks.css">
+    <style>
+        .sample-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); gap: 16px; margin-top: 18px; }
+        .sample-card { padding: 20px; border: 1px solid #e2e8f0; border-radius: 14px; background: #fff; box-shadow: 0 3px 8px rgba(0, 0, 0, .08); }
+        .sample-card h3 { margin: 0 0 8px; }
+        .sample-card p { margin: 0; color: #666; }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <p class="eyebrow">Week 7 Monday · Task 2 of 6</p>
+            <h1>CSS Layout &amp; Cards</h1>
+        </header>
+        <section class="panel">
+            <h2>Make the layout responsive</h2>
+            <p>The search controls use a flex row, and these sample results use a responsive grid. Resize the page to see the cards rearrange.</p>
+            <form class="demo-form">
+                <label for="sample-search">Search books</label>
+                <input id="sample-search" type="search" placeholder="Search books">
+                <button type="button">Search books</button>
+            </form>
+            <div class="sample-results" aria-label="Sample book card layout">
+                <article class="sample-card"><h3>Little Women</h3><p>Louisa May Alcott</p></article>
+                <article class="sample-card"><h3>Treasure Island</h3><p>Robert Louis Stevenson</p></article>
+                <article class="sample-card"><h3>The Secret Garden</h3><p>Frances Hodgson Burnett</p></article>
+            </div>
+        </section>
+        <section class="panel">
+            <h2>CSS layout ideas</h2>
+            <pre>.search-panel {
+  display: flex;
+  gap: 12px;
+}
+.results {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, 190px), 1fr)
+  );
+  gap: 16px;
+}</pre>
+        </section>
+        <nav class="navigation" aria-label="Task navigation">
+            <a href="index.html">Back to Monday tasks</a>
+            <a href="task1.html">Previous: Task 1</a>
+            <a href="task3.html">Next: Task 3</a>
+            <a href="index.html#bonus-heading">Open bonus Book Finder</a>
+        </nav>
+    </main>
+</body>
+</html>

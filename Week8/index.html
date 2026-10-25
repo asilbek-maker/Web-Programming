@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 8 - Web Programming</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 50px 20px; min-height: 100vh; background: #f3f3f6; color: #111; font-family: Arial, sans-serif; text-align: center; }
+        main { max-width: 700px; margin: auto; }
+        header { margin-bottom: 36px; }
+        h1 { margin: 0 0 10px; font-size: 3rem; }
+        header p { margin: 0; color: #666; font-size: 1.2rem; }
+        .day-list { margin: 0; padding: 0; list-style: none; }
+        .day-list li { margin: 14px 0; }
+        .day-list a { display: flex; min-height: 70px; justify-content: center; align-items: center; padding: 18px 20px; border: 1px solid #e2e8f0; border-radius: 14px; background: #fff; color: #222; text-decoration: none; box-shadow: 0 3px 8px rgba(0, 0, 0, .08); transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease; }
+        .day-list a:hover { background: #e9e9eb; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0, 0, 0, .1); }
+        .day-list a:focus-visible { outline: 3px solid #31869a; outline-offset: 3px; }
+        .day-name { font-size: 1.1rem; font-weight: 600; }
+        .back-link { display: inline-block; margin-top: 20px; color: #176578; }
+        @media (max-width: 520px) {
+            body { padding: 32px 16px; }
+            header { margin-bottom: 28px; }
+            h1 { font-size: 2.25rem; }
+            .day-list a { min-height: 60px; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Week 8</h1>
+            <p>My Week 8 assignments and class exercises</p>
+        </header>
+        <nav aria-label="Week 8 activities">
+            <ul class="day-list">
+                <li><a href="Week8%20Friday/index.html"><span class="day-name">Week 8 Friday — Forms Summary &amp; Homework</span></a></li>
+            </ul>
+        </nav>
+        <a class="back-link" href="../index.html">Back to all weeks</a>
+    </main>
+</body>
+</html>

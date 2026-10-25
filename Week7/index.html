@@ -3,50 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week 7 Activities</title>
+    <title>Week 7 - Web Programming</title>
     <style>
         * { box-sizing: border-box; }
         body { margin: 0; padding: 50px 20px; min-height: 100vh; background: #f3f3f6; color: #111; font-family: Arial, sans-serif; text-align: center; }
-        main { max-width: 560px; margin: auto; }
+        main { max-width: 700px; margin: auto; }
         header { margin-bottom: 36px; }
-        .eyebrow { margin: 0 0 8px; color: #666; font-size: 1rem; }
         h1 { margin: 0 0 10px; font-size: 3rem; }
-        header p:last-child { margin: 0; color: #666; font-size: 1.4rem; }
-        .task-list { margin: 0; padding: 0; list-style: none; }
-        .task-list li { margin: 14px 0; }
-        .task-list a { display: flex; min-height: 58px; justify-content: center; align-items: center; padding: 14px 20px; border: 1px solid #e2e8f0; border-radius: 14px; background: #fff; color: #222; text-decoration: none; box-shadow: 0 3px 8px rgba(0, 0, 0, .08); transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease; }
-        .task-list a:hover { background: #e9e9eb; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0, 0, 0, .1); }
-        .task-list a:focus-visible { outline: 3px solid #31869a; outline-offset: 3px; }
-        .task-number { color: #222; font-size: 1rem; font-weight: 600; }
+        header p { margin: 0; color: #666; font-size: 1.2rem; }
+        .day-list { margin: 0; padding: 0; list-style: none; }
+        .day-list li { margin: 14px 0; }
+        .day-list a { display: flex; min-height: 70px; justify-content: center; align-items: center; padding: 18px 20px; border: 1px solid #e2e8f0; border-radius: 14px; background: #fff; color: #222; text-decoration: none; box-shadow: 0 3px 8px rgba(0, 0, 0, .08); transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease; }
+        .day-list a:hover { background: #e9e9eb; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0, 0, 0, .1); }
+        .day-list a:focus-visible { outline: 3px solid #31869a; outline-offset: 3px; }
+        .day-name { font-size: 1.1rem; font-weight: 600; }
 
         @media (max-width: 520px) {
             body { padding: 32px 16px; }
             header { margin-bottom: 28px; }
             h1 { font-size: 2.25rem; }
-            header p:last-child { font-size: 1.1rem; }
-            .task-list a { min-height: 56px; }
+            .day-list a { min-height: 60px; }
         }
     </style>
 </head>
 <body>
     <main>
         <header>
-            <p class="eyebrow">Web Programming · Week 7</p>
-            <h1>Week 7 Activities</h1>
-            <p>Build a Book Finder on Monday, then practice fetching and displaying a joke from the Official Joke API.</p>
+            <h1>Week 7</h1>
+            <p>My Week 7 assignments and class exercises</p>
         </header>
-        <nav aria-label="Week 7 tasks">
-            <ol class="task-list">
-                <li><a href="Week7%20Monday/index.html"><span class="task-number">Week 7 Monday — Book Finder</span></a></li>
-            </ol>
-            <ol class="task-list">
-                <li><a href="task1.html"><span class="task-number">Exercise 1</span></a></li>
-                <li><a href="task2.html"><span class="task-number">Exercise 2</span></a></li>
-                <li><a href="task3.html"><span class="task-number">Exercise 3</span></a></li>
-                <li><a href="task4.html"><span class="task-number">Exercise 4</span></a></li>
-                <li><a href="task5.html"><span class="task-number">Challenge</span></a></li>
-                <li><a href="task6.html"><span class="task-number">Extra</span></a></li>
-            </ol>
+        <nav aria-label="Week 7 activities">
+            <ul class="day-list">
+                <li><a href="Week7%20Monday/index.html"><span class="day-name">Week 7 Monday — Book Finder</span></a></li>
+                <li><a href="Week7%20Friday/index.html"><span class="day-name">Week 7 Friday — Joke API Tasks</span></a></li>
+            </ul>
         </nav>
     </main>
     <script src="/Web-Programming/nav.js"></script>

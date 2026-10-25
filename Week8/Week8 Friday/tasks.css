@@ -1,0 +1,54 @@
+* { box-sizing: border-box; }
+body { margin: 0; padding: 50px 20px; min-height: 100vh; background: #f3f3f6; color: #111; font-family: Arial, sans-serif; }
+main { max-width: 620px; margin: auto; }
+header { margin-bottom: 30px; text-align: center; }
+.eyebrow { margin: 0 0 8px; color: #666; font-size: 1rem; }
+h1 { margin: 0 0 10px; font-size: clamp(2.25rem, 6vw, 3rem); }
+.intro { margin: 0; color: #666; font-size: 1.15rem; line-height: 1.5; }
+.task-list { margin: 0; padding: 0; list-style: none; }
+.task-list li { margin: 14px 0; }
+.task-list a { display: flex; min-height: 68px; flex-direction: column; justify-content: center; gap: 6px; padding: 14px 20px; border: 1px solid #e2e8f0; border-radius: 14px; background: #fff; color: #222; text-align: left; text-decoration: none; box-shadow: 0 3px 8px rgba(0, 0, 0, .08); transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease; }
+.task-list a:hover, .button-link:hover { background: #e9e9eb; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0, 0, 0, .1); }
+.task-list a:focus-visible, .button-link:focus-visible, .back-link:focus-visible, .resources a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 3px solid #31869a; outline-offset: 3px; }
+.task-list span { font-size: 1rem; font-weight: 600; }
+.task-list small { color: #666; font-size: .9rem; line-height: 1.4; }
+.panel, .homework { margin: 18px 0; padding: 26px; border: 1px solid #e2e8f0; border-radius: 18px; background: #fff; box-shadow: 0 3px 8px rgba(0, 0, 0, .08); }
+.panel h2, .homework h2 { margin: 0 0 12px; font-size: 1.35rem; }
+.panel p, .homework p { color: #555; line-height: 1.55; }
+.panel > p:first-of-type, .homework p { margin-top: 0; }
+.demo-form { display: grid; gap: 14px; margin-top: 18px; }
+.field { display: grid; gap: 6px; }
+label, legend { font-weight: 600; }
+input, textarea, select { width: 100%; min-height: 48px; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 10px; background: #fff; color: #111; font: inherit; }
+textarea { min-height: 120px; resize: vertical; }
+fieldset { display: grid; gap: 12px; margin: 0; padding: 16px; border: 1px solid #cbd5e1; border-radius: 12px; }
+legend { padding: 0 6px; }
+.choice { display: flex; align-items: center; gap: 9px; }
+.choice input { width: 18px; min-height: 18px; margin: 0; }
+button, .button-link { display: inline-flex; min-height: 52px; align-items: center; justify-content: center; padding: 12px 20px; border: 1px solid #e2e8f0; border-radius: 14px; background: #fff; color: #222; font: inherit; font-weight: 600; text-align: center; text-decoration: none; box-shadow: 0 3px 8px rgba(0, 0, 0, .08); transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease; cursor: pointer; }
+.button-link { margin-top: 6px; }
+button:hover:not(:disabled) { background: #e9e9eb; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0, 0, 0, .1); }
+button:disabled { cursor: wait; opacity: .65; }
+.status { min-height: 24px; margin: 14px 0 0; color: #555; }
+.status.success { color: #176b39; }
+.status.error { color: #a43d38; }
+.validity-demo input:required:valid, .validity-demo textarea:required:valid { border-color: #23834b; background: #f2fff6; }
+.validity-demo input:required:invalid:not(:placeholder-shown), .validity-demo textarea:required:invalid:not(:placeholder-shown) { border-color: #b33b36; background: #fff6f5; }
+.homework { border: 2px solid #31869a; }
+.homework h2 { margin-bottom: 8px; color: #176578; }
+.navigation { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-top: 20px; }
+.navigation a, .back-link { color: #176578; text-underline-offset: 3px; }
+.back-link { display: inline-block; margin-top: 20px; }
+.resources { display: grid; gap: 10px; margin: 22px 0 0; padding-left: 20px; }
+.resources a { color: #176578; overflow-wrap: anywhere; text-underline-offset: 3px; }
+pre { overflow-x: auto; padding: 16px; border-radius: 10px; background: #f3f3f6; line-height: 1.5; }
+@media (max-width: 520px) {
+    body { padding: 32px 16px; }
+    header { margin-bottom: 26px; }
+    .panel, .homework { padding: 20px; }
+    .task-list a { min-height: 60px; }
+    .navigation { flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition-duration: .01ms !important; }
+}

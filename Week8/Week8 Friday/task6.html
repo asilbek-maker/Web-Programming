@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 8 Friday - Task 6: CSS Validation States</title>
+    <link rel="stylesheet" href="tasks.css">
+</head>
+<body>
+    <main>
+        <section class="panel validity-demo">
+            <p class="eyebrow">Week 8 Friday · Task 6</p>
+            <h1>CSS Validation States</h1>
+            <p>Enter an invalid email to see the red border, then correct it to see the valid state. Focus a control to see its outline.</p>
+            <form class="demo-form" id="demo-form">
+                <div class="field">
+                    <label for="email">Email address</label>
+                    <input id="email" name="email" type="email" placeholder="you@example.com" required>
+                </div>
+                <div class="field">
+                    <label for="comment">Comment (at least 5 characters)</label>
+                    <textarea id="comment" name="comment" minlength="5" placeholder="Write a comment" required></textarea>
+                </div>
+                <button type="submit">Check valid state</button>
+            </form>
+            <p class="status" id="status" role="status" aria-live="polite">The fields change style as their values change.</p>
+        </section>
+        <section class="panel">
+            <h2>CSS pseudo-classes</h2>
+            <pre>input:valid { border-color: green; }
+input:invalid:not(:placeholder-shown) {
+  border-color: red;
+}
+input:focus { outline: 3px solid teal; }</pre>
+        </section>
+        <nav class="navigation" aria-label="Task navigation">
+            <a href="index.html">Back to Week 8 tasks</a>
+            <a href="task5.html">Previous: Task 5</a>
+            <a href="bonus.html">Open contact form homework</a>
+        </nav>
+    </main>
+    <script>
+        document.getElementById('demo-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            document.getElementById('status').textContent = 'Both fields are valid.';
+        });
+    </script>
+</body>
+</html>

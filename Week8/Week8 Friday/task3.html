@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 8 Friday - Task 3: Validation Attributes</title>
+    <link rel="stylesheet" href="tasks.css">
+</head>
+<body>
+    <main>
+        <section class="panel">
+            <p class="eyebrow">Week 8 Friday · Task 3</p>
+            <h1>Validation Attributes</h1>
+            <p>HTML can check required values, text lengths, patterns, and numeric ranges before a form is submitted.</p>
+            <form class="demo-form" id="demo-form">
+                <div class="field">
+                    <label for="username">Username</label>
+                    <input id="username" name="username" type="text" placeholder="Letters and numbers" pattern="[A-Za-z0-9]{3,12}" title="Use 3 to 12 letters or numbers." required>
+                </div>
+                <div class="field">
+                    <label for="age">Age (18–100)</label>
+                    <input id="age" name="age" type="number" min="18" max="100" required>
+                </div>
+                <div class="field">
+                    <label for="message">Short message (10–120 characters)</label>
+                    <textarea id="message" name="message" minlength="10" maxlength="120" placeholder="Write at least 10 characters" required></textarea>
+                </div>
+                <button type="submit">Validate form</button>
+            </form>
+            <p class="status" id="status" role="status" aria-live="polite">Try submitting values outside the allowed ranges.</p>
+        </section>
+        <section class="panel">
+            <h2>Validation attributes</h2>
+            <pre>required
+pattern="[A-Za-z0-9]{3,12}"
+min="18" max="100"
+minlength="10" maxlength="120"</pre>
+        </section>
+        <nav class="navigation" aria-label="Task navigation">
+            <a href="index.html">Back to Week 8 tasks</a>
+            <a href="task2.html">Previous: Task 2</a>
+            <a href="task4.html">Next: Task 4</a>
+        </nav>
+    </main>
+    <script>
+        document.getElementById('demo-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            document.getElementById('status').textContent = 'Success: all fields meet their validation rules.';
+        });
+    </script>
+</body>
+</html>

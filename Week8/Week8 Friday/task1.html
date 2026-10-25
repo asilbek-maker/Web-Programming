@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 8 Friday - Task 1: Form Basics</title>
+    <link rel="stylesheet" href="tasks.css">
+</head>
+<body>
+    <main>
+        <section class="panel">
+            <p class="eyebrow">Week 8 Friday · Task 1</p>
+            <h1>Form Basics</h1>
+            <p>A form groups controls and submits their values. Try the example: it uses a GET method and a local demo handler, so it does not send data to a server.</p>
+            <form class="demo-form" id="demo-form" action="#demo-result" method="get">
+                <div class="field">
+                    <label for="topic">What would you like to learn?</label>
+                    <input id="topic" name="topic" type="text" placeholder="Enter a topic" required>
+                </div>
+                <button type="submit">Submit form</button>
+            </form>
+            <p class="status" id="status" role="status" aria-live="polite">Fill in the field and submit.</p>
+        </section>
+        <section class="panel">
+            <h2>Form structure</h2>
+            <pre>&lt;form action="/contact" method="post"&gt;
+  &lt;label for="topic"&gt;Topic&lt;/label&gt;
+  &lt;input id="topic" name="topic" required&gt;
+  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</pre>
+        </section>
+        <nav class="navigation" aria-label="Task navigation">
+            <a href="index.html">Back to Week 8 tasks</a>
+            <a href="task2.html">Next: Task 2</a>
+        </nav>
+    </main>
+    <script>
+        document.getElementById('demo-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            document.getElementById('status').textContent = 'Form submitted in this demo. No data was sent to a server.';
+        });
+    </script>
+</body>
+</html>

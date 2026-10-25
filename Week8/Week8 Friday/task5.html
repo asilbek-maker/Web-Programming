@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 8 Friday - Task 5: Fieldsets</title>
+    <link rel="stylesheet" href="tasks.css">
+</head>
+<body>
+    <main>
+        <section class="panel">
+            <p class="eyebrow">Week 8 Friday · Task 5</p>
+            <h1>Group Controls with Fieldsets</h1>
+            <p>Use a fieldset and legend to group related form controls. Choose a preferred way to hear back.</p>
+            <form class="demo-form" id="demo-form">
+                <fieldset>
+                    <legend>Preferred reply method</legend>
+                    <label class="choice" for="reply-email"><input id="reply-email" name="reply" type="radio" value="email" required> Email</label>
+                    <label class="choice" for="reply-phone"><input id="reply-phone" name="reply" type="radio" value="phone"> Phone</label>
+                </fieldset>
+                <fieldset>
+                    <legend>Topics you are interested in</legend>
+                    <label class="choice" for="topic-html"><input id="topic-html" name="topics" type="checkbox" value="html"> HTML</label>
+                    <label class="choice" for="topic-css"><input id="topic-css" name="topics" type="checkbox" value="css"> CSS</label>
+                </fieldset>
+                <button type="submit">Save preferences</button>
+            </form>
+            <p class="status" id="status" role="status" aria-live="polite">Select a reply method and submit.</p>
+        </section>
+        <section class="panel">
+            <h2>Group related controls</h2>
+            <pre>&lt;fieldset&gt;
+  &lt;legend&gt;Preferred reply method&lt;/legend&gt;
+  &lt;input type="radio" name="reply" value="email"&gt;
+  &lt;input type="radio" name="reply" value="phone"&gt;
+&lt;/fieldset&gt;</pre>
+        </section>
+        <nav class="navigation" aria-label="Task navigation">
+            <a href="index.html">Back to Week 8 tasks</a>
+            <a href="task4.html">Previous: Task 4</a>
+            <a href="task6.html">Next: Task 6</a>
+        </nav>
+    </main>
+    <script>
+        document.getElementById('demo-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const reply = new FormData(event.currentTarget).get('reply');
+            document.getElementById('status').textContent = `Preference saved for this demo: ${reply}.`;
+        });
+    </script>
+</body>
+</html>

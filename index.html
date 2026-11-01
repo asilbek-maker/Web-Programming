@@ -34,6 +34,26 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        .skip-link {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            z-index: 10;
+            padding: 10px 14px;
+            transform: translateY(-160%);
+            background: var(--paper);
+            color: #171813;
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+        main:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 6px;
+        }
+
         a {
             color: inherit;
         }
@@ -319,7 +339,7 @@
         }
 
         .week-number {
-            color: #787a70;
+            color: #5c5d54;
             font-size: 0.73rem;
             letter-spacing: 0.04em;
         }
@@ -332,7 +352,7 @@
 
         .week-detail {
             margin-top: 5px;
-            color: #717268;
+            color: #5c5d54;
             font-size: 0.75rem;
         }
 
@@ -601,6 +621,7 @@
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="shell">
         <header class="site-header">
             <a class="brand" href="#" aria-label="Asilbek home">Asilbek<span>.</span></a>
@@ -611,7 +632,7 @@
             </nav>
         </header>
 
-        <main>
+        <main id="main-content" tabindex="-1">
             <section class="hero" aria-labelledby="intro-title">
                 <div class="hero-copy">
                     <p class="eyebrow">Web programming · Student portfolio</p>

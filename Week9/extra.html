@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 9 - Extra: Accessibility Quiz</title>
+    <link rel="stylesheet" href="tasks.css">
+</head>
+<body>
+    <main>
+        <header>
+            <p class="eyebrow">Week 9 · Extra</p>
+            <h1>Accessibility Quiz</h1>
+            <p class="intro">Check what you learned about accessible pages.</p>
+        </header>
+
+        <form class="panel" id="quiz">
+            <fieldset>
+                <legend>1. What does a skip link help a keyboard user do?</legend>
+                <div class="answer-list">
+                    <label><input type="radio" name="q1" value="a" required> Jump directly to the main content</label>
+                    <label><input type="radio" name="q1" value="b"> Change the page colors</label>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>2. Which element should you use for an action?</legend>
+                <div class="answer-list">
+                    <label><input type="radio" name="q2" value="a" required> A button</label>
+                    <label><input type="radio" name="q2" value="b"> A heading</label>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>3. What should you do after fixing audit issues?</legend>
+                <div class="answer-list">
+                    <label><input type="radio" name="q3" value="a" required> Run Lighthouse again and save the result</label>
+                    <label><input type="radio" name="q3" value="b"> Remove the page title</label>
+                </div>
+            </fieldset>
+
+            <button type="submit">Check answers</button>
+            <p class="result" id="result" role="status" aria-live="polite"></p>
+        </form>
+
+        <a class="back-link" href="index.html">Back to Week 9</a>
+    </main>
+    <script>
+        document.getElementById("quiz").addEventListener("submit", function (event) {
+            event.preventDefault();
+            var answers = new FormData(event.currentTarget);
+            var score = ["q1", "q2", "q3"].filter(function (question) {
+                return answers.get(question) === "a";
+            }).length;
+            document.getElementById("result").textContent =
+                "You got " + score + " out of 3 correct.";
+        });
+    </script>
+    <script src="../site.js"></script>
+</body>
+</html>

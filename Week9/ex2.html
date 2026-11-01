@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 9 - Exercise 2: Add a Skip Link</title>
+    <link rel="stylesheet" href="tasks.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <main id="main-content" tabindex="-1">
+        <header>
+            <p class="eyebrow">Week 9 · Exercise 2</p>
+            <h1>Add a Skip Link</h1>
+            <p class="intro">A skip link lets keyboard users bypass repeated navigation and jump to the page content.</p>
+        </header>
+
+        <section class="panel" aria-labelledby="try-heading">
+            <h2 id="try-heading">Try it with your keyboard</h2>
+            <ol>
+                <li>Reload this page.</li>
+                <li>Press Tab. The “Skip to main content” link should receive focus.</li>
+                <li>Press Enter. Focus should move to the main content.</li>
+            </ol>
+        </section>
+
+        <section class="panel" aria-labelledby="code-heading">
+            <h2 id="code-heading">Add these parts to your project</h2>
+            <pre><code>&lt;a class="skip-link" href="#main-content"&gt;Skip to main content&lt;/a&gt;
+&lt;main id="main-content" tabindex="-1"&gt;...&lt;/main&gt;</code></pre>
+            <p>Use CSS to move the link off-screen until it receives keyboard focus. Keep a visible focus outline.</p>
+        </section>
+
+        <nav aria-label="Exercise navigation">
+            <a class="back-link" href="ex1.html">Previous: Exercise 1</a>
+            <a class="back-link" href="extra.html">Next: Extra</a>
+        </nav>
+    </main>
+    <script src="../site.js"></script>
+</body>
+</html>

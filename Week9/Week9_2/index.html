@@ -23,50 +23,57 @@
 
         <section class="panel" aria-labelledby="results-heading">
             <h2 id="results-heading">Results by optimization sequence</h2>
-            <p>For each sequence, record the Lighthouse Performance score and add the matching report screenshot before moving to the next sequence. Keep the page, device, and Lighthouse settings the same for each run. The after capture for one sequence is the starting state for the next.</p>
+            <p>All four stages were audited on Nov 3, 2026, with PageSpeed Insights on mobile using Lighthouse 13.6.0, an emulated Moto G Power, and Slow 4G throttling. Every run scored <strong>100/100</strong>. First Contentful Paint and Largest Contentful Paint were 0.8 s, Total Blocking Time was 0 ms, Cumulative Layout Shift was 0, and Speed Index was 0.8 s in each report.</p>
+            <p>The after capture for one sequence is reused as the before capture for the next, so the results show the cumulative state at each step. The Lighthouse score and displayed metrics did not change; the optimizations target off-screen rendering and layout work that these page-load measurements did not register.</p>
 
             <section aria-labelledby="sequence-one-heading">
                 <h3 id="sequence-one-heading">Sequence 1 — Defer below-the-fold rendering</h3>
-                <p>Apply <code>content-visibility</code> and intrinsic sizing to below-the-fold sections.</p>
+                <p>Applied <code>content-visibility</code> and intrinsic sizing to the below-the-fold course and project sections.</p>
                 <figure id="sequence-one-before">
-                    <p><strong>Before this sequence:</strong> Performance score: <strong>[record score]</strong></p>
-                    <p>Capture file: <code>sequence-1-before.png</code> — add the Lighthouse report screenshot here.</p>
-                    <figcaption>Baseline, before deferring below-the-fold rendering.</figcaption>
+                    <a href="https://pagespeed.web.dev/analysis/https-asilbek-maker-github-io-Web-Programming-week9-2-audit-stage-0-html/ud7la3c96b?form_factor=mobile" target="_blank" rel="noopener noreferrer">
+                        <img class="score-screenshot" src="sequence-1-before.png" alt="PageSpeed Insights mobile report for the baseline homepage, before sequence 1, showing a Lighthouse Performance score of 100.">
+                    </a>
+                    <figcaption>Before sequence 1 — baseline Performance score: 100/100. <a href="https://pagespeed.web.dev/analysis/https-asilbek-maker-github-io-Web-Programming-week9-2-audit-stage-0-html/ud7la3c96b?form_factor=mobile" target="_blank" rel="noopener noreferrer">Open the PageSpeed report</a>.</figcaption>
                 </figure>
                 <figure id="sequence-one-after">
-                    <p><strong>After this sequence:</strong> Performance score: <strong>[record score]</strong></p>
-                    <p>Capture file: <code>sequence-1-after.png</code> — add the Lighthouse report screenshot here.</p>
-                    <figcaption>After applying only the sequence 1 change.</figcaption>
+                    <a href="https://pagespeed.web.dev/analysis/https-asilbek-maker-github-io-Web-Programming-week9-2-audit-stage-1-html/eckg9t26vq?form_factor=mobile" target="_blank" rel="noopener noreferrer">
+                        <img class="score-screenshot" src="sequence-1-after.png" alt="PageSpeed Insights mobile report after sequence 1, showing a Lighthouse Performance score of 100.">
+                    </a>
+                    <figcaption>After sequence 1 — Performance score: 100/100. This capture is also the before state for sequence 2. <a href="https://pagespeed.web.dev/analysis/https-asilbek-maker-github-io-Web-Programming-week9-2-audit-stage-1-html/eckg9t26vq?form_factor=mobile" target="_blank" rel="noopener noreferrer">Open the PageSpeed report</a>.</figcaption>
                 </figure>
             </section>
 
             <section aria-labelledby="sequence-two-heading">
                 <h3 id="sequence-two-heading">Sequence 2 — Contain the project card</h3>
-                <p>Apply layout and paint containment to the project card.</p>
+                <p>Applied layout and paint containment to the project card.</p>
                 <figure id="sequence-two-before">
-                    <p><strong>Before this sequence:</strong> Performance score: <strong>[record score]</strong></p>
-                    <p>Capture file: <code>sequence-2-before.png</code> — add the Lighthouse report screenshot here.</p>
-                    <figcaption>State after sequence 1 and before containing the project card.</figcaption>
+                    <a href="https://pagespeed.web.dev/analysis/https-asilbek-maker-github-io-Web-Programming-week9-2-audit-stage-1-html/eckg9t26vq?form_factor=mobile" target="_blank" rel="noopener noreferrer">
+                        <img class="score-screenshot" src="sequence-1-after.png" alt="PageSpeed Insights mobile report before sequence 2, showing the sequence 1 state and a Lighthouse Performance score of 100.">
+                    </a>
+                    <figcaption>Before sequence 2 — Performance score: 100/100. Same capture as the after state for sequence 1. <a href="https://pagespeed.web.dev/analysis/https-asilbek-maker-github-io-Web-Programming-week9-2-audit-stage-1-html/eckg9t26vq?form_factor=mobile" target="_blank" rel="noopener noreferrer">Open the PageSpeed report</a>.</figcaption>
                 </figure>
                 <figure id="sequence-two-after">
-                    <p><strong>After this sequence:</strong> Performance score: <strong>[record score]</strong></p>
-                    <p>Capture file: <code>sequence-2-after.png</code> — add the Lighthouse report screenshot here.</p>
-                    <figcaption>After applying the sequence 2 change.</figcaption>
+                    <a href="https://pagespeed.web.dev/analysis/https-asilbek-maker-github-io-Web-Programming-week9-2-audit-stage-2-html/l0poe54mj6?form_factor=mobile" target="_blank" rel="noopener noreferrer">
+                        <img class="score-screenshot" src="sequence-2-after.png" alt="PageSpeed Insights mobile report after sequence 2, showing a Lighthouse Performance score of 100.">
+                    </a>
+                    <figcaption>After sequence 2 — Performance score: 100/100. This capture is also the before state for sequence 3. <a href="https://pagespeed.web.dev/analysis/https-asilbek-maker-github-io-Web-Programming-week9-2-audit-stage-2-html/l0poe54mj6?form_factor=mobile" target="_blank" rel="noopener noreferrer">Open the PageSpeed report</a>.</figcaption>
                 </figure>
             </section>
 
             <section aria-labelledby="sequence-three-heading">
                 <h3 id="sequence-three-heading">Sequence 3 — Avoid layout work on hover</h3>
-                <p>Replace the week-card hover's animated padding with a color-only transition.</p>
+                <p>Replaced the week-card hover's animated padding with a color-only transition.</p>
                 <figure id="sequence-three-before">
-                    <p><strong>Before this sequence:</strong> Performance score: <strong>[record score]</strong></p>
-                    <p>Capture file: <code>sequence-3-before.png</code> — add the Lighthouse report screenshot here.</p>
-                    <figcaption>State after sequence 2 and before changing the hover transition.</figcaption>
+                    <a href="https://pagespeed.web.dev/analysis/https-asilbek-maker-github-io-Web-Programming-week9-2-audit-stage-2-html/l0poe54mj6?form_factor=mobile" target="_blank" rel="noopener noreferrer">
+                        <img class="score-screenshot" src="sequence-2-after.png" alt="PageSpeed Insights mobile report before sequence 3, showing the sequence 2 state and a Lighthouse Performance score of 100.">
+                    </a>
+                    <figcaption>Before sequence 3 — Performance score: 100/100. Same capture as the after state for sequence 2. <a href="https://pagespeed.web.dev/analysis/https-asilbek-maker-github-io-Web-Programming-week9-2-audit-stage-2-html/l0poe54mj6?form_factor=mobile" target="_blank" rel="noopener noreferrer">Open the PageSpeed report</a>.</figcaption>
                 </figure>
                 <figure id="sequence-three-after">
-                    <p><strong>After this sequence:</strong> Performance score: <strong>[record score]</strong></p>
-                    <p>Capture file: <code>sequence-3-after.png</code> — add the Lighthouse report screenshot here.</p>
-                    <figcaption>After applying the sequence 3 change; this is the final staged result.</figcaption>
+                    <a href="https://pagespeed.web.dev/analysis/https-asilbek-maker-github-io-Web-Programming-week9-2-audit-stage-3-html/va1t687g94?form_factor=mobile" target="_blank" rel="noopener noreferrer">
+                        <img class="score-screenshot" src="sequence-3-after.png" alt="PageSpeed Insights mobile report after sequence 3, showing the final Lighthouse Performance score of 100.">
+                    </a>
+                    <figcaption>After sequence 3 — final staged Performance score: 100/100. <a href="https://pagespeed.web.dev/analysis/https-asilbek-maker-github-io-Web-Programming-week9-2-audit-stage-3-html/va1t687g94?form_factor=mobile" target="_blank" rel="noopener noreferrer">Open the PageSpeed report</a>.</figcaption>
                 </figure>
             </section>
         </section>

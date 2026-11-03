@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Week 6_1 HTML form and input exercises.">
+    <title>Week 6_1 - HTML Forms Tasks</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            padding: 42px 18px;
+            background: #f3f3f6;
+            color: #172033;
+            font: 1rem/1.6 Arial, sans-serif;
+        }
+        main { width: min(100%, 760px); margin: 0 auto; }
+        header { margin-bottom: 28px; text-align: center; }
+        .eyebrow {
+            margin: 0 0 8px;
+            color: #475569;
+            font-size: .9rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+        h1 { margin: 0 0 10px; font-size: clamp(2.2rem, 6vw, 3rem); }
+        .intro { margin: 0; color: #475569; }
+        .task-list { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+        .task-list a {
+            display: block;
+            padding: 18px 20px;
+            border: 1px solid #d5dce7;
+            border-radius: 14px;
+            background: #fff;
+            color: #172033;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, .06);
+            transition: background-color .2s ease, transform .2s ease;
+        }
+        .task-list a:hover { transform: translateY(-2px); background: #f8fafc; }
+        a:focus-visible { outline: 3px solid #075985; outline-offset: 3px; }
+        .navigation { display: flex; justify-content: space-between; gap: 16px; margin-top: 24px; }
+        .navigation a { color: #075985; }
+        @media (max-width: 520px) {
+            body { padding: 30px 16px; }
+            .navigation { flex-direction: column; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { transition-duration: .01ms !important; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <p class="eyebrow">Web Programming · Week 6_1</p>
+            <h1>HTML Forms Tasks</h1>
+            <p class="intro">Explore the five form practice pages.</p>
+        </header>
+        <nav aria-label="Week 6_1 tasks">
+            <ol class="task-list">
+                <li><a href="../task1.html">Task 1 — Form structure and semantic layout</a></li>
+                <li><a href="../task2.html">Task 2 — Labeling and grouping inputs</a></li>
+                <li><a href="../task3.html">Task 3 — Styling form elements</a></li>
+                <li><a href="../task4.html">Task 4 — Validation and user feedback</a></li>
+                <li><a href="../task5.html">Task 5 — Final polish and accessibility check</a></li>
+            </ol>
+        </nav>
+        <nav class="navigation" aria-label="Week 6 navigation">
+            <a href="../index.html">Back to Week 6</a>
+            <a href="../Week6_2/index.html">Week 6_2 — Six Browser APIs</a>
+        </nav>
+    </main>
+</body>
+</html>

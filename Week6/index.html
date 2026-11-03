@@ -3,94 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Week 6_1 and Week 6_2 web programming activities.">
     <title>Week 6 - Web Programming</title>
     <style>
         * { box-sizing: border-box; }
         body {
             margin: 0;
             min-height: 100vh;
-            padding: 48px 20px;
+            padding: 50px 20px;
+            background: #f3f3f6;
+            color: #111;
             font-family: Arial, sans-serif;
-            background: #f4f5f7;
-            color: #111827;
+            text-align: center;
         }
-        main {
-            max-width: 760px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 18px;
-            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
-            padding: 42px 32px;
-        }
-        h1 {
-            margin: 0 0 10px;
-            font-size: clamp(2.2rem, 5vw, 3.4rem);
-        }
-        .eyebrow {
-            margin: 0 0 18px;
-            color: #475569;
-            font-size: 0.9rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-        .intro {
-            margin: 0 0 30px;
-            color: #475569;
-            line-height: 1.7;
-        }
-        .task-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: grid;
-            gap: 14px;
-        }
-        .task-list a {
-            display: block;
-            padding: 16px 18px;
-            border: 1px solid #dbe2ea;
-            border-radius: 12px;
-            color: #0f172a;
+        main { max-width: 700px; margin: auto; }
+        header { margin-bottom: 36px; }
+        h1 { margin: 0 0 10px; font-size: 3rem; }
+        header p { margin: 0; color: #555; font-size: 1.2rem; }
+        .day-list { margin: 0; padding: 0; list-style: none; }
+        .day-list li { margin: 14px 0; }
+        .day-list a {
+            display: flex;
+            min-height: 70px;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 20px;
+            border: 1px solid #d5dce7;
+            border-radius: 14px;
+            background: #fff;
+            color: #172033;
             text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, .08);
+            transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease;
         }
-        .task-list a:hover,
-        .task-list a:focus-visible {
+        .day-list a:hover {
+            transform: translateY(-2px);
             background: #f8fafc;
-            border-color: #94a3b8;
-            transform: translateY(-1px);
-            outline: none;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, .1);
         }
-        .back-link {
-            display: inline-block;
-            margin-top: 30px;
-            color: #1d4ed8;
-            text-decoration: none;
-            font-weight: 600;
+        .day-list a:focus-visible, .back-link:focus-visible {
+            outline: 3px solid #075985;
+            outline-offset: 3px;
         }
+        .day-name { font-size: 1.1rem; font-weight: 700; }
+        .back-link { display: inline-block; margin-top: 20px; color: #075985; }
         @media (max-width: 520px) {
-            main { padding: 28px 20px; }
-            .task-list a { padding: 14px 16px; }
+            body { padding: 32px 16px; }
+            header { margin-bottom: 28px; }
+            h1 { font-size: 2.25rem; }
+            .day-list a { min-height: 60px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { transition-duration: .01ms !important; }
         }
     </style>
 </head>
 <body>
     <main>
-        <p class="eyebrow">Web Programming · Week 6</p>
-        <h1>Week 6</h1>
-        <p class="intro">Class exercises in semantic HTML, forms, and browser APIs.</p>
-
-        <ol class="task-list">
-            <li><a href="Week6_2/index.html">Week 6_2 — Six Browser APIs in action</a></li>
-            <li><a href="task1.html">Task 1 — Form structure and semantic layout</a></li>
-            <li><a href="task2.html">Task 2 — Labeling and grouping inputs</a></li>
-            <li><a href="task3.html">Task 3 — Styling form elements</a></li>
-            <li><a href="task4.html">Task 4 — Validation and user feedback</a></li>
-            <li><a href="task5.html">Task 5 — Final polish and accessibility check</a></li>
-        </ol>
-
-        <a class="back-link" href="../index.html">Back to course home</a>
+        <header>
+            <h1>Week 6</h1>
+            <p>My Week 6 assignments and class exercises</p>
+        </header>
+        <nav aria-label="Week 6 activities">
+            <ul class="day-list">
+                <li><a href="Week6_1/index.html"><span class="day-name">Week 6_1 — HTML Forms Tasks</span></a></li>
+                <li><a href="Week6_2/index.html"><span class="day-name">Week 6_2 — Six Browser APIs</span></a></li>
+            </ul>
+        </nav>
+        <a class="back-link" href="../index.html">Back to all weeks</a>
     </main>
 </body>
 </html>

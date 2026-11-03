@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 6_2 — Task 4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        main {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 32px;
+        }
+        h1 { margin-top: 0; }
+        form {
+            display: grid;
+            gap: 18px;
+        }
+        .field {
+            display: grid;
+            gap: 8px;
+        }
+        label {
+            font-weight: 700;
+        }
+        input {
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font: inherit;
+        }
+        .error {
+            color: #b91c1c;
+            font-size: 0.9rem;
+            min-height: 1.25em;
+        }
+        button {
+            width: fit-content;
+            background: #16a34a;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 11px 18px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        a { color: #15803d; }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Task 4 — Validation and feedback</h1>
+
+        <form id="signup-form" novalidate>
+            <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required>
+                <div class="error" id="emailError" aria-live="polite"></div>
+            </div>
+
+            <button type="submit">Check</button>
+        </form>
+
+        <p><a href="index.html">Back to Week 6</a></p>
+    </main>
+
+    <script>
+        const form = document.getElementById('signup-form');
+        const emailInput = document.getElementById('email');
+        const emailError = document.getElementById('emailError');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            emailError.textContent = '';
+
+            if (!emailInput.value.trim()) {
+                emailError.textContent = 'Email is required.';
+                emailInput.focus();
+                return;
+            }
+
+            if (!emailInput.checkValidity()) {
+                emailError.textContent = 'Please enter a valid email address.';
+                emailInput.focus();
+                return;
+            }
+
+            emailError.textContent = 'Email looks valid.';
+        });
+    </script>
+</body>
+</html>

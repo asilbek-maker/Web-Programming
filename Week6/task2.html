@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 6_2 — Task 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        main {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 32px;
+        }
+        h1 { margin-top: 0; }
+        fieldset {
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 18px;
+        }
+        legend {
+            font-weight: 700;
+            padding: 0 8px;
+        }
+        .options {
+            display: grid;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        label { display: inline-flex; gap: 10px; align-items: center; }
+        input[type="checkbox"], input[type="radio"] {
+            width: 18px;
+            height: 18px;
+        }
+        a { color: #1d4ed8; }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Task 2 — Grouped form controls</h1>
+
+        <form>
+            <fieldset>
+                <legend>Personal information</legend>
+                <div class="options">
+                    <label><input type="radio" name="title" value="mr"> Mr.</label>
+                    <label><input type="radio" name="title" value="mrs"> Mrs.</label>
+                    <label><input type="radio" name="title" value="ms"> Ms.</label>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Interests</legend>
+                <div class="options">
+                    <label><input type="checkbox" name="interest" value="design"> Design</label>
+                    <label><input type="checkbox" name="interest" value="coding"> Coding</label>
+                    <label><input type="checkbox" name="interest" value="music"> Music</label>
+                </div>
+            </fieldset>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <p><a href="index.html">Back to Week 6</a></p>
+    </main>
+</body>
+</html>

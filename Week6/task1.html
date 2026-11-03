@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 6_2 — Task 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        main {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 32px;
+        }
+        h1 { margin-top: 0; }
+        form {
+            display: grid;
+            gap: 18px;
+        }
+        .field {
+            display: grid;
+            gap: 8px;
+        }
+        label {
+            font-weight: 600;
+        }
+        input, textarea, select, button {
+            font: inherit;
+        }
+        input, textarea, select {
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+        }
+        button {
+            width: fit-content;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 11px 18px;
+            cursor: pointer;
+        }
+        a { color: #1d4ed8; }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Task 1 — Form structure</h1>
+        <form>
+            <div class="field">
+                <label for="name">Full name</label>
+                <input id="name" name="name" type="text" placeholder="Enter your name">
+            </div>
+
+            <div class="field">
+                <label for="email">Email address</label>
+                <input id="email" name="email" type="email" placeholder="name@example.com">
+            </div>
+
+            <div class="field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Write your message here..."></textarea>
+            </div>
+
+            <div class="field">
+                <label for="country">Country</label>
+                <select id="country" name="country">
+                    <option value="">Choose one</option>
+                    <option>Uzbekistan</option>
+                    <option>Kazakhstan</option>
+                    <option>United States</option>
+                </select>
+            </div>
+
+            <button type="submit">Send</button>
+        </form>
+
+        <p><a href="index.html">Back to Week 6</a></p>
+    </main>
+</body>
+</html>

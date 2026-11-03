@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 6_2 — Task 5</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0fdf4;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        main {
+            max-width: 720px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 18px;
+            border: 1px solid #bbf7d0;
+            padding: 32px;
+        }
+        h1 { margin-top: 0; }
+        form {
+            display: grid;
+            gap: 18px;
+        }
+        .field {
+            display: grid;
+            gap: 8px;
+        }
+        label {
+            font-weight: 700;
+        }
+        input, button {
+            font: inherit;
+        }
+        input {
+            padding: 10px 12px;
+            border: 1px solid #86efac;
+            border-radius: 8px;
+        }
+        button {
+            width: fit-content;
+            background: #15803d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 18px;
+            cursor: pointer;
+        }
+        a { color: #166534; }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Task 5 — Final form polish</h1>
+
+        <form aria-label="Student registration form">
+            <div class="field">
+                <label for="student-name">Student name</label>
+                <input id="student-name" name="studentName" type="text" required>
+            </div>
+
+            <div class="field">
+                <label for="student-email">Student email</label>
+                <input id="student-email" name="studentEmail" type="email" required>
+            </div>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <p><a href="index.html">Back to Week 6</a></p>
+    </main>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Week 6_2 hands-on examples using six browser APIs.">
+    <title>Week 6_2 - Six Browser APIs</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --page: #f4f6fb;
+            --panel: #fff;
+            --ink: #172033;
+            --muted: #475569;
+            --line: #d7deea;
+            --accent: #145da0;
+            --success: #176b39;
+            --error: #a43d38;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 38px 18px;
+            background: var(--page);
+            color: var(--ink);
+            font: 1rem/1.6 Arial, sans-serif;
+        }
+        main { width: min(100%, 1080px); margin: 0 auto; }
+        header { max-width: 760px; margin: 0 auto 28px; text-align: center; }
+        .eyebrow {
+            margin: 0 0 8px;
+            color: var(--accent);
+            font-size: .82rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+        h1 { margin: 0 0 12px; font-size: clamp(2.2rem, 6vw, 3.5rem); line-height: 1.1; }
+        header p:last-child { margin: 0; color: var(--muted); }
+        .notice {
+            margin: 0 0 20px;
+            padding: 12px 16px;
+            border-left: 4px solid var(--accent);
+            background: #e8f1fb;
+            color: #233f61;
+        }
+        .api-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+        .api-card {
+            min-width: 0;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: var(--panel);
+            box-shadow: 0 4px 12px rgba(23, 32, 51, .04);
+        }
+        .api-card h2 { margin: 0 0 6px; font-size: 1.2rem; }
+        .api-name { margin: 0 0 12px; color: var(--accent); font: 700 .84rem/1.4 "Courier New", monospace; }
+        .api-card p { color: var(--muted); }
+        button, input, textarea { font: inherit; }
+        button {
+            min-height: 44px;
+            padding: 9px 14px;
+            border: 1px solid #124a7e;
+            border-radius: 8px;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        button:hover { background: #104b80; }
+        button:disabled { cursor: not-allowed; opacity: .6; }
+        button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
+            outline: 3px solid #e1a100;
+            outline-offset: 3px;
+        }
+        input, textarea {
+            width: 100%;
+            min-height: 44px;
+            padding: 9px 11px;
+            border: 1px solid #aeb9ca;
+            border-radius: 8px;
+            background: #fff;
+            color: var(--ink);
+        }
+        textarea { min-height: 84px; resize: vertical; }
+        .controls { display: grid; gap: 10px; }
+        .status {
+            min-height: 1.6em;
+            margin: 12px 0 0;
+            overflow-wrap: anywhere;
+            color: var(--muted);
+        }
+        .status[data-state="success"] { color: var(--success); }
+        .status[data-state="error"] { color: var(--error); }
+        .data-list { display: grid; gap: 10px; padding: 0; list-style: none; }
+        .data-list li { padding: 10px 12px; border-radius: 8px; background: #f1f5f9; }
+        canvas { display: block; width: 100%; height: 150px; border: 1px solid var(--line); border-radius: 8px; }
+        .back-link { display: inline-block; margin-top: 24px; color: var(--accent); }
+        @media (max-width: 680px) {
+            body { padding: 26px 14px; }
+            .api-grid { grid-template-columns: 1fr; }
+            .api-card { padding: 18px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <p class="eyebrow">Web Programming · Week 6_2</p>
+            <h1>Six browser APIs</h1>
+            <p>Try each example. Some APIs ask for browser permission or are only available on a secure connection (HTTPS or localhost).</p>
+        </header>
+
+        <p class="notice"><strong>Privacy:</strong> Location stays in this page, and the note is stored only in this browser. No personal data is sent to a server.</p>
+
+        <div class="api-grid">
+            <section class="api-card" aria-labelledby="fetch-heading">
+                <h2 id="fetch-heading">Load example data</h2>
+                <p class="api-name">1. Fetch API</p>
+                <p>Fetch a same-site JSON file and render its items on this page.</p>
+                <button id="load-data" type="button">Load sample data</button>
+                <p class="status" id="fetch-status" role="status" aria-live="polite">Ready to load the local JSON sample.</p>
+                <ul class="data-list" id="sample-list" aria-label="Loaded sample data"></ul>
+            </section>
+
+            <section class="api-card" aria-labelledby="storage-heading">
+                <h2 id="storage-heading">Save a private note</h2>
+                <p class="api-name">2. Web Storage API (localStorage)</p>
+                <p>The note is saved on this device in this browser only.</p>
+                <div class="controls">
+                    <label for="saved-note">Your note</label>
+                    <textarea id="saved-note" maxlength="240" placeholder="Type a note to save in this browser"></textarea>
+                    <button id="save-note" type="button">Save note</button>
+                </div>
+                <p class="status" id="storage-status" role="status" aria-live="polite">Checking for a note saved in this browser.</p>
+            </section>
+
+            <section class="api-card" aria-labelledby="location-heading">
+                <h2 id="location-heading">Check your location</h2>
+                <p class="api-name">3. Geolocation API</p>
+                <p>With your permission, show coordinates locally. This example does not send them anywhere.</p>
+                <button id="get-location" type="button">Request my location</button>
+                <p class="status" id="location-status" role="status" aria-live="polite">Location has not been requested.</p>
+            </section>
+
+            <section class="api-card" aria-labelledby="clipboard-heading">
+                <h2 id="clipboard-heading">Copy a message</h2>
+                <p class="api-name">4. Clipboard API</p>
+                <p>Copy a short message to your clipboard (browser permission may be required).</p>
+                <button id="copy-message" type="button">Copy message</button>
+                <p class="status" id="clipboard-status" role="status" aria-live="polite">Ready to copy.</p>
+            </section>
+
+            <section class="api-card" aria-labelledby="share-heading">
+                <h2 id="share-heading">Share this page</h2>
+                <p class="api-name">5. Web Share API</p>
+                <p>Open your device’s native share menu when the browser supports it.</p>
+                <button id="share-page" type="button">Share this page</button>
+                <p class="status" id="share-status" role="status" aria-live="polite">Share availability is checked when you press the button.</p>
+            </section>
+
+            <section class="api-card" aria-labelledby="canvas-heading">
+                <h2 id="canvas-heading">Draw a campus connection</h2>
+                <p class="api-name">6. Canvas API (CanvasRenderingContext2D)</p>
+                <p>Use a 2D canvas context to draw a small diagram in your browser.</p>
+                <canvas id="campus-canvas" width="640" height="180" role="img" aria-label="A diagram of two students connected by shared interests">
+                    Two student icons are connected by a line representing shared interests.
+                </canvas>
+                <button id="redraw-canvas" type="button">Draw again</button>
+                <p class="status" id="canvas-status" role="status" aria-live="polite">Canvas is ready.</p>
+            </section>
+        </div>
+
+        <a class="back-link" href="../index.html">Back to Week 6</a>
+    </main>
+    <script src="api-demos.js"></script>
+</body>
+</html>

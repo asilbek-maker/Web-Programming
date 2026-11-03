@@ -13,21 +13,38 @@
         <header>
             <p class="eyebrow">Web Programming · Week 9</p>
             <h1>Week 9_1 — Lighthouse Accessibility Report</h1>
-            <p class="intro">Lighthouse Accessibility-only audit of my course portfolio.</p>
+            <p class="intro">Lighthouse Accessibility audit of my course portfolio, with the published page URL and before-and-after evidence.</p>
         </header>
+
+        <section class="panel" aria-labelledby="audit-url-heading">
+            <h2 id="audit-url-heading">Page audited</h2>
+            <p>These Lighthouse reports were run against the course homepage. Open the published page to verify the address being audited:</p>
+            <p class="audit-url"><a href="https://asilbek-maker.github.io/Web-Programming/" target="_blank" rel="noopener noreferrer">https://asilbek-maker.github.io/Web-Programming/</a></p>
+            <p>The existing Lighthouse report captures show the local preview address in their browser bar. The live-page capture below records the published URL separately.</p>
+        </section>
 
         <section class="panel" aria-labelledby="results-heading">
             <h2 id="results-heading">Audit results</h2>
             <p>Initial Accessibility score: <strong>95/100</strong></p>
             <figure id="initial-audit">
                 <img class="score-screenshot" src="accessibility-before.png" alt="Lighthouse Accessibility report showing the initial score of 95.">
-                <figcaption>Before fixes — Lighthouse Accessibility score: 95.</figcaption>
+                <figcaption>Before fixes — Lighthouse Accessibility score: 95. This original report capture shows the local preview URL in its browser bar.</figcaption>
             </figure>
 
             <p>Final Accessibility score: <strong>100/100</strong></p>
             <figure id="final-audit">
                 <img class="score-screenshot" src="accessibility-after.png" alt="Lighthouse Accessibility report showing the final score of 100.">
-                <figcaption>After fixes — Lighthouse Accessibility score: 100.</figcaption>
+                <figcaption>After fixes — Lighthouse Accessibility score: 100. This original report capture shows the local preview URL in its browser bar.</figcaption>
+            </figure>
+        </section>
+
+        <section class="panel" aria-labelledby="live-capture-heading">
+            <h2 id="live-capture-heading">Published page URL capture</h2>
+            <figure id="published-url-capture">
+                <a href="https://asilbek-maker.github.io/Web-Programming/" target="_blank" rel="noopener noreferrer">
+                    <img class="score-screenshot" src="live-site-url.png" alt="Browser screenshot of the published course homepage with https://asilbek-maker.github.io/Web-Programming/ visible in the address bar.">
+                </a>
+                <figcaption>Live course homepage opened at the published URL shown in the browser address bar. Select the image to open the audited page.</figcaption>
             </figure>
         </section>
 

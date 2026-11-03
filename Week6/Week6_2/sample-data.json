@@ -1,0 +1,16 @@
+{
+  "examples": [
+    {
+      "title": "Shared interest",
+      "description": "Two students discover they both enjoy photography."
+    },
+    {
+      "title": "Campus connection",
+      "description": "A study group forms around a shared course."
+    },
+    {
+      "title": "Same community",
+      "description": "Students meet through a club they both attend."
+    }
+  ]
+}

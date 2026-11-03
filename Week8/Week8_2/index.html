@@ -6,47 +6,88 @@
     <meta name="description" content="Practice validating a form with JavaScript and the Constraint Validation API.">
     <title>Week 8_2 - JavaScript Form Validation</title>
     <link rel="stylesheet" href="../Week8%20Friday/tasks.css">
+    <style>
+        .field-error {
+            min-height: 1.4em;
+            color: #a43d38;
+        }
+        .field input[aria-invalid="true"] {
+            border-color: #a43d38;
+        }
+        .password-rules {
+            display: grid;
+            gap: 4px;
+            margin: 0;
+            padding-left: 20px;
+            color: #555;
+            font-size: .9rem;
+        }
+        .password-rules li.passed {
+            color: #176b39;
+        }
+        .status.success {
+            color: #176b39;
+            font-weight: 700;
+        }
+        .status.error {
+            color: #a43d38;
+            font-weight: 700;
+        }
+    </style>
 </head>
 <body>
     <main>
         <header>
             <p class="eyebrow">Web Programming · Week 8_2</p>
             <h1>JavaScript Form Validation</h1>
-            <p class="intro">Use browser validation for required fields and JavaScript to make sure both passwords match.</p>
+            <p class="intro">Practice native HTML constraints, field-by-field JavaScript validation, password rules, and accessible error messages.</p>
         </header>
 
         <section class="panel" aria-labelledby="form-heading">
-            <h2 id="form-heading">Create an account</h2>
+            <h2 id="form-heading">Validate a registration form</h2>
+            <p>This frontend-only exercise checks your entries in the browser. It does not create an account or send your data.</p>
             <form class="demo-form" id="registration-form" novalidate>
                 <div class="field">
                     <label for="full-name">Full name</label>
-                    <input id="full-name" name="fullName" type="text" autocomplete="name" required>
+                    <input id="full-name" name="fullName" type="text" autocomplete="name" required minlength="2" aria-describedby="full-name-error">
+                    <small class="field-error" id="full-name-error"></small>
                 </div>
                 <div class="field">
                     <label for="email">Email address</label>
-                    <input id="email" name="email" type="email" autocomplete="email" required>
+                    <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-error">
+                    <small class="field-error" id="email-error"></small>
                 </div>
                 <div class="field">
-                    <label for="password">Password (at least 8 characters)</label>
-                    <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" required aria-describedby="password-hint password-error">
+                    <small id="password-hint">Use at least 8 characters, including an uppercase letter, a lowercase letter, and a number.</small>
+                    <ul class="password-rules" aria-label="Password requirements">
+                        <li id="rule-length">At least 8 characters</li>
+                        <li id="rule-uppercase">One uppercase letter</li>
+                        <li id="rule-lowercase">One lowercase letter</li>
+                        <li id="rule-number">One number</li>
+                    </ul>
+                    <small class="field-error" id="password-error"></small>
                 </div>
                 <div class="field">
                     <label for="confirm-password">Confirm password</label>
-                    <input id="confirm-password" name="confirmPassword" type="password" autocomplete="new-password" required>
+                    <input id="confirm-password" name="confirmPassword" type="password" autocomplete="new-password" required aria-describedby="confirm-password-error">
+                    <small class="field-error" id="confirm-password-error"></small>
                 </div>
-                <button type="submit">Validate form</button>
+                <button type="submit">Check my entries</button>
             </form>
-            <p class="status" id="form-status" role="status" aria-live="polite">Complete every field to try the validation.</p>
+            <p class="status" id="form-status" role="status" aria-live="polite">Complete the form, then check your entries.</p>
         </section>
 
         <section class="panel" aria-labelledby="how-heading">
             <h2 id="how-heading">What to try</h2>
             <ol>
-                <li>Submit the empty form to see the browser's required-field checks.</li>
-                <li>Enter an invalid email or a password shorter than eight characters.</li>
-                <li>Enter different passwords, then correct them and submit again.</li>
+                <li>Submit the empty form to see required-field messages.</li>
+                <li>Try an invalid email and a password that misses one of the listed rules.</li>
+                <li>Use different passwords, then make them match.</li>
+                <li>Correct the entries and submit to see the success message.</li>
             </ol>
-            <p>Built-in constraints check required fields, email format, and password length. JavaScript uses the Constraint Validation API to check that the passwords match.</p>
+            <p>HTML provides the required, email, and minimum-length constraints. JavaScript adds the password rules, matching check, inline field errors, and a final validation summary.</p>
         </section>
 
         <nav class="navigation" aria-label="Week 8_2 navigation">

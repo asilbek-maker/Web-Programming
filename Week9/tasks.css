@@ -119,6 +119,15 @@ h1 {
     font-size: 0.9rem;
 }
 
+.audit-url {
+    overflow-wrap: anywhere;
+    font-weight: 700;
+}
+
+.audit-url a {
+    color: #075985;
+}
+
 .panel + .panel {
     margin-top: 1rem;
 }

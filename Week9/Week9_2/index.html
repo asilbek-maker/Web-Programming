@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Week 9_2 Lighthouse performance report for my personal website.">
+    <title>Week 9_2 - Lighthouse Performance Report</title>
+    <link rel="stylesheet" href="../tasks.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <main id="main-content" tabindex="-1">
+        <header>
+            <p class="eyebrow">Web Programming · Week 9</p>
+            <h1>Week 9_2 — Performance Optimization</h1>
+            <p class="intro">Lighthouse Performance audit of my personal portfolio, before and after optimization.</p>
+        </header>
+
+        <section class="panel" aria-labelledby="page-heading">
+            <h2 id="page-heading">Page audited</h2>
+            <p><a href="https://asilbek-maker.github.io/Web-Programming/" target="_blank" rel="noopener noreferrer">Asilbek — Web Programming</a></p>
+        </section>
+
+        <section class="panel" aria-labelledby="results-heading">
+            <h2 id="results-heading">Lighthouse results</h2>
+            <figure id="initial-audit">
+                <p><strong>Before optimization:</strong> Add the initial Lighthouse Performance screenshot here, saved as <code>performance-before.png</code>.</p>
+                <figcaption>Run Lighthouse on the page above before applying the changes. Include the Performance score in the screenshot.</figcaption>
+            </figure>
+            <figure id="final-audit">
+                <p><strong>After optimization:</strong> Add the final Lighthouse Performance screenshot here, saved as <code>performance-after.png</code>.</p>
+                <figcaption>Re-run Lighthouse on the updated page and include the new Performance score in the screenshot.</figcaption>
+            </figure>
+        </section>
+
+        <section class="panel" aria-labelledby="changes-heading">
+            <h2 id="changes-heading">What changed</h2>
+            <p>I deferred rendering of below-the-fold sections with <code>content-visibility</code> and intrinsic sizing, so the browser can skip off-screen work without leaving the layout unreserved. I also contained the project card's layout and paint, and replaced the week-card hover's animated padding with a color-only transition to avoid layout work during hover.</p>
+        </section>
+
+        <nav aria-label="Task navigation">
+            <a class="back-link" href="../index.html">Back to Week 9</a>
+            <a class="back-link" href="../../index.html">Back to course home</a>
+        </nav>
+    </main>
+</body>
+</html>

@@ -254,6 +254,11 @@
             border-top: 1px solid var(--line);
         }
 
+        #course {
+            content-visibility: auto;
+            contain-intrinsic-size: auto 1120px;
+        }
+
         .section-heading {
             display: grid;
             grid-template-columns: 90px minmax(0, 1fr) minmax(200px, 310px);
@@ -325,7 +330,7 @@
             gap: 24px;
             border-bottom: 1px solid #cfcec5;
             text-decoration: none;
-            transition: padding 180ms ease, background 180ms ease;
+            transition: background-color 180ms ease;
         }
 
         .week-card:last-child {
@@ -333,8 +338,6 @@
         }
 
         .week-card:hover {
-            padding-right: 12px;
-            padding-left: 12px;
             background: #e4e6d9;
         }
 
@@ -368,6 +371,8 @@
 
         .project-section {
             padding-bottom: 100px;
+            content-visibility: auto;
+            contain-intrinsic-size: auto 780px;
         }
 
         .project-card {
@@ -379,6 +384,7 @@
             gap: 28px;
             padding: 38px 42px;
             overflow: hidden;
+            contain: layout paint;
             background: #191a16;
             color: #f0f0e9;
         }

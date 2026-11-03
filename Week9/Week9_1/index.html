@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Week 9_1 Lighthouse Accessibility report with before-and-after audit screenshots and fixes.">
+    <title>Week 9_1 - Lighthouse Accessibility Report</title>
+    <link rel="stylesheet" href="../tasks.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <main id="main-content" tabindex="-1">
+        <header>
+            <p class="eyebrow">Web Programming · Week 9</p>
+            <h1>Week 9_1 — Lighthouse Accessibility Report</h1>
+            <p class="intro">Lighthouse Accessibility audit of my course portfolio, with the published page URL and before-and-after evidence.</p>
+        </header>
+
+        <section class="panel" aria-labelledby="audit-url-heading">
+            <h2 id="audit-url-heading">Page audited</h2>
+            <p>These Lighthouse reports were run against the course homepage. Open the published page to verify the address being audited:</p>
+            <p class="audit-url"><a href="https://asilbek-maker.github.io/Web-Programming/" target="_blank" rel="noopener noreferrer">https://asilbek-maker.github.io/Web-Programming/</a></p>
+            <p>The existing Lighthouse report captures show the local preview address in their browser bar. The live-page capture below records the published URL separately.</p>
+        </section>
+
+        <section class="panel" aria-labelledby="results-heading">
+            <h2 id="results-heading">Audit results</h2>
+            <p>Initial Accessibility score: <strong>95/100</strong></p>
+            <figure id="initial-audit">
+                <img class="score-screenshot" src="../accessibility-before.png" alt="Lighthouse Accessibility report showing the initial score of 95.">
+                <figcaption>Before fixes — Lighthouse Accessibility score: 95. This original report capture shows the local preview URL in its browser bar.</figcaption>
+            </figure>
+
+            <p>Final Accessibility score: <strong>100/100</strong></p>
+            <figure id="final-audit">
+                <img class="score-screenshot" src="../accessibility-after.png" alt="Lighthouse Accessibility report showing the final score of 100.">
+                <figcaption>After fixes — Lighthouse Accessibility score: 100. This original report capture shows the local preview URL in its browser bar.</figcaption>
+            </figure>
+        </section>
+
+        <section class="panel" aria-labelledby="live-capture-heading">
+            <h2 id="live-capture-heading">Published page URL capture</h2>
+            <figure id="published-url-capture">
+                <a href="https://asilbek-maker.github.io/Web-Programming/" target="_blank" rel="noopener noreferrer">
+                    <img class="score-screenshot" src="../live-site-url.png" alt="Browser screenshot of the published course homepage with https://asilbek-maker.github.io/Web-Programming/ visible in the address bar.">
+                </a>
+                <figcaption>Live course homepage opened at the published URL shown in the browser address bar. Select the image to open the audited page.</figcaption>
+            </figure>
+        </section>
+
+        <section class="panel" aria-labelledby="fixes-heading">
+            <h2 id="fixes-heading">Three accessibility fixes</h2>
+            <ol>
+                <li>Improved the week-number text contrast from 3.74:1 to 5.72:1.</li>
+                <li>Improved the week-description text contrast from 4.18:1 to 5.72:1. Lighthouse flagged 14 text instances across both colors; all are fixed.</li>
+                <li>Added a keyboard-accessible “Skip to main content” link and a focusable main-content target. Tested it with Tab and Enter.</li>
+            </ol>
+            <p>Lighthouse reported one failing audit (color contrast), with 14 affected text instances. All reported contrast failures are fixed; the Accessibility score is now 100.</p>
+        </section>
+
+        <nav aria-label="Week navigation">
+            <a class="back-link" href="../index.html">Back to Week 9</a>
+            <a class="back-link" href="../../index.html">Back to course home</a>
+        </nav>
+    </main>
+</body>
+</html>

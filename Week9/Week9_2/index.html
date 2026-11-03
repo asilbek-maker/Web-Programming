@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Week 9_2 Lighthouse performance report for my personal website.">
+    <meta name="description" content="Week 9_2 staged Lighthouse performance report with before-and-after evidence for each optimization.">
     <title>Week 9_2 - Lighthouse Performance Report</title>
     <link rel="stylesheet" href="../tasks.css">
 </head>
@@ -13,7 +13,7 @@
         <header>
             <p class="eyebrow">Web Programming · Week 9</p>
             <h1>Week 9_2 — Performance Optimization</h1>
-            <p class="intro">Lighthouse Performance audit of my personal portfolio, before and after optimization.</p>
+            <p class="intro">A staged Lighthouse Performance report for my personal portfolio, with before-and-after evidence for each optimization sequence.</p>
         </header>
 
         <section class="panel" aria-labelledby="page-heading">
@@ -22,15 +22,53 @@
         </section>
 
         <section class="panel" aria-labelledby="results-heading">
-            <h2 id="results-heading">Lighthouse results</h2>
-            <figure id="initial-audit">
-                <p><strong>Before optimization:</strong> Add the initial Lighthouse Performance screenshot here, saved as <code>performance-before.png</code>.</p>
-                <figcaption>Run Lighthouse on the page above before applying the changes. Include the Performance score in the screenshot.</figcaption>
-            </figure>
-            <figure id="final-audit">
-                <p><strong>After optimization:</strong> Add the final Lighthouse Performance screenshot here, saved as <code>performance-after.png</code>.</p>
-                <figcaption>Re-run Lighthouse on the updated page and include the new Performance score in the screenshot.</figcaption>
-            </figure>
+            <h2 id="results-heading">Results by optimization sequence</h2>
+            <p>For each sequence, record the Lighthouse Performance score and add the matching report screenshot before moving to the next sequence. Keep the page, device, and Lighthouse settings the same for each run. The after capture for one sequence is the starting state for the next.</p>
+
+            <section aria-labelledby="sequence-one-heading">
+                <h3 id="sequence-one-heading">Sequence 1 — Defer below-the-fold rendering</h3>
+                <p>Apply <code>content-visibility</code> and intrinsic sizing to below-the-fold sections.</p>
+                <figure id="sequence-one-before">
+                    <p><strong>Before this sequence:</strong> Performance score: <strong>[record score]</strong></p>
+                    <p>Capture file: <code>sequence-1-before.png</code> — add the Lighthouse report screenshot here.</p>
+                    <figcaption>Baseline, before deferring below-the-fold rendering.</figcaption>
+                </figure>
+                <figure id="sequence-one-after">
+                    <p><strong>After this sequence:</strong> Performance score: <strong>[record score]</strong></p>
+                    <p>Capture file: <code>sequence-1-after.png</code> — add the Lighthouse report screenshot here.</p>
+                    <figcaption>After applying only the sequence 1 change.</figcaption>
+                </figure>
+            </section>
+
+            <section aria-labelledby="sequence-two-heading">
+                <h3 id="sequence-two-heading">Sequence 2 — Contain the project card</h3>
+                <p>Apply layout and paint containment to the project card.</p>
+                <figure id="sequence-two-before">
+                    <p><strong>Before this sequence:</strong> Performance score: <strong>[record score]</strong></p>
+                    <p>Capture file: <code>sequence-2-before.png</code> — add the Lighthouse report screenshot here.</p>
+                    <figcaption>State after sequence 1 and before containing the project card.</figcaption>
+                </figure>
+                <figure id="sequence-two-after">
+                    <p><strong>After this sequence:</strong> Performance score: <strong>[record score]</strong></p>
+                    <p>Capture file: <code>sequence-2-after.png</code> — add the Lighthouse report screenshot here.</p>
+                    <figcaption>After applying the sequence 2 change.</figcaption>
+                </figure>
+            </section>
+
+            <section aria-labelledby="sequence-three-heading">
+                <h3 id="sequence-three-heading">Sequence 3 — Avoid layout work on hover</h3>
+                <p>Replace the week-card hover's animated padding with a color-only transition.</p>
+                <figure id="sequence-three-before">
+                    <p><strong>Before this sequence:</strong> Performance score: <strong>[record score]</strong></p>
+                    <p>Capture file: <code>sequence-3-before.png</code> — add the Lighthouse report screenshot here.</p>
+                    <figcaption>State after sequence 2 and before changing the hover transition.</figcaption>
+                </figure>
+                <figure id="sequence-three-after">
+                    <p><strong>After this sequence:</strong> Performance score: <strong>[record score]</strong></p>
+                    <p>Capture file: <code>sequence-3-after.png</code> — add the Lighthouse report screenshot here.</p>
+                    <figcaption>After applying the sequence 3 change; this is the final staged result.</figcaption>
+                </figure>
+            </section>
         </section>
 
         <section class="panel" aria-labelledby="changes-heading">

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Week 10 personal portfolio assignment and web programming exercises.">
+    <title>Week 10 - Web Programming</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 50px 20px; min-height: 100vh; background: #f3f3f6; color: #111; font-family: Arial, sans-serif; text-align: center; }
+        main { max-width: 700px; margin: auto; }
+        .skip-link { position: absolute; top: 12px; left: 12px; z-index: 1; padding: 10px 14px; transform: translateY(-160%); background: #fff; color: #111; }
+        .skip-link:focus { transform: translateY(0); }
+        header { margin-bottom: 36px; }
+        h1 { margin: 0 0 10px; font-size: 3rem; }
+        header p { margin: 0; color: #666; font-size: 1.2rem; }
+        .assignment-list { margin: 0; padding: 0; list-style: none; }
+        .assignment-list li { margin: 14px 0; }
+        .assignment-list a { display: flex; min-height: 70px; justify-content: center; align-items: center; padding: 18px 20px; border: 1px solid #e2e8f0; border-radius: 14px; background: #fff; color: #222; text-decoration: none; box-shadow: 0 3px 8px rgba(0, 0, 0, .08); transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease; }
+        .assignment-list a:hover { background: #e9e9eb; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0, 0, 0, .1); }
+        .assignment-list a:focus-visible, .back-link:focus-visible { outline: 3px solid #31869a; outline-offset: 3px; }
+        .assignment-name { font-size: 1.1rem; font-weight: 600; }
+        .back-link { display: inline-block; margin-top: 20px; color: #176578; }
+        @media (max-width: 520px) {
+            body { padding: 32px 16px; }
+            header { margin-bottom: 28px; }
+            h1 { font-size: 2.25rem; }
+            .assignment-list a { min-height: 60px; }
+        }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <main id="main-content" tabindex="-1">
+        <header>
+            <h1>Week 10</h1>
+            <p>My Week 10 assignments and class exercises</p>
+        </header>
+        <nav aria-label="Week 10 assignments">
+            <ul class="assignment-list">
+                <li><a href="Week10-1/index.html"><span class="assignment-name">Week10-1 — Personal Portfolio</span></a></li>
+            </ul>
+        </nav>
+        <a class="back-link" href="../index.html">Back to all weeks</a>
+    </main>
+</body>
+</html>

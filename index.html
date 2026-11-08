@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#11120f">
-    <meta name="description" content="Asilbek's web programming course, weekly assignments, and selected projects.">
-    <title>Asilbek — Web Programming</title>
+    <meta name="description" content="Explore Asilbek's web development portfolio, selected projects, skills, and course work.">
+    <title>Asilbek — Web Developer Portfolio</title>
     <style>
         :root {
             color-scheme: dark;
@@ -516,6 +516,136 @@
             display: none;
         }
 
+        .hero-aside {
+            min-height: 320px;
+            border-radius: 18px;
+            background:
+                linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
+                #151611;
+            background-size: 24px 24px;
+        }
+
+        .portrait {
+            width: 146px;
+            height: 146px;
+            align-self: center;
+            border: 4px solid rgba(215, 255, 112, .75);
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .section-about {
+            content-visibility: auto;
+            contain-intrinsic-size: auto 520px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+            gap: 48px;
+            align-items: start;
+        }
+
+        .about-copy {
+            max-width: 650px;
+            margin: 0;
+            color: #c4c5ba;
+            font-size: clamp(1.05rem, 2vw, 1.35rem);
+            line-height: 1.8;
+        }
+
+        .skills-panel {
+            padding: 26px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: var(--panel);
+        }
+
+        .skills-title {
+            margin: 0 0 18px;
+            color: var(--muted);
+            font-family: "Courier New", monospace;
+            font-size: .72rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .skills-list li {
+            padding: 9px 12px;
+            border: 1px solid #494a40;
+            border-radius: 999px;
+            color: var(--ink);
+            font-size: .78rem;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .featured-card {
+            display: flex;
+            min-height: 330px;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 25px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: var(--panel);
+        }
+
+        .featured-number {
+            margin: 0 0 36px;
+            color: var(--accent);
+            font-family: "Courier New", monospace;
+            font-size: .72rem;
+        }
+
+        .featured-card h3 {
+            font-size: clamp(1.65rem, 3vw, 2.35rem);
+            letter-spacing: -.06em;
+            line-height: 1.08;
+        }
+
+        .featured-description {
+            margin: 14px 0 20px;
+            color: #b3b4aa;
+            font-size: .88rem;
+            line-height: 1.7;
+        }
+
+        .featured-stack {
+            margin-top: auto;
+            padding: 0 0 18px;
+            color: var(--muted);
+            font-family: "Courier New", monospace;
+            font-size: .68rem;
+        }
+
+        .featured-link {
+            color: var(--accent);
+            font-size: .8rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .featured-link:hover {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
         .site-footer {
             display: flex;
             align-items: center;
@@ -606,6 +736,19 @@
                 padding: 32px 26px;
             }
 
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 26px;
+            }
+
+            .featured-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .featured-card:last-child {
+                grid-column: 1 / -1;
+            }
+
             .project-social {
                 width: 100%;
                 min-height: 0;
@@ -681,6 +824,14 @@
                 padding-left: 20px;
             }
 
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-card:last-child {
+                grid-column: auto;
+            }
+
             .site-footer {
                 align-items: flex-start;
                 flex-direction: column;
@@ -709,8 +860,9 @@
         <header class="site-header">
             <a class="brand" href="#" aria-label="Asilbek home">Asilbek<span>.</span></a>
             <nav class="nav" aria-label="Main navigation">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
                 <a href="#course">Course</a>
-                <a href="#project">Project</a>
                 <a class="github-link" href="https://github.com/asilbek-maker" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
             </nav>
         </header>
@@ -719,22 +871,82 @@
             <section class="hero" aria-labelledby="intro-title">
                 <div class="hero-copy">
                     <p class="eyebrow">Web programming · Student portfolio</p>
-                    <h1 id="intro-title">LEARNING<br>TO MAKE<span>THE WEB.</span></h1>
+                    <h1 id="intro-title">BUILDING<br>FOR<span>THE WEB.</span></h1>
                     <div class="hero-bottom">
-                        <p class="hero-description">I’m Asilbek. This is my web programming course — a growing collection of weekly classwork, exercises, and projects.</p>
-                        <a class="hero-cta" href="#course">Explore the course ↓</a>
+                        <p class="hero-description">I’m Asilbek, a web programming student who enjoys creating thoughtful, accessible, and responsive digital experiences.</p>
+                        <a class="hero-cta" href="#projects">Explore my work ↓</a>
                     </div>
                 </div>
-                <aside class="hero-aside" aria-label="Portfolio introduction">
-                    <span class="aside-index mono">COURSE ARCHIVE / 01—08</span>
-                    <span class="aside-symbol" aria-hidden="true">✳</span>
-                    <span class="aside-caption">Learning through practice.<br>Building for the web.</span>
+                <aside class="hero-aside" aria-label="About Asilbek">
+                    <span class="aside-index mono">WEB DEVELOPER · STUDENT</span>
+                    <img class="portrait" src="https://avatars.githubusercontent.com/u/241691075?v=4" alt="Asilbek's GitHub profile avatar" width="146" height="146">
+                    <span class="aside-caption">Curious by nature.<br>Building with purpose.</span>
                 </aside>
+            </section>
+
+            <section class="section section-about" id="about" aria-labelledby="about-title">
+                <div class="section-heading">
+                    <span class="section-index">01 /</span>
+                    <div>
+                        <p class="section-label">A little about me</p>
+                        <h2 id="about-title">Curiosity into<br>craft.</h2>
+                    </div>
+                    <p class="section-description">Learning the fundamentals and turning them into useful experiences for the web.</p>
+                </div>
+                <div class="about-grid">
+                    <p class="about-copy">I’m Asilbek, a web programming student focused on the building blocks of the web. I like bringing ideas to life with clean structure, thoughtful details, and interfaces that work well for everyone. Each project is a chance to learn, improve, and make something useful.</p>
+                    <div class="skills-panel" aria-labelledby="skills-title">
+                        <h3 class="skills-title" id="skills-title">Skills &amp; tools</h3>
+                        <ul class="skills-list">
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                            <li>Responsive design</li>
+                            <li>Accessibility</li>
+                            <li>Browser APIs</li>
+                            <li>Git &amp; GitHub</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section project-section" id="projects" aria-labelledby="project-title">
+                <div class="section-heading">
+                    <span class="section-index">02 /</span>
+                    <div>
+                        <p class="section-label">Selected work · Course &amp; collaborative projects</p>
+                        <h2 id="project-title">Things I’ve<br>made.</h2>
+                    </div>
+                    <p class="section-description">A few projects that show what I’m exploring, from campus connections to accessible web experiences.</p>
+                </div>
+                <div class="featured-grid">
+                    <article class="featured-card">
+                        <p class="featured-number">01 — COLLABORATIVE PROJECT</p>
+                        <h3>Overlap</h3>
+                        <p class="featured-description">A campus introduction app that helps students connect through shared interests and experiences.</p>
+                        <p class="featured-stack">TEAM PROJECT · CAMPUS COMMUNITY</p>
+                        <a class="featured-link" href="https://overlaps.tech" target="_blank" rel="noopener noreferrer">Visit Overlap ↗</a>
+                    </article>
+                    <article class="featured-card">
+                        <p class="featured-number">02 — ACCESSIBILITY</p>
+                        <h3>Accessible web audit</h3>
+                        <p class="featured-description">Improved a course homepage with clearer contrast and keyboard navigation, reaching a 100/100 Lighthouse accessibility score.</p>
+                        <p class="featured-stack">HTML · CSS · LIGHTHOUSE</p>
+                        <a class="featured-link" href="Week9/Week9_1/">Explore the audit ↗</a>
+                    </article>
+                    <article class="featured-card">
+                        <p class="featured-number">03 — INTERACTIVE DEMO</p>
+                        <h3>Browser API playground</h3>
+                        <p class="featured-description">A hands-on collection of six browser API demos, including Fetch, local storage, geolocation, and Canvas.</p>
+                        <p class="featured-stack">HTML · CSS · JAVASCRIPT</p>
+                        <a class="featured-link" href="Week6/Week6_2/">Try the demos ↗</a>
+                    </article>
+                </div>
             </section>
 
             <section class="section" id="course" aria-labelledby="course-title">
                 <div class="section-heading">
-                    <span class="section-index">01 /</span>
+                    <span class="section-index">03 /</span>
                     <div>
                         <p class="section-label">Course archive · Weekly work</p>
                         <h2 id="course-title">Web programming,<br>week by week.</h2>
@@ -756,42 +968,15 @@
                         <li><a class="week-card" href="Week7/"><span class="week-number">WEEK / 07</span><span><span class="week-title">Week 7</span><span class="week-detail">Assignments &amp; class exercises</span></span><span class="week-arrow" aria-hidden="true">↗</span></a></li>
                         <li><a class="week-card" href="Week8/"><span class="week-number">WEEK / 08</span><span><span class="week-title">Week 8</span><span class="week-detail">Assignments &amp; class exercises</span></span><span class="week-arrow" aria-hidden="true">↗</span></a></li>
                         <li><a class="week-card" href="Week9/"><span class="week-number">WEEK / 09</span><span><span class="week-title">Week 9</span><span class="week-detail">Accessibility exercises</span></span><span class="week-arrow" aria-hidden="true">↗</span></a></li>
+                        <li><a class="week-card" href="Week10/"><span class="week-number">WEEK / 10</span><span><span class="week-title">Week 10</span><span class="week-detail">Assignments &amp; class exercises</span></span><span class="week-arrow" aria-hidden="true">↗</span></a></li>
                     </ol>
                 </div>
             </section>
 
-            <section class="section project-section" id="project" aria-labelledby="project-title">
-                <div class="section-heading">
-                    <span class="section-index">02 /</span>
-                    <div>
-                        <p class="section-label">K0126002 · Group project</p>
-                        <h2 id="project-title">Our project.</h2>
-                    </div>
-                    <p class="section-description">Meet Overlap, a campus introduction app built by our group.</p>
-                </div>
-                <div class="project-card">
-                    <div class="project-copy">
-                        <p class="project-type">K0126002 · Group project</p>
-                        <h3>Overlap</h3>
-                        <p class="project-description">Meet the people you already share a campus with. A campus introduction app that matches students on what they share, never on looks.</p>
-                        <div class="project-actions">
-                            <a class="project-action project-action-primary" href="https://overlaps.tech" target="_blank" rel="noopener noreferrer">Visit overlaps.tech <span aria-hidden="true">↗</span></a>
-                            <a class="project-action" href="https://www.instagram.com/overlaps.app/" target="_blank" rel="noopener noreferrer">Instagram @overlaps.app <span aria-hidden="true">↗</span></a>
-                            <a class="project-action" href="Overlap/Overlap-class-presentation.pptx" download>Download presentation (.pptx) <span aria-hidden="true">↓</span></a>
-                            <a class="project-action" href="https://github.com/asilbek-maker/Web-Programming/blob/main/Overlap/README.md" target="_blank" rel="noopener noreferrer">Read the README <span aria-hidden="true">↗</span></a>
-                        </div>
-                    </div>
-                    <a class="project-social" href="https://www.instagram.com/overlaps.app/" target="_blank" rel="noopener noreferrer" aria-label="Visit Overlap on Instagram">
-                        <span class="project-social-mark" aria-hidden="true">@</span>
-                        <strong>Follow on Instagram</strong>
-                        <span>@overlaps.app</span>
-                    </a>
-                </div>
-            </section>
         </main>
 
         <footer class="site-footer">
-            <p class="footer-note">© 2026 ASILBEK · WEB PROGRAMMING</p>
+            <p class="footer-note">© 2026 ASILBEK · WEB DEVELOPER PORTFOLIO</p>
             <a href="https://github.com/asilbek-maker" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
         </footer>
     </div>

@@ -3,42 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week 7 - Web Programming</title>
-    <style>
-        * { box-sizing: border-box; }
-        body { margin: 0; padding: 50px 20px; min-height: 100vh; background: #f3f3f6; color: #111; font-family: Arial, sans-serif; text-align: center; }
-        main { max-width: 700px; margin: auto; }
-        header { margin-bottom: 36px; }
-        h1 { margin: 0 0 10px; font-size: 3rem; }
-        header p { margin: 0; color: #666; font-size: 1.2rem; }
-        .day-list { margin: 0; padding: 0; list-style: none; }
-        .day-list li { margin: 14px 0; }
-        .day-list a { display: flex; min-height: 70px; justify-content: center; align-items: center; padding: 18px 20px; border: 1px solid #e2e8f0; border-radius: 14px; background: #fff; color: #222; text-decoration: none; box-shadow: 0 3px 8px rgba(0, 0, 0, .08); transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease; }
-        .day-list a:hover { background: #e9e9eb; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0, 0, 0, .1); }
-        .day-list a:focus-visible { outline: 3px solid #31869a; outline-offset: 3px; }
-        .day-name { font-size: 1.1rem; font-weight: 600; }
-
-        @media (max-width: 520px) {
-            body { padding: 32px 16px; }
-            header { margin-bottom: 28px; }
-            h1 { font-size: 2.25rem; }
-            .day-list a { min-height: 60px; }
-        }
-    </style>
+    <meta name="theme-color" content="#11120f">
+    <meta name="description" content="Week 7 — Working with external data: fetching from public APIs, loading states and error handling.">
+    <title>Week 7 — Asilbek · Web Programming</title>
+    <link rel="stylesheet" href="../assets/site.css">
 </head>
 <body>
-    <main>
-        <header>
-            <h1>Week 7</h1>
-            <p>My Week 7 assignments and class exercises</p>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="shell">
+        <header class="site-header">
+            <a class="brand" href="../index.html" aria-label="Asilbek, course home">Asilbek<span>.</span></a>
+            <nav class="nav" aria-label="Main navigation">
+                <a class="hide-sm" href="../index.html#projects">Projects</a>
+                <a href="../index.html#course">All weeks</a>
+                <a href="https://asilbek-maker.github.io/portfolio/">Portfolio</a>
+                <a class="pill" href="https://github.com/asilbek-maker" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </nav>
         </header>
-        <nav aria-label="Week 7 activities">
-            <ul class="day-list">
-                <li><a href="Week7%20Monday/index.html"><span class="day-name">Week 7 Monday — Book Finder</span></a></li>
-                <li><a href="Week7%20Friday/index.html"><span class="day-name">Week 7 Friday — Joke API Tasks</span></a></li>
-            </ul>
-        </nav>
-    </main>
-    <script src="/Web-Programming/nav.js"></script>
+
+        <main id="main-content" tabindex="-1">
+            <ol class="breadcrumbs" aria-label="Breadcrumb">
+                <li><a href="../index.html">Home</a></li>
+                <li aria-current="page">Week 7</li>
+            </ol>
+
+            <section class="page-hero" aria-labelledby="page-title">
+                <div>
+                    <p class="eyebrow">Web programming · Week 07</p>
+                    <h1 id="page-title">Week 7<span>.</span></h1>
+                    <p class="lede">Working with external data: fetching from public APIs, loading states and error handling.</p>
+                </div>
+                <div class="hero-stat">
+                    <strong>02</strong>
+                    <span>Items in this section</span>
+                </div>
+            </section>
+
+            <section class="panel" aria-labelledby="list-1">
+                <div class="panel-meta">
+                    <h2 id="list-1">Assignments &amp; class exercises</h2>
+                    <span>Fetch &amp; external APIs</span>
+                </div>
+                <ul class="item-list">
+                    <li><a class="item" href="Week7%20Monday/index.html"><span class="item-number">01</span><span><span class="item-title">Week 7 Monday</span><span class="item-detail">Book Finder app</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="Week7%20Friday/index.html"><span class="item-number">02</span><span><span class="item-title">Week 7 Friday</span><span class="item-detail">Joke API tasks</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                </ul>
+            </section>
+            <nav class="pager" aria-label="Page navigation">
+                <a class="prev" href="../Week6/index.html"><small>← Previous</small><strong>Week 6</strong></a>
+                <a class="next" href="../Week8/index.html"><small>Next →</small><strong>Week 8</strong></a>
+            </nav>
+        </main>
+
+        <footer class="site-footer">
+            <p>© 2026 ASILBEK · WEB PROGRAMMING COURSE</p>
+            <a href="https://github.com/asilbek-maker/Web-Programming" target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a>
+        </footer>
+    </div>
 </body>
 </html>

@@ -3,47 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Week 9_1, Week 9_2, and extra accessibility assignments and exercises.">
-    <title>Week 9 - Web Programming</title>
-    <style>
-        * { box-sizing: border-box; }
-        body { margin: 0; padding: 50px 20px; min-height: 100vh; background: #f3f3f6; color: #111; font-family: Arial, sans-serif; text-align: center; }
-        main { max-width: 700px; margin: auto; }
-        .skip-link { position: absolute; top: 12px; left: 12px; z-index: 1; padding: 10px 14px; transform: translateY(-160%); background: #fff; color: #111; }
-        .skip-link:focus { transform: translateY(0); }
-        header { margin-bottom: 36px; }
-        h1 { margin: 0 0 10px; font-size: 3rem; }
-        header p { margin: 0; color: #666; font-size: 1.2rem; }
-        .day-list { margin: 0; padding: 0; list-style: none; }
-        .day-list li { margin: 14px 0; }
-        .day-list a { display: flex; min-height: 70px; justify-content: center; align-items: center; padding: 18px 20px; border: 1px solid #e2e8f0; border-radius: 14px; background: #fff; color: #222; text-decoration: none; box-shadow: 0 3px 8px rgba(0, 0, 0, .08); transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease; }
-        .day-list a:hover { background: #e9e9eb; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0, 0, 0, .1); }
-        .day-list a:focus-visible, .back-link:focus-visible { outline: 3px solid #31869a; outline-offset: 3px; }
-        .day-name { font-size: 1.1rem; font-weight: 600; }
-        .back-link { display: inline-block; margin-top: 20px; color: #176578; }
-        @media (max-width: 520px) {
-            body { padding: 32px 16px; }
-            header { margin-bottom: 28px; }
-            h1 { font-size: 2.25rem; }
-            .day-list a { min-height: 60px; }
-        }
-    </style>
+    <meta name="theme-color" content="#11120f">
+    <meta name="description" content="Week 9 — Auditing and fixing real pages — accessibility to 100/100, then performance tuning.">
+    <title>Week 9 — Asilbek · Web Programming</title>
+    <link rel="stylesheet" href="../assets/site.css">
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
-    <main id="main-content" tabindex="-1">
-        <header>
-            <h1>Week 9</h1>
-            <p>My Week 9 assignments and class exercises</p>
+    <div class="shell">
+        <header class="site-header">
+            <a class="brand" href="../index.html" aria-label="Asilbek, course home">Asilbek<span>.</span></a>
+            <nav class="nav" aria-label="Main navigation">
+                <a class="hide-sm" href="../index.html#projects">Projects</a>
+                <a href="../index.html#course">All weeks</a>
+                <a href="https://asilbek-maker.github.io/portfolio/">Portfolio</a>
+                <a class="pill" href="https://github.com/asilbek-maker" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </nav>
         </header>
-        <nav aria-label="Week 9 assignments">
-            <ul class="day-list">
-                <li><a href="Week9_1/index.html"><span class="day-name">Week 9_1 — Lighthouse Accessibility Improvement</span></a></li>
-                <li><a href="Week9_2/index.html"><span class="day-name">Week 9_2 — Lighthouse Performance Optimization</span></a></li>
-                <li><a href="Extra/index.html"><span class="day-name">Extra — Additional Tasks and Exercises</span></a></li>
-            </ul>
-        </nav>
-        <a class="back-link" href="../index.html">Back to all weeks</a>
-    </main>
+
+        <main id="main-content" tabindex="-1">
+            <ol class="breadcrumbs" aria-label="Breadcrumb">
+                <li><a href="../index.html">Home</a></li>
+                <li aria-current="page">Week 9</li>
+            </ol>
+
+            <section class="page-hero" aria-labelledby="page-title">
+                <div>
+                    <p class="eyebrow">Web programming · Week 09</p>
+                    <h1 id="page-title">Week 9<span>.</span></h1>
+                    <p class="lede">Auditing and fixing real pages — accessibility to 100/100, then performance tuning.</p>
+                </div>
+                <div class="hero-stat">
+                    <strong>03</strong>
+                    <span>Items in this section</span>
+                </div>
+            </section>
+
+            <section class="panel" aria-labelledby="list-1">
+                <div class="panel-meta">
+                    <h2 id="list-1">Assignments &amp; class exercises</h2>
+                    <span>Accessibility &amp; performance</span>
+                </div>
+                <ul class="item-list">
+                    <li><a class="item" href="Week9_1/index.html"><span class="item-number">01</span><span><span class="item-title">Week 9_1</span><span class="item-detail">Lighthouse accessibility report</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="Week9_2/index.html"><span class="item-number">02</span><span><span class="item-title">Week 9_2</span><span class="item-detail">Lighthouse performance optimisation</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="Extra/index.html"><span class="item-number">03</span><span><span class="item-title">Extra</span><span class="item-detail">Additional accessibility exercises</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                </ul>
+            </section>
+            <nav class="pager" aria-label="Page navigation">
+                <a class="prev" href="../Week8/index.html"><small>← Previous</small><strong>Week 8</strong></a>
+                <a class="next" href="../Week10/index.html"><small>Next →</small><strong>Week 10</strong></a>
+            </nav>
+        </main>
+
+        <footer class="site-footer">
+            <p>© 2026 ASILBEK · WEB PROGRAMMING COURSE</p>
+            <a href="https://github.com/asilbek-maker/Web-Programming" target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a>
+        </footer>
+    </div>
 </body>
 </html>

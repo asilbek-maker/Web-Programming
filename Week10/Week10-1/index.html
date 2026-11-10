@@ -3,760 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#080d0c">
-    <meta name="description" content="BECK is Asilbek's creative portfolio for web development, accessible design, and interactive projects.">
-    <title>Asilbek | BECK — Web Developer</title>
-    <style>
-        :root {
-            color-scheme: light;
-            --page: #f5f2eb;
-            --ink: #172032;
-            --muted: #626878;
-            --line: #dedbd2;
-            --accent: #4459d9;
-            --accent-light: #e8eaff;
-            --surface: #fffefa;
-        }
-
-        * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            margin: 0;
-            background: var(--page);
-            color: var(--ink);
-            font: 16px/1.6 "Segoe UI", Arial, sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
-        a { color: inherit; }
-        .shell { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
-        .skip-link {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            z-index: 2;
-            padding: 10px 14px;
-            transform: translateY(-160%);
-            background: var(--ink);
-            color: #fff;
-        }
-        .skip-link:focus { transform: translateY(0); }
-        :focus-visible { outline: 3px solid #9a5c2d; outline-offset: 4px; }
-        .site-header {
-            display: flex;
-            min-height: 78px;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--line);
-        }
-        .brand { font-size: 1.05rem; font-weight: 800; letter-spacing: -.05em; text-decoration: none; }
-        .brand span { color: var(--accent); }
-        .nav { display: flex; align-items: center; gap: 25px; }
-        .nav a { color: var(--muted); font-size: .88rem; font-weight: 650; text-decoration: none; }
-        .nav a:hover { color: var(--accent); }
-        .hero {
-            display: grid;
-            min-height: 510px;
-            grid-template-columns: minmax(0, 1fr) 280px;
-            align-items: center;
-            gap: 52px;
-            padding: 72px 0;
-        }
-        .eyebrow {
-            margin: 0 0 18px;
-            color: var(--accent);
-            font-size: .77rem;
-            font-weight: 750;
-            letter-spacing: .12em;
-            text-transform: uppercase;
-        }
-        h1 {
-            max-width: 720px;
-            margin: 0;
-            font-size: clamp(3.2rem, 8vw, 6.7rem);
-            letter-spacing: -.085em;
-            line-height: .96;
-        }
-        h1 span { color: var(--accent); }
-        .intro {
-            max-width: 580px;
-            margin: 24px 0 0;
-            color: var(--muted);
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-        .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-        .button {
-            display: inline-flex;
-            min-height: 46px;
-            align-items: center;
-            justify-content: center;
-            padding: 10px 17px;
-            border: 1px solid var(--accent);
-            border-radius: 999px;
-            color: var(--accent);
-            font-size: .88rem;
-            font-weight: 700;
-            text-decoration: none;
-            transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
-        }
-        .button:hover { transform: translateY(-2px); background: var(--accent); color: #fff; }
-        .button-primary { background: var(--accent); color: #fff; }
-        .button-primary:hover { background: #2e583f; }
-        .profile-card {
-            display: grid;
-            min-height: 310px;
-            align-content: center;
-            justify-items: center;
-            gap: 17px;
-            padding: 28px;
-            border: 1px solid var(--line);
-            border-radius: 20px;
-            background: var(--surface);
-            text-align: center;
-            box-shadow: 0 12px 32px rgba(32, 35, 31, .06);
-        }
-        .portrait {
-            width: 148px;
-            height: 148px;
-            border: 5px solid var(--accent-light);
-            border-radius: 50%;
-            object-fit: contain;
-        }
-        .profile-card strong { font-size: 1.14rem; }
-        .profile-card span { color: var(--muted); font-size: .87rem; }
-        .section { padding: 68px 0; border-top: 1px solid var(--line); }
-        .section-heading {
-            display: flex;
-            align-items: end;
-            justify-content: space-between;
-            gap: 24px;
-            margin-bottom: 28px;
-        }
-        .section-kicker {
-            margin: 0 0 5px;
-            color: var(--accent);
-            font-size: .75rem;
-            font-weight: 750;
-            letter-spacing: .1em;
-            text-transform: uppercase;
-        }
-        h2 { margin: 0; font-size: clamp(2.2rem, 5vw, 3.8rem); letter-spacing: -.07em; line-height: 1.05; }
-        .section-note { max-width: 420px; margin: 0; color: var(--muted); }
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-        .about-copy { margin: 0; color: var(--muted); font-size: 1.08rem; line-height: 1.9; }
-        .skills-panel { padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
-        .skills-panel h3 { margin: 0 0 16px; font-size: 1rem; }
-        .skills-list { display: flex; flex-wrap: wrap; gap: 9px; margin: 0; padding: 0; list-style: none; }
-        .skills-list li { padding: 8px 12px; border-radius: 999px; background: var(--accent-light); color: #2e583f; font-size: .82rem; font-weight: 650; }
-        .project-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-        .project-card {
-            display: flex;
-            min-height: 320px;
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 24px;
-            border: 1px solid var(--line);
-            border-radius: 16px;
-            background: var(--surface);
-        }
-        .project-number { margin: 0 0 28px; color: var(--accent); font-size: .72rem; font-weight: 750; letter-spacing: .08em; }
-        .project-card h3 { margin: 0; font-size: 1.6rem; letter-spacing: -.045em; line-height: 1.18; }
-        .project-description { margin: 13px 0 18px; color: var(--muted); font-size: .9rem; line-height: 1.7; }
-        .project-tools { margin-top: auto; padding: 0 0 17px; color: var(--muted); font-size: .72rem; font-weight: 700; letter-spacing: .04em; }
-        .project-link { color: var(--accent); font-size: .86rem; font-weight: 750; text-decoration: none; }
-        .project-link:hover { text-decoration: underline; text-underline-offset: 4px; }
-        .course-link { color: var(--accent); font-weight: 700; text-underline-offset: 4px; }
-        .site-footer {
-            display: flex;
-            min-height: 80px;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-            border-top: 1px solid var(--line);
-            color: var(--muted);
-            font-size: .82rem;
-        }
-        .site-footer p { margin: 0; }
-        .site-footer a { color: var(--accent); font-weight: 700; text-decoration: none; }
-        @media (max-width: 760px) {
-            .hero { min-height: 0; grid-template-columns: 1fr; gap: 32px; padding: 64px 0; }
-            .profile-card { min-height: 240px; }
-            .about-grid { grid-template-columns: 1fr; gap: 22px; }
-            .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-            .project-card:last-child { grid-column: 1 / -1; }
-        }
-        @media (max-width: 520px) {
-            .shell { width: calc(100% - 32px); }
-            .site-header { min-height: 68px; }
-            .nav { gap: 14px; }
-            .nav a { font-size: .76rem; }
-            .hero { padding: 54px 0; }
-            .section { padding: 52px 0; }
-            .section-heading { align-items: flex-start; flex-direction: column; gap: 12px; }
-            .project-grid { grid-template-columns: 1fr; }
-            .project-card:last-child { grid-column: auto; }
-            .project-card { min-height: 280px; }
-            .site-footer { align-items: flex-start; flex-direction: column; justify-content: center; gap: 8px; padding: 18px 0; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-            *, *::before, *::after { transition-duration: .01ms !important; }
-        }
-
-        body {
-            background:
-                radial-gradient(ellipse at 85% 13%, rgba(39, 114, 98, .16), transparent 34rem),
-                radial-gradient(ellipse at 8% 46%, rgba(25, 82, 72, .12), transparent 34rem),
-                var(--page);
-        }
-        .shell { width: min(1200px, calc(100% - 64px)); }
-        .site-header {
-            position: sticky;
-            top: 16px;
-            z-index: 5;
-            min-height: 76px;
-            margin-top: 16px;
-            padding: 8px 12px 8px 18px;
-            border: 1px solid rgba(202, 230, 220, .16);
-            border-radius: 999px;
-            background: rgba(8, 13, 12, .84);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, .2);
-            backdrop-filter: blur(16px);
-        }
-        .brand {
-            display: inline-flex;
-            align-items: center;
-            gap: 11px;
-            color: var(--ink);
-            font-size: 1.05rem;
-            letter-spacing: .16em;
-        }
-        .brand-mark {
-            display: block;
-            width: 42px;
-            height: 42px;
-            flex: 0 0 auto;
-        }
-        .brand span { color: var(--accent); }
-        .brand-name { display: grid; gap: 1px; }
-        .brand-name small {
-            color: var(--muted);
-            font-size: .56rem;
-            font-weight: 600;
-            letter-spacing: .14em;
-        }
-        .nav { gap: 27px; }
-        .nav a { color: #b7c5c0; }
-        .nav a:hover { color: var(--accent); }
-        .nav a:last-child {
-            padding: 9px 16px;
-            border: 1px solid rgba(202, 230, 220, .22);
-            border-radius: 999px;
-            color: var(--ink);
-        }
-        .nav a:last-child:hover { border-color: var(--accent); color: var(--accent); }
-        .hero {
-            position: relative;
-            min-height: 620px;
-            grid-template-columns: minmax(0, 1fr) minmax(290px, 390px);
-            gap: 70px;
-            padding: 100px 0 92px;
-        }
-        .hero::before {
-            position: absolute;
-            top: 45px;
-            right: 3%;
-            z-index: -1;
-            color: rgba(222, 243, 236, .025);
-            content: "BECK";
-            font-size: clamp(8rem, 23vw, 18rem);
-            font-weight: 850;
-            letter-spacing: -.1em;
-            line-height: 1;
-            pointer-events: none;
-        }
-        .eyebrow {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--accent);
-        }
-        .eyebrow::before {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--accent);
-            box-shadow: 0 0 18px rgba(100, 231, 205, .8);
-            content: "";
-        }
-        h1 {
-            max-width: 760px;
-            font-size: clamp(4.5rem, 10.5vw, 8.6rem);
-            font-weight: 760;
-            letter-spacing: -.095em;
-            line-height: .9;
-        }
-        h1 span { color: var(--accent); }
-        .intro { max-width: 620px; color: #adbbb6; font-size: 1.12rem; }
-        .button { border-radius: 12px; }
-        .button:hover { border-color: var(--accent); }
-        .button-primary { border-color: var(--accent); background: var(--accent); color: #07110e; }
-        .button-primary:hover { background: #87f3de; color: #07110e; }
-        .profile-card {
-            position: relative;
-            min-height: 380px;
-            overflow: hidden;
-            border-color: rgba(185, 225, 210, .2);
-            border-radius: 32px;
-            background:
-                radial-gradient(circle at 50% 45%, rgba(100, 231, 205, .12), transparent 54%),
-                linear-gradient(145deg, rgba(20, 40, 35, .9), rgba(11, 19, 17, .96));
-            box-shadow: 0 30px 90px rgba(0, 0, 0, .3);
-        }
-        .profile-card::before,
-        .profile-card::after {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 255px;
-            height: 255px;
-            border: 1px solid rgba(100, 231, 205, .35);
-            border-radius: 50%;
-            content: "";
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-        }
-        .profile-card::after {
-            width: 285px;
-            height: 285px;
-            border-color: rgba(224, 197, 91, .65);
-            clip-path: inset(0 0 48% 48%);
-            transform: translate(-50%, -50%) rotate(-24deg);
-        }
-        .portrait {
-            position: relative;
-            z-index: 1;
-            width: 218px;
-            height: 218px;
-            border: 8px solid #0a1110;
-            outline: 2px solid rgba(100, 231, 205, .75);
-            background: #fff;
-        }
-        .profile-card strong,
-        .profile-card > span { position: relative; z-index: 1; }
-        .profile-card strong { font-size: 1.25rem; }
-        .profile-card span { color: #b1c2bc; }
-        .profile-tags {
-            position: absolute;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 9px 13px;
-            border: 1px solid rgba(204, 229, 220, .2);
-            border-radius: 999px;
-            background: #0c1513;
-            color: #e6f3ef;
-            font-size: .75rem;
-            font-weight: 750;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, .3);
-        }
-        .profile-tags::before { color: var(--accent); content: "</>"; font-family: "Courier New", monospace; }
-        .profile-tags-one { top: 24%; left: -10px; }
-        .profile-tags-two { top: 48%; right: -14px; }
-        .profile-tags-three { bottom: 19%; left: 4px; }
-        .section { border-color: var(--line); }
-        .section-heading { align-items: end; }
-        .section-kicker { color: var(--accent); }
-        .section-note, .about-copy { color: #aab8b3; }
-        .about-grid { gap: 64px; }
-        .skills-panel {
-            border-color: var(--line);
-            border-radius: 20px;
-            background: rgba(17, 26, 24, .8);
-        }
-        .skills-panel h3 { color: var(--ink); }
-        .skills-list li { border: 1px solid rgba(100, 231, 205, .15); background: var(--accent-light); color: #a5f2e3; }
-        .project-grid { gap: 18px; }
-        .project-card {
-            position: relative;
-            min-height: 350px;
-            overflow: hidden;
-            border-color: var(--line);
-            border-radius: 20px;
-            background: linear-gradient(145deg, rgba(19, 29, 26, .95), rgba(12, 19, 17, .98));
-            transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(100, 231, 205, .46);
-            box-shadow: 0 18px 42px rgba(0, 0, 0, .24);
-        }
-        .project-number { color: var(--accent); }
-        .project-card h3 { color: #f0f5f3; }
-        .project-description { color: #aab8b3; }
-        .project-tools { color: #81928b; }
-        .project-link, .course-link { color: var(--accent); }
-        .site-footer { border-color: var(--line); color: var(--muted); }
-        .site-footer a { color: var(--accent); }
-        a:focus-visible, button:focus-visible { outline-color: var(--accent); }
-
-        @media (max-width: 760px) {
-            .shell { width: min(100% - 36px, 620px); }
-            .site-header { top: 10px; min-height: 66px; margin-top: 10px; }
-            .hero { min-height: 0; gap: 38px; padding: 76px 0 64px; }
-            .hero::before { top: 35px; right: 0; }
-            .profile-card { min-height: 330px; }
-            .section-heading { align-items: flex-start; }
-            .about-grid { gap: 25px; }
-        }
-        @media (max-width: 520px) {
-            .shell { width: calc(100% - 32px); }
-            .site-header { padding-left: 12px; }
-            .brand { gap: 7px; font-size: .9rem; }
-            .brand-mark { width: 36px; height: 36px; }
-            .brand-name small { font-size: .5rem; }
-            .nav { gap: 12px; }
-            .nav a { font-size: .7rem; }
-            .nav a:last-child { padding: 7px 10px; }
-            .hero { padding-top: 62px; }
-            h1 { font-size: clamp(4.1rem, 16vw, 5.5rem); }
-            .intro { font-size: 1rem; }
-            .hero-actions { align-items: stretch; flex-direction: column; }
-            .button { width: 100%; }
-            .profile-card { min-height: 300px; }
-            .portrait { width: 184px; height: 184px; }
-            .profile-card::before { width: 220px; height: 220px; }
-            .profile-card::after { width: 246px; height: 246px; }
-            .profile-tags-one { left: -7px; }
-            .profile-tags-two { right: -7px; }
-            .section { padding: 52px 0; }
-            .section-heading { flex-direction: column; gap: 12px; }
-            .project-grid { grid-template-columns: 1fr; }
-            .project-card:last-child { grid-column: auto; }
-            .project-card { min-height: 295px; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .project-card, .button { transition-duration: .01ms; }
-        }
-
-        body {
-            background:
-                radial-gradient(ellipse at 86% 12%, rgba(68, 89, 217, .08), transparent 28rem),
-                var(--page);
-            color: var(--ink);
-        }
-        .shell { width: min(1120px, calc(100% - 64px)); }
-        .site-header {
-            position: static;
-            min-height: 88px;
-            margin-top: 0;
-            padding: 8px 0;
-            border: 0;
-            border-bottom: 1px solid var(--ink);
-            border-radius: 0;
-            background: transparent;
-            box-shadow: none;
-            backdrop-filter: none;
-        }
-        .brand { gap: 10px; color: var(--ink); letter-spacing: .12em; }
-        .brand-mark {
-            display: block;
-            width: 126px;
-            height: 65px;
-            border: 1px solid #dedde8;
-            border-radius: 4px;
-            background: #fbfdff;
-            object-fit: contain;
-        }
-        .brand-name small { color: #777b86; }
-        .nav a { color: #555d6d; }
-        .nav a:hover { color: var(--accent); }
-        .nav a:last-child {
-            padding: 8px 0 8px 16px;
-            border: 0;
-            border-left: 1px solid var(--line);
-            border-radius: 0;
-            color: var(--ink);
-        }
-        .nav a:last-child:hover { border-color: var(--line); color: var(--accent); }
-        .hero {
-            min-height: 620px;
-            grid-template-columns: minmax(0, 1fr) minmax(300px, 390px);
-            gap: 76px;
-            padding: 94px 0 90px;
-        }
-        .hero::before { content: none; }
-        .eyebrow { color: var(--accent); font-family: "Courier New", monospace; }
-        .eyebrow::before { background: #e77d55; box-shadow: none; }
-        h1 {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(4.2rem, 8.5vw, 7.5rem);
-            font-weight: 500;
-            letter-spacing: -.075em;
-            line-height: .96;
-        }
-        h1 span { color: var(--accent); font-style: italic; }
-        .intro { color: #535b6b; font-size: 1.08rem; }
-        .button { border-radius: 5px; }
-        .button:hover { border-color: var(--accent); background: var(--accent); color: #fff; }
-        .button-primary { border-color: var(--ink); background: var(--ink); color: #fff; }
-        .button-primary:hover { border-color: var(--accent); background: var(--accent); color: #fff; }
-        .profile-card {
-            min-height: 430px;
-            min-width: 0;
-            max-width: 100%;
-            justify-items: stretch;
-            align-content: center;
-            gap: 16px;
-            padding: 25px;
-            overflow: visible;
-            border: 1px solid #e6d9cd;
-            border-radius: 4px;
-            background: #eee7dc;
-            text-align: left;
-            box-shadow: 12px 12px 0 #e77d55;
-        }
-        .profile-card::before {
-            top: -19px;
-            left: auto;
-            right: -17px;
-            width: 96px;
-            height: 96px;
-            border: 0;
-            border-radius: 50%;
-            background: #e77d55;
-            transform: none;
-        }
-        .profile-card::after { content: none; }
-        .profile-code {
-            position: relative;
-            z-index: 1;
-            min-width: 0;
-            color: #596173;
-            font-family: "Courier New", monospace;
-            font-size: .68rem;
-            font-weight: 700;
-            letter-spacing: .09em;
-        }
-        .portrait {
-            min-width: 0;
-            max-width: 100%;
-            width: 100%;
-            height: 264px;
-            border: 6px solid #fffefa;
-            border-radius: 2px;
-            outline: 0;
-            object-fit: contain;
-            box-shadow: 0 8px 25px rgba(30, 34, 45, .12);
-        }
-        .profile-caption { display: grid; gap: 2px; }
-        .profile-card strong { font-family: Georgia, "Times New Roman", serif; font-size: 1.5rem; }
-        .profile-card > .profile-caption span { color: #626878; font-size: .82rem; }
-        .profile-tags {
-            position: static;
-            z-index: auto;
-            display: none;
-        }
-        .section { border-color: var(--line); }
-        .section-heading { align-items: end; }
-        .section-kicker { color: var(--accent); font-family: "Courier New", monospace; }
-        .section h2 {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(2.4rem, 5vw, 4rem);
-            font-weight: 500;
-            letter-spacing: -.055em;
-        }
-        .section-note, .about-copy { color: #535b6b; }
-        .about-grid { gap: 64px; }
-        .skills-panel {
-            border-color: var(--line);
-            border-radius: 4px;
-            background: var(--surface);
-            box-shadow: 5px 5px 0 var(--accent-light);
-        }
-        .skills-panel h3 { color: var(--ink); }
-        .skills-list li {
-            border: 1px solid #dfe1f4;
-            border-radius: 3px;
-            background: var(--accent-light);
-            color: #3448bd;
-        }
-        .project-grid { gap: 0; border-top: 1px solid var(--line); }
-        .project-card {
-            min-height: 315px;
-            padding: 25px 22px;
-            border: 0;
-            border-bottom: 1px solid var(--line);
-            border-radius: 0;
-            background: transparent;
-            box-shadow: none;
-            transition: background-color 180ms ease;
-        }
-        .project-card + .project-card { border-left: 1px solid var(--line); }
-        .project-card:hover {
-            transform: none;
-            border-color: var(--line);
-            background: rgba(255, 254, 250, .75);
-            box-shadow: none;
-        }
-        .project-number { color: var(--accent); font-family: "Courier New", monospace; }
-        .project-card h3 {
-            color: var(--ink);
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 1.8rem;
-            font-weight: 500;
-        }
-        .project-description { color: #535b6b; }
-        .project-tools { color: #747b87; }
-        .project-link, .course-link { color: #3448bd; }
-        .site-footer { border-color: var(--ink); color: #626878; }
-        .site-footer a { color: #3448bd; }
-        a:focus-visible, button:focus-visible { outline-color: #e77d55; }
-        @media (max-width: 760px) {
-            .shell { width: min(100% - 40px, 620px); }
-            .site-header { min-height: 76px; }
-            .hero { min-height: 0; grid-template-columns: 1fr; gap: 38px; padding: 72px 0 66px; }
-            .profile-card { min-height: 390px; }
-            .section-heading { align-items: flex-start; }
-            .about-grid { gap: 26px; }
-        }
-        @media (max-width: 520px) {
-            .shell { width: calc(100% - 36px); }
-            .site-header { min-height: 68px; }
-            .brand { gap: 7px; font-size: .88rem; }
-            .brand-mark { width: 94px; height: 49px; }
-            .brand-name small { font-size: .48rem; }
-            .nav { gap: 11px; }
-            .nav a { font-size: .68rem; }
-            .nav a:last-child { padding-left: 10px; }
-            .hero { padding: 58px 0 52px; }
-            h1 { font-size: clamp(3.8rem, 15vw, 5.2rem); }
-            .intro { font-size: 1rem; }
-            .hero-actions { align-items: stretch; flex-direction: column; }
-            .button { width: 100%; }
-            .profile-card { min-height: 365px; padding: 20px; }
-            .portrait { height: 235px; }
-            .profile-card::before { top: -12px; right: -10px; width: 72px; height: 72px; }
-            .section { padding: 52px 0; }
-            .section-heading { flex-direction: column; gap: 12px; }
-            .project-grid { grid-template-columns: 1fr; }
-            .project-card + .project-card { border-left: 0; }
-            .project-card { min-height: 270px; padding: 23px 10px; }
-            .project-card:last-child { grid-column: auto; }
-        }
-    </style>
+    <meta name="theme-color" content="#11120f">
+    <meta name="description" content="Homework 1 - Personal Portfolio Repository and Commit History report.">
+    <title>Personal Portfolio Repository &amp; Commit History — Week 10</title>
+    <link rel="stylesheet" href="../../assets/site.css">
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="shell">
         <header class="site-header">
-            <a class="brand" href="#" aria-label="BECK by Asilbek, home">
-                <img class="brand-mark" src="beck-logo.png" alt="BECK logo">
-                <span class="brand-name"><small>BY ASILBEK</small></span>
-            </a>
+            <a class="brand" href="../../index.html" aria-label="Asilbek, course home">Asilbek<span>.</span></a>
             <nav class="nav" aria-label="Main navigation">
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="https://github.com/asilbek-maker" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+                <a class="hide-sm" href="../../index.html#projects">Projects</a>
+                <a href="../../index.html#course">All weeks</a>
+                <a href="https://asilbek-maker.github.io/portfolio/">Portfolio</a>
+                <a class="pill" href="https://github.com/asilbek-maker" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
             </nav>
         </header>
 
-        <main id="main-content" tabindex="-1">
-            <section class="hero" aria-labelledby="intro-title">
+        <main id="main-content" class="report" tabindex="-1">
+            <ol class="breadcrumbs" aria-label="Breadcrumb">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../index.html">Week 10</a></li>
+                <li aria-current="page">Week 10-1</li>
+            </ol>
+
+            <p class="eyebrow" style="margin-top: 40px;">Homework 1 · Personal portfolio</p>
+            <h1>Personal Portfolio Repository &amp; Commit History</h1>
+
+            <div class="report-grid">
                 <div>
-                    <p class="eyebrow">BECK · Web craft in progress</p>
-                    <h1 id="intro-title">A little code.<br><span>A lot of care.</span></h1>
-                    <p class="intro">I’m Asilbek, a web programming student and the creator behind <strong>BECK</strong>. I’m learning to make useful, accessible web experiences with thoughtful design and a little personality.</p>
-                    <div class="hero-actions">
-                        <a class="button button-primary" href="#projects">Explore my projects ↓</a>
-                        <a class="button" href="https://github.com/asilbek-maker" target="_blank" rel="noopener noreferrer">Visit my GitHub ↗</a>
-                    </div>
+                    <p class="lede">
+                        Created a personal portfolio repository on GitHub called <code>portfolio</code> and published it with GitHub Pages. Its <code>index.html</code> includes my name, photo, bio, skills and links to three course projects, built up over 8 meaningful commits with clear messages.
+                    </p>
+
+                    <ul class="link-rows" aria-label="Project links">
+                        <li>
+                            <a class="link-row is-live" href="https://asilbek-maker.github.io/portfolio/" target="_blank" rel="noopener noreferrer">
+                                <span class="tag"><span class="live-dot" aria-hidden="true"></span>LIVE</span>
+                                <span class="url">https://asilbek-maker.github.io/portfolio/</span>
+                                <span class="arrow" aria-hidden="true">↗</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="link-row" href="https://github.com/asilbek-maker/portfolio" target="_blank" rel="noopener noreferrer">
+                                <span class="tag">REPO</span>
+                                <span class="url">github.com/asilbek-maker/portfolio</span>
+                                <span class="arrow" aria-hidden="true">↗</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="link-row" href="https://github.com/asilbek-maker/portfolio/commits/main/" target="_blank" rel="noopener noreferrer">
+                                <span class="tag">COMMITS</span>
+                                <span class="url">github.com/asilbek-maker/portfolio/commits/main/</span>
+                                <span class="arrow" aria-hidden="true">↗</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <aside class="profile-card" aria-label="Asilbek, creator of BECK">
-                    <span class="profile-code">BECK / PROFILE 001</span>
-                    <img class="portrait" src="beck-logo.png" alt="BECK logo by Asilbek" width="700" height="360">
-                    <span class="profile-caption">
-                        <strong>Asilbek</strong>
-                        <span>Student developer · creator of BECK</span>
-                    </span>
+
+                <aside class="side-card" aria-labelledby="req-title">
+                    <h2 id="req-title">Requirements covered</h2>
+                    <ul class="checklist">
+                        <li>Repo on GitHub called <code>portfolio</code></li>
+                        <li><code>index.html</code> with my name</li>
+                        <li>Photo / portrait</li>
+                        <li>Bio (About section)</li>
+                        <li>Skills (grouped matrix)</li>
+                        <li>Links to 3 course projects</li>
+                        <li>8 commits with clear messages</li>                    </ul>
+                    <a class="button button-accent" href="https://asilbek-maker.github.io/portfolio/" target="_blank" rel="noopener noreferrer">Open live site <span aria-hidden="true">↗</span></a>
+                    <a class="button" href="https://github.com/asilbek-maker/portfolio/commits/main/" target="_blank" rel="noopener noreferrer">View commit history <span aria-hidden="true">→</span></a>
                 </aside>
-            </section>
+            </div>
 
-            <section class="section" id="about" aria-labelledby="about-title">
-                <div class="section-heading">
-                    <div>
-                        <p class="section-kicker">The person behind BECK</p>
-                        <h2 id="about-title">Curiosity into craft.</h2>
-                    </div>
-                    <p class="section-note">Learning the fundamentals and turning them into useful experiences for the web.</p>
+            <section class="panel" aria-labelledby="commits-title" style="margin-top: 48px;">
+                <div class="panel-meta">
+                    <h2 id="commits-title">Commit history · main</h2>
+                    <span>8 commits · newest first</span>
                 </div>
-                <div class="about-grid">
-                    <p class="about-copy">BECK is my creative identity for exploring ideas and shaping them into polished web experiences. I’m Asilbek, a student learning the craft of front-end development through hands-on projects—from accessible course work to a campus community app. I care about clean structure, responsive layouts, and making digital experiences welcoming to everyone.</p>
-                    <div class="skills-panel" id="skills" aria-labelledby="skills-title">
-                        <h3 id="skills-title">Skills &amp; tools</h3>
-                        <ul class="skills-list">
-                            <li>HTML</li>
-                            <li>CSS</li>
-                            <li>JavaScript</li>
-                            <li>Responsive design</li>
-                            <li>Accessibility</li>
-                            <li>Browser APIs</li>
-                            <li>Git &amp; GitHub</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section" id="projects" aria-labelledby="projects-title">
-                <div class="section-heading">
-                    <div>
-                        <p class="section-kicker">Selected work</p>
-                        <h2 id="projects-title">Projects I’m proud of.</h2>
-                    </div>
-                    <p class="section-note">A selection of collaborative work and hands-on projects from my web programming course.</p>
-                </div>
-                <div class="project-grid">
-                    <article class="project-card">
-                        <p class="project-number">01 · TEAM PROJECT</p>
-                        <h3>Overlap</h3>
-                        <p class="project-description">A campus introduction app that helps students find common ground and meet people with shared interests.</p>
-                        <p class="project-tools">COLLABORATION · CAMPUS COMMUNITY</p>
-                        <a class="project-link" href="https://overlaps.tech" target="_blank" rel="noopener noreferrer">Visit Overlap ↗</a>
-                    </article>
-                    <article class="project-card">
-                        <p class="project-number">02 · ACCESSIBILITY</p>
-                        <h3>Lighthouse accessibility audit</h3>
-                        <p class="project-description">Improved color contrast and keyboard navigation on my course homepage, reaching a 100/100 Lighthouse accessibility score.</p>
-                        <p class="project-tools">HTML · CSS · LIGHTHOUSE</p>
-                        <a class="project-link" href="../../Week9/Week9_1/">Explore the audit ↗</a>
-                    </article>
-                    <article class="project-card">
-                        <p class="project-number">03 · INTERACTIVE DEMOS</p>
-                        <h3>Browser API playground</h3>
-                        <p class="project-description">A hands-on set of six browser API examples, including Fetch, local storage, geolocation, and Canvas.</p>
-                        <p class="project-tools">HTML · CSS · JAVASCRIPT</p>
-                        <a class="project-link" href="../../Week6/Week6_2/">Try the demos ↗</a>
-                    </article>
-                </div>
-            </section>
-
-            <section class="section" aria-labelledby="more-work-title">
-                <div class="section-heading">
-                    <div>
-                        <p class="section-kicker">Keep exploring</p>
-                        <h2 id="more-work-title">More course work.</h2>
-                    </div>
-                    <p class="section-note">Browse the weekly assignments and exercises behind these projects.</p>
-                </div>
-                <a class="course-link" href="../../index.html#course">Visit the course archive ↗</a>
+                <ul class="item-list">
+                    <li><a class="item" href="https://github.com/asilbek-maker/portfolio/commit/4a017ea" target="_blank" rel="noopener noreferrer"><span class="item-number">4a017ea</span><span><span class="item-title">Redesign portfolio with hero, skills matrix and project cards</span><span class="item-detail">Nov 10, 2026</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/portfolio/commit/9848061" target="_blank" rel="noopener noreferrer"><span class="item-number">9848061</span><span><span class="item-title">Add professional portrait image</span><span class="item-detail">Nov 10, 2026</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/portfolio/commit/50f6f7a" target="_blank" rel="noopener noreferrer"><span class="item-number">50f6f7a</span><span><span class="item-title">Align portfolio logo with brand styling</span><span class="item-detail">Nov 8, 2026</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/portfolio/commit/77505ae" target="_blank" rel="noopener noreferrer"><span class="item-number">77505ae</span><span><span class="item-title">Polish portfolio metadata and keyboard access</span><span class="item-detail">Nov 8, 2026</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/portfolio/commit/7f524b5" target="_blank" rel="noopener noreferrer"><span class="item-number">7f524b5</span><span><span class="item-title">Add project stacks and source links</span><span class="item-detail">Nov 8, 2026</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/portfolio/commit/c9a97db" target="_blank" rel="noopener noreferrer"><span class="item-number">c9a97db</span><span><span class="item-title">Style the BECK portfolio</span><span class="item-detail">Nov 8, 2026</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/portfolio/commit/d3bca42" target="_blank" rel="noopener noreferrer"><span class="item-number">d3bca42</span><span><span class="item-title">Add the BECK brand logo</span><span class="item-detail">Nov 8, 2026</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/portfolio/commit/0b183da" target="_blank" rel="noopener noreferrer"><span class="item-number">0b183da</span><span><span class="item-title">Create portfolio page structure</span><span class="item-detail">Nov 8, 2026</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                </ul>
             </section>
         </main>
 
+        <nav class="pager" aria-label="Page navigation">
+            <a class="prev" href="../index.html"><small>← Back</small><strong>Week 10</strong></a>
+            <a class="next" href="../Extra/index.html"><small>Next →</small><strong>Extra — Book Search</strong></a>
+        </nav>
+
         <footer class="site-footer">
-            <p>© 2026 Asilbek · Web developer portfolio</p>
-            <a href="https://github.com/asilbek-maker" target="_blank" rel="noopener noreferrer">GitHub profile ↗</a>
+            <p>© 2026 ASILBEK · WEB PROGRAMMING COURSE</p>
+            <a href="https://github.com/asilbek-maker/Web-Programming" target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a>
         </footer>
     </div>
 </body>

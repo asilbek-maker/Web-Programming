@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
     nav.className = 'nav-container';
 
     // Barcha haftalar ro'yxati (yangi week qo'shsangiz faqat shu massivga qo'shib qo'yasiz)
-    const weeks = ['Week2', 'Week3', 'Week4', 'Week5', 'Week6', 'Week7', 'Week8', 'Week9', 'Week10'];
+    const weeks = ['Week2', 'Week3', 'Week4', 'Week5', 'Week6', 'Week7', 'Week8', 'Week9', 'Week10', 'Week11'];
 
     // Home tugmasi
     const homeLink = document.createElement('a');

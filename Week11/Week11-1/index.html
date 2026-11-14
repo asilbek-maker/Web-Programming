@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#11120f">
+    <meta name="description" content="Homework: Portfolio Gallery Component — a React app with ProjectCard, ProjectList and a FilterBar that filters projects by technology.">
+    <title>Portfolio Gallery Component — Week 11</title>
+    <link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="shell">
+        <header class="site-header">
+            <a class="brand" href="../../index.html" aria-label="Asilbek, course home">Asilbek<span>.</span></a>
+            <nav class="nav" aria-label="Main navigation">
+                <a class="hide-sm" href="../../index.html#projects">Projects</a>
+                <a href="../../index.html#course">All weeks</a>
+                <a href="https://asilbek-maker.github.io/portfolio/">Portfolio</a>
+                <a class="pill" href="https://github.com/asilbek-maker" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </nav>
+        </header>
+
+        <main id="main-content" class="report" tabindex="-1">
+            <ol class="breadcrumbs" aria-label="Breadcrumb">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../index.html">Week 11</a></li>
+                <li aria-current="page">Week 11-1</li>
+            </ol>
+
+            <p class="eyebrow" style="margin-top: 40px;">Homework · React components</p>
+            <h1>Portfolio Gallery Component</h1>
+
+            <div class="report-grid">
+                <div>
+                    <p class="lede">
+                        A React project called <code>portfolio-gallery</code>, set up with the Create React App structure. A <code>ProjectCard</code> component shows one project’s title, description, tech stack, GitHub link and demo link. <code>ProjectList</code> renders an array of six real projects as cards, and a <code>FilterBar</code> filters them by technology. The filter buttons are built from the project data, so a new technology gets its own button automatically. The app is deployed to GitHub Pages by a GitHub Actions workflow on every push to <code>main</code>.
+                    </p>
+
+                    <ul class="link-rows" aria-label="Project links">
+                        <li>
+                            <a class="link-row is-live" href="https://asilbek-maker.github.io/portfolio-gallery/" target="_blank" rel="noopener noreferrer">
+                                <span class="tag"><span class="live-dot" aria-hidden="true"></span>LIVE</span>
+                                <span class="url">https://asilbek-maker.github.io/portfolio-gallery/</span>
+                                <span class="arrow" aria-hidden="true">↗</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="link-row" href="https://github.com/asilbek-maker/portfolio-gallery" target="_blank" rel="noopener noreferrer">
+                                <span class="tag">REPO</span>
+                                <span class="url">github.com/asilbek-maker/portfolio-gallery</span>
+                                <span class="arrow" aria-hidden="true">↗</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="link-row" href="https://github.com/asilbek-maker/portfolio-gallery/commits/main/" target="_blank" rel="noopener noreferrer">
+                                <span class="tag">COMMITS</span>
+                                <span class="url">github.com/asilbek-maker/portfolio-gallery/commits/main/</span>
+                                <span class="arrow" aria-hidden="true">↗</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <aside class="side-card" aria-labelledby="req-title">
+                    <h2 id="req-title">Requirements covered</h2>
+                    <ul class="checklist">
+                        <li><span>React project <code>portfolio-gallery</code></span></li>
+                        <li><span><code>ProjectCard</code>: title, description, tech stack, GitHub link, demo link</span></li>
+                        <li><span><code>ProjectList</code> renders 6 ProjectCards from an array</span></li>
+                        <li><span><code>FilterBar</code> filters cards by technology</span></li>
+                        <li><span>GitHub repo with 8 commits</span></li>
+                        <li><span>Live on GitHub Pages</span></li>
+                    </ul>
+                    <a class="button button-accent" href="https://asilbek-maker.github.io/portfolio-gallery/" target="_blank" rel="noopener noreferrer">Open live app <span aria-hidden="true">↗</span></a>
+                    <a class="button" href="https://github.com/asilbek-maker/portfolio-gallery" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+
+            <section class="panel" aria-labelledby="tree-title" style="margin-top: 48px;">
+                <div class="panel-meta">
+                    <h2 id="tree-title">Component tree</h2>
+                    <span>4 components · src/</span>
+                </div>
+                <ul class="item-list">
+                    <li><a class="item" href="https://github.com/asilbek-maker/portfolio-gallery/blob/main/src/App.js" target="_blank" rel="noopener noreferrer"><span class="item-number">App</span><span><span class="item-title">App.js</span><span class="item-detail">Keeps the chosen technology in state with useState and passes the matching projects down</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/portfolio-gallery/blob/main/src/components/FilterBar.js" target="_blank" rel="noopener noreferrer"><span class="item-number">└ Filter</span><span><span class="item-title">FilterBar.js</span><span class="item-detail">One button per technology (All, JavaScript, CSS, React, Python…); the pressed one has aria-pressed</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/portfolio-gallery/blob/main/src/components/ProjectList.js" target="_blank" rel="noopener noreferrer"><span class="item-number">└ List</span><span><span class="item-title">ProjectList.js</span><span class="item-detail">Maps the array of projects to ProjectCards, or shows a message when none match</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/portfolio-gallery/blob/main/src/components/ProjectCard.js" target="_blank" rel="noopener noreferrer"><span class="item-number">&nbsp;&nbsp;└ Card</span><span><span class="item-title">ProjectCard.js</span><span class="item-detail">Title, description, tech stack, GitHub link and demo link for one project</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                </ul>
+            </section>
+
+            <section class="panel" aria-labelledby="commits-title" style="margin-top: 32px;">
+                <div class="panel-meta">
+                    <h2 id="commits-title">Commit history · main</h2>
+                    <span>8 commits · newest first</span>
+                </div>
+                <ul class="item-list">
+                    <li><a class="item" href="https://github.com/asilbek-maker/portfolio-gallery/commit/57942a6" target="_blank" rel="noopener noreferrer"><span class="item-number">57942a6</span><span><span class="item-title">Deploy to GitHub Pages with GitHub Actions</span><span class="item-detail">Nov 15, 2026</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/portfolio-gallery/commit/f5cf1ae" target="_blank" rel="noopener noreferrer"><span class="item-number">f5cf1ae</span><span><span class="item-title">Add README with components and setup steps</span><span class="item-detail">Nov 15, 2026</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/portfolio-gallery/commit/2592eec" target="_blank" rel="noopener noreferrer"><span class="item-number">2592eec</span><span><span class="item-title">Style the gallery and explain the component tree</span><span class="item-detail">Nov 15, 2026</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/portfolio-gallery/commit/f6f3fc9" target="_blank" rel="noopener noreferrer"><span class="item-number">f6f3fc9</span><span><span class="item-title">Add FilterBar to filter projects by technology</span><span class="item-detail">Nov 15, 2026</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/portfolio-gallery/commit/389c819" target="_blank" rel="noopener noreferrer"><span class="item-number">389c819</span><span><span class="item-title">Add ProjectList that renders every project card</span><span class="item-detail">Nov 15, 2026</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/portfolio-gallery/commit/f78136c" target="_blank" rel="noopener noreferrer"><span class="item-number">f78136c</span><span><span class="item-title">Add ProjectCard component</span><span class="item-detail">Nov 15, 2026</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/portfolio-gallery/commit/02db8ca" target="_blank" rel="noopener noreferrer"><span class="item-number">02db8ca</span><span><span class="item-title">Add project data and screenshots</span><span class="item-detail">Nov 15, 2026</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/portfolio-gallery/commit/662c3d5" target="_blank" rel="noopener noreferrer"><span class="item-number">662c3d5</span><span><span class="item-title">Create React app with Create React App structure</span><span class="item-detail">Nov 15, 2026</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                </ul>
+            </section>
+
+            <section class="git-section" aria-labelledby="how-title">
+                <p class="eyebrow">How the filter works</p>
+                <h2 id="how-title">State lives in App, components just receive props</h2>
+                <div class="git-grid">
+                    <ol class="git-steps">
+                        <li><strong>Data first.</strong> Each project in <code>src/data/projects.js</code> has a <code>tech</code> array, e.g. <code>["Python", "Flask"]</code>.</li>
+                        <li><strong>Build the buttons.</strong> App counts every technology across all projects and passes the list to <code>FilterBar</code>.</li>
+                        <li><strong>Lift state up.</strong> <code>useState("All")</code> in App holds the active filter; FilterBar calls <code>onChange</code> when a button is clicked.</li>
+                        <li><strong>Filter, then render.</strong> App keeps only the projects whose <code>tech</code> includes the active one and hands them to <code>ProjectList</code>.</li>
+                        <li><strong>Deploy.</strong> A GitHub Actions workflow runs <code>npm run build</code> and publishes the build to GitHub Pages.</li>
+                    </ol>
+                    <div class="terminal" role="region" aria-label="Filter code from App.js">
+                        <p class="terminal-bar"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>src/App.js</p>
+<pre><code><span class="c">// the chosen technology</span>
+const [active, setActive] = useState("All");
+
+<span class="c">// keep only matching projects</span>
+const visible = active === "All"
+  ? projects
+  : projects.filter((p) =&gt; p.tech.includes(active));
+
+return (
+  &lt;&gt;
+    &lt;FilterBar
+      technologies={technologies}
+      active={active}
+      onChange={setActive} /&gt;
+    &lt;ProjectList projects={visible} /&gt;
+  &lt;/&gt;
+);</code></pre>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <nav class="pager" aria-label="Page navigation">
+            <a class="prev" href="../index.html"><small>← Back</small><strong>Week 11</strong></a>
+            <a class="next" href="https://asilbek-maker.github.io/portfolio-gallery/"><small>Next →</small><strong>Open the gallery</strong></a>
+        </nav>
+
+        <footer class="site-footer">
+            <p>© 2026 ASILBEK · WEB PROGRAMMING COURSE</p>
+            <a href="https://github.com/asilbek-maker/Web-Programming" target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a>
+        </footer>
+    </div>
+</body>
+</html>

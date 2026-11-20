@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#11120f">
+    <meta name="description" content="Task 11-A: React Components & Props, a Vite + React Student Directory built from a StudentProfileCard component with five props.">
+    <title>React Components &amp; Props — Week 11</title>
+    <link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="shell">
+        <header class="site-header">
+            <a class="brand" href="../../index.html" aria-label="Asilbek, course home">Asilbek<span>.</span></a>
+            <nav class="nav" aria-label="Main navigation">
+                <a class="hide-sm" href="../../index.html#projects">Projects</a>
+                <a href="../../index.html#course">All weeks</a>
+                <a href="https://asilbek-maker.github.io/portfolio/">Portfolio</a>
+                <a class="pill" href="https://github.com/asilbek-maker" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </nav>
+        </header>
+
+        <main id="main-content" class="report" tabindex="-1">
+            <ol class="breadcrumbs" aria-label="Breadcrumb">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../index.html">Week 11</a></li>
+                <li aria-current="page">Week 11-2</li>
+            </ol>
+
+            <p class="eyebrow" style="margin-top: 40px;">Task 11-A · React components &amp; props · 30 pts</p>
+            <h1>Student Profile Cards</h1>
+
+            <div class="report-grid">
+                <div>
+                    <p class="lede">
+                        A Vite + React project called <code>task11</code>. The <code>StudentProfileCard</code> component takes five props (<code>name</code>, <code>studentId</code>, <code>major</code>, <code>year</code> and <code>gpa</code>) and renders them as a formatted card. <code>App.jsx</code> is a Student Directory that uses the component three times: my card and two classmates'. The parent passes the data down as props, and the card only reads it. The cards are styled with hand-written CSS, with no framework.
+                    </p>
+
+                    <ul class="link-rows" aria-label="Project links">
+                        <li>
+                            <a class="link-row is-live" href="app/" target="_blank" rel="noopener noreferrer">
+                                <span class="tag"><span class="live-dot" aria-hidden="true"></span>LIVE</span>
+                                <span class="url">asilbek-maker.github.io/Web-Programming/Week11/Week11-2/app/</span>
+                                <span class="arrow" aria-hidden="true">↗</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="link-row" href="https://github.com/asilbek-maker/Web-Programming/tree/main/Week11/Week11-2/task11" target="_blank" rel="noopener noreferrer">
+                                <span class="tag">SOURCE</span>
+                                <span class="url">github.com/asilbek-maker/Web-Programming/…/Week11-2/task11</span>
+                                <span class="arrow" aria-hidden="true">↗</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="link-row" href="https://github.com/asilbek-maker/Web-Programming/commits/main/Week11/Week11-2" target="_blank" rel="noopener noreferrer">
+                                <span class="tag">COMMITS</span>
+                                <span class="url">github.com/asilbek-maker/Web-Programming/commits/main/Week11/Week11-2</span>
+                                <span class="arrow" aria-hidden="true">↗</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <aside class="side-card" aria-labelledby="req-title">
+                    <h2 id="req-title">Requirements covered</h2>
+                    <ul class="checklist">
+                        <li><span>Vite + React project <code>task11</code></span></li>
+                        <li><span><code>src/StudentProfileCard.jsx</code> with exactly 5 props, all used in the JSX</span></li>
+                        <li><span>My student ID shown on my card</span></li>
+                        <li><span>Exactly 3 cards in <code>App.jsx</code>: me and 2 classmates</span></li>
+                        <li><span>Custom CSS: border, padding, radius, card background, hover effect</span></li>
+                        <li><span>Live on GitHub Pages</span></li>
+                        <li><span>6 step-by-step commits</span></li>
+                    </ul>
+                    <a class="button button-accent" href="app/" target="_blank" rel="noopener noreferrer">Open live app <span aria-hidden="true">↗</span></a>
+                    <a class="button" href="https://github.com/asilbek-maker/Web-Programming/tree/main/Week11/Week11-2/task11" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+
+            <section class="panel" aria-labelledby="files-title" style="margin-top: 48px;">
+                <div class="panel-meta">
+                    <h2 id="files-title">Project files</h2>
+                    <span>task11/src</span>
+                </div>
+                <ul class="item-list">
+                    <li><a class="item" href="https://github.com/asilbek-maker/Web-Programming/blob/main/Week11/Week11-2/task11/src/App.jsx" target="_blank" rel="noopener noreferrer"><span class="item-number">App</span><span><span class="item-title">App.jsx</span><span class="item-detail">Student Directory: imports the card and renders it 3 times with different props</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/Web-Programming/blob/main/Week11/Week11-2/task11/src/StudentProfileCard.jsx" target="_blank" rel="noopener noreferrer"><span class="item-number">└ Card</span><span><span class="item-title">StudentProfileCard.jsx</span><span class="item-detail">Destructures { name, studentId, major, year, gpa } and renders the card header and body</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/Web-Programming/blob/main/Week11/Week11-2/task11/src/index.css" target="_blank" rel="noopener noreferrer"><span class="item-number">CSS</span><span><span class="item-title">index.css</span><span class="item-detail">Hand-written styles: responsive card grid, ID badge, hover lift, dark mode, reduced motion</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/Web-Programming/blob/main/Week11/Week11-2/task11/vite.config.js" target="_blank" rel="noopener noreferrer"><span class="item-number">Build</span><span><span class="item-title">vite.config.js</span><span class="item-detail">base './' and outDir '../app', so the build is served from this repo’s GitHub Pages</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                </ul>
+            </section>
+
+            <section class="panel" aria-labelledby="commits-title" style="margin-top: 32px;">
+                <div class="panel-meta">
+                    <h2 id="commits-title">Commit history · main</h2>
+                    <span>6 commits · newest first</span>
+                </div>
+                <ul class="item-list">
+                    <li><a class="item" href="https://github.com/asilbek-maker/Web-Programming/commit/8aa1310" target="_blank" rel="noopener noreferrer"><span class="item-number">8aa1310</span><span><span class="item-title">Build task11 for GitHub Pages into Week11/Week11-2/app</span><span class="item-detail">Nov 20, 2026</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/Web-Programming/commit/81ed469" target="_blank" rel="noopener noreferrer"><span class="item-number">81ed469</span><span><span class="item-title">Add classmates Rahimjon Komiljonov and Muhammad Rakhmatillayev</span><span class="item-detail">Nov 20, 2026</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/Web-Programming/commit/a5908d9" target="_blank" rel="noopener noreferrer"><span class="item-number">a5908d9</span><span><span class="item-title">Style the profile cards with custom CSS and hover effect</span><span class="item-detail">Nov 20, 2026</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/Web-Programming/commit/696794c" target="_blank" rel="noopener noreferrer"><span class="item-number">696794c</span><span><span class="item-title">Render three StudentProfileCards in App</span><span class="item-detail">Nov 20, 2026</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/Web-Programming/commit/7d0b0b8" target="_blank" rel="noopener noreferrer"><span class="item-number">7d0b0b8</span><span><span class="item-title">Add StudentProfileCard component with 5 props</span><span class="item-detail">Nov 20, 2026</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/Web-Programming/commit/3521c78" target="_blank" rel="noopener noreferrer"><span class="item-number">3521c78</span><span><span class="item-title">Create Week 11-2 Vite + React project (task11)</span><span class="item-detail">Nov 20, 2026</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                </ul>
+            </section>
+
+            <section class="git-section" aria-labelledby="how-title">
+                <p class="eyebrow">How props work here</p>
+                <h2 id="how-title">The parent passes data down, the card only reads it</h2>
+                <div class="git-grid">
+                    <ol class="git-steps">
+                        <li><strong>Passed like attributes.</strong> <code>App</code> writes <code>&lt;StudentProfileCard name="…" year={3} /&gt;</code>. Strings go in quotes, numbers in <code>{ }</code>.</li>
+                        <li><strong>Received as one object.</strong> React calls the function with <code>props</code>, and the card destructures it to <code>{ name, studentId, major, year, gpa }</code>.</li>
+                        <li><strong>Read-only.</strong> The card never changes its props. It only puts them into JSX with <code>{ }</code>.</li>
+                        <li><strong>Reusable.</strong> One component, three cards: the same function runs with different data each time.</li>
+                        <li><strong>Deploy.</strong> <code>npm run build</code> writes the site to <code>Week11-2/app/</code>, and GitHub Pages serves it from <code>main</code>.</li>
+                    </ol>
+                    <div class="terminal" role="region" aria-label="StudentProfileCard code">
+                        <p class="terminal-bar"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>src/StudentProfileCard.jsx</p>
+<pre><code><span class="c">// 5 props, destructured</span>
+function StudentProfileCard({
+  name, studentId, major, year, gpa
+}) {
+  return (
+    &lt;div className="profile-card"&gt;
+      &lt;div className="card-header"&gt;
+        &lt;h2&gt;{name}&lt;/h2&gt;
+        &lt;span&gt;ID: {studentId}&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div className="card-body"&gt;
+        &lt;p&gt;Major: {major}&lt;/p&gt;
+        &lt;p&gt;Year: {year}&lt;/p&gt;
+        &lt;p&gt;GPA: {gpa}&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <nav class="pager" aria-label="Page navigation">
+            <a class="prev" href="../Week11-1/index.html"><small>← Previous</small><strong>Week 11-1</strong></a>
+            <a class="next" href="app/"><small>Next →</small><strong>Open the directory</strong></a>
+        </nav>
+
+        <footer class="site-footer">
+            <p>© 2026 ASILBEK · WEB PROGRAMMING COURSE</p>
+            <a href="https://github.com/asilbek-maker/Web-Programming" target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a>
+        </footer>
+    </div>
+</body>
+</html>

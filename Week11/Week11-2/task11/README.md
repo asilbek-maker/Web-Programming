@@ -1,16 +1,32 @@
-# React + Vite
+# Task 11-A: React Components & Props
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Web Programming K0126_002 · Week 11 · Friday
 
-Currently, two official plugins are available:
+A Vite + React app with a `StudentProfileCard` component. The component takes five
+props (`name`, `studentId`, `major`, `year`, `gpa`), and `App.jsx` renders three cards:
+mine and two classmates'.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Live:** https://asilbek-maker.github.io/Web-Programming/Week11/Week11-2/app/
 
-## React Compiler
+## Files
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| File | What it does |
+| --- | --- |
+| `src/StudentProfileCard.jsx` | The card component, with exactly 5 props, all used in the JSX |
+| `src/App.jsx` | Student Directory that renders 3 `StudentProfileCard`s |
+| `src/index.css` | Hand-written card styles: border, padding, radius, card background, hover lift |
+| `vite.config.js` | `base: './'` and builds into `../app` |
 
-## Expanding the Oxlint configuration
+## Run it
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # writes the production site to ../app
+```
+
+## Deployment
+
+This project lives inside the `Web-Programming` repo, which GitHub Pages already serves
+from `main`. So instead of `npx gh-pages -d dist` (which needs a separate repo), the build
+goes to `Week11/Week11-2/app/`, and pushing to `main` publishes it.

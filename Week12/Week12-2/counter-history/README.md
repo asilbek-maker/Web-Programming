@@ -1,16 +1,44 @@
-# React + Vite
+# Counter with History
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Web Programming K0126_002 · Week 12 · Code challenge (React state & `useState`)
 
-Currently, two official plugins are available:
+**Live:** https://asilbek-maker.github.io/Web-Programming/Week12/Week12-2/app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Requirements
 
-## React Compiler
+1. Display the current count, starting at 0
+2. +1 and −1 buttons
+3. Reset button (back to 0)
+4. History: show the last 5 count values, e.g. `[0, 1, 2, 1, 0]`
+5. Undo: set the count to the previous value in history
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## How it works
 
-## Expanding the Oxlint configuration
+Two state variables, as the hint suggests:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```jsx
+const [count, setCount] = useState(0);
+const [history, setHistory] = useState([0]);
+
+function change(next) {
+  setCount(next);
+  setHistory(prev => [...prev, next].slice(-5)); // new array, last 5 only
+}
+
+function undo() {
+  if (history.length < 2) return;
+  setCount(history[history.length - 2]);
+  setHistory(prev => prev.slice(0, -1));
+}
+```
+
+Undo is disabled when there is nothing to go back to. Reset counts as a change, so it
+is recorded in history and can be undone.
+
+## Run it
+
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # writes the production site to ../app
+```

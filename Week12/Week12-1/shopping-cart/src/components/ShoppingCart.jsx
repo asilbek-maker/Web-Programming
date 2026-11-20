@@ -26,6 +26,22 @@ function ShoppingCart({ products }) {
     setCart((prev) => prev.filter((item) => item.id !== id));
   }
 
+  // Quantity +: map creates a new array with one item changed
+  function increaseQuantity(id) {
+    setCart((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, quantity: item.quantity + 1 } : item))
+    );
+  }
+
+  // Quantity −: going below 1 takes the item out of the cart
+  function decreaseQuantity(id) {
+    setCart((prev) =>
+      prev
+        .map((item) => (item.id === id ? { ...item, quantity: item.quantity - 1 } : item))
+        .filter((item) => item.quantity > 0)
+    );
+  }
+
   function clearCart() {
     setCart([]);
   }
@@ -42,8 +58,8 @@ function ShoppingCart({ products }) {
       />
       <CartPanel
         cart={cart}
-        onIncrease={() => {}}
-        onDecrease={() => {}}
+        onIncrease={increaseQuantity}
+        onDecrease={decreaseQuantity}
         onRemove={removeFromCart}
         onClear={clearCart}
       />

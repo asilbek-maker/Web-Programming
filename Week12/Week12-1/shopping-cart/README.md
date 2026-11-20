@@ -1,16 +1,45 @@
-# React + Vite
+# Interactive Shopping Cart
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Web Programming K0126_002 · Week 12 · Homework (React state & `useState`)
 
-Currently, two official plugins are available:
+**Live:** https://asilbek-maker.github.io/Web-Programming/Week12/Week12-1/app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Requirements
 
-## React Compiler
+| # | Requirement | Where |
+| --- | --- | --- |
+| 1 | Product list, at least 5 items with name, price and image URL | `src/data/products.js` (6 items), `public/products/*.svg` |
+| 2 | Add / Remove buttons; state is an array of cart items | `ShoppingCart.jsx`: `useState([])`, `addToCart`, `removeFromCart` |
+| 3 | Cart sidebar with items and a total computed from state | `CartPanel.jsx`: `cart.reduce(...)` on every render |
+| 4 | Quantity controls, + and − per item | `CartItem.jsx` → `increaseQuantity` / `decreaseQuantity` |
+| 5 | `ShoppingCart` component: product list + cart panel | `ShoppingCart.jsx` renders `ProductList` and `CartPanel` |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Component tree
 
-## Expanding the Oxlint configuration
+```
+App
+└── ShoppingCart          state: cart = [{ id, name, price, image, quantity }]
+    ├── ProductList       props: products, cart, onAdd, onRemove
+    │   └── ProductCard   one per product (key = product.id)
+    └── CartPanel         props: cart, onIncrease, onDecrease, onRemove, onClear
+        └── CartItem      one per cart line (key = item.id)
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+The cart state is lifted into `ShoppingCart`, the nearest common parent of the product
+list and the cart panel, so both always show the same data. Data flows down as props,
+and clicks flow up as callbacks.
+
+## Immutable updates
+
+- **Add:** `[...prev, { ...product, quantity: 1 }]`, or `prev.map(...)` to bump an existing line
+- **Remove:** `prev.filter(item => item.id !== id)`
+- **Quantity +/−:** `prev.map(...)` with a new object for the changed item. Going below 1 filters the line out.
+- **Total:** derived with `reduce`, never stored in state
+
+## Run it
+
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # writes the production site to ../app
+```

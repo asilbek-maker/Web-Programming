@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ProductList from './ProductList';
+import CartPanel from './CartPanel';
 
 // ShoppingCart owns the cart state: an array of cart items,
 // e.g. [{ id, name, price, image, quantity }].
@@ -25,6 +26,12 @@ function ShoppingCart({ products }) {
     setCart((prev) => prev.filter((item) => item.id !== id));
   }
 
+  function clearCart() {
+    setCart([]);
+  }
+
+  // The state lives here, so ProductList and CartPanel (siblings)
+  // always show the same cart: data down as props, events up as callbacks.
   return (
     <div className="shop-layout">
       <ProductList
@@ -32,6 +39,13 @@ function ShoppingCart({ products }) {
         cart={cart}
         onAdd={addToCart}
         onRemove={removeFromCart}
+      />
+      <CartPanel
+        cart={cart}
+        onIncrease={() => {}}
+        onDecrease={() => {}}
+        onRemove={removeFromCart}
+        onClear={clearCart}
       />
     </div>
   );

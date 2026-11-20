@@ -18,14 +18,14 @@ function App() {
         {/* Two classmates */}
         <StudentProfileCard
           name="Rahimjon Komiljonov"
-          studentId="TODO_ID"
+          studentId="202438377"
           major="Computer Engineering"
           year={3}
           gpa={4.3}
         />
         <StudentProfileCard
           name="Muhammad Rakhmatillayev"
-          studentId="TODO_ID"
+          studentId="202438034"
           major="Computer Engineering"
           year={3}
           gpa={3.9}

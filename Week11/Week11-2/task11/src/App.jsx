@@ -15,9 +15,21 @@ function App() {
           year={3}
           gpa={3.75}
         />
-        {/* Two classmates (use their real names and IDs) */}
-        <StudentProfileCard name="Classmate 1" studentId="..." major="..." year={2} gpa={3.5} />
-        <StudentProfileCard name="Classmate 2" studentId="..." major="..." year={4} gpa={3.9} />
+        {/* Two classmates */}
+        <StudentProfileCard
+          name="Rahimjon Komiljonov"
+          studentId="TODO_ID"
+          major="Computer Engineering"
+          year={3}
+          gpa={4.3}
+        />
+        <StudentProfileCard
+          name="Muhammad Rakhmatillayev"
+          studentId="TODO_ID"
+          major="Computer Engineering"
+          year={3}
+          gpa={3.9}
+        />
       </div>
     </div>
   );

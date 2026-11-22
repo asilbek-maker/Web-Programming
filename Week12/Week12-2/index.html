@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#11120f">
+    <meta name="description" content="Week 12 Friday extra challenge: a counter with history, a weather dashboard with useEffect, six useState exercises and five useEffect exercises.">
+    <title>Friday Extra Challenge — Week 12</title>
+    <link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="shell">
+        <header class="site-header">
+            <a class="brand" href="../../index.html" aria-label="Asilbek, course home">Asilbek<span>.</span></a>
+            <nav class="nav" aria-label="Main navigation">
+                <a class="hide-sm" href="../../index.html#projects">Projects</a>
+                <a href="../../index.html#course">All weeks</a>
+                <a href="https://asilbek-maker.github.io/portfolio/">Portfolio</a>
+                <a class="pill" href="https://github.com/asilbek-maker" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </nav>
+        </header>
+
+        <main id="main-content" class="report" tabindex="-1">
+            <ol class="breadcrumbs" aria-label="Breadcrumb">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../index.html">Week 12</a></li>
+                <li aria-current="page">Week 12-2</li>
+            </ol>
+
+            <p class="eyebrow" style="margin-top: 40px;">Friday · Extra challenge · useState &amp; useEffect</p>
+            <h1>Friday Extra Challenge</h1>
+
+            <div class="report-grid">
+                <div>
+                    <p class="lede">
+                        Four Vite + React projects in one folder. <strong>A</strong> is the counter with history code challenge. <strong>B</strong> is a weather dashboard that fetches live data in <code>useEffect</code>. <strong>C</strong> has the six Monday <code>useState</code> exercises, and <strong>D</strong> has the five Friday <code>useEffect</code> exercises. Each project builds into its own folder, which GitHub Pages serves.
+                    </p>
+
+                    <ul class="link-rows" aria-label="Live apps">
+                        <li>
+                            <a class="link-row is-live" href="counter/" target="_blank" rel="noopener noreferrer">
+                                <span class="tag"><span class="live-dot" aria-hidden="true"></span>A · LIVE</span>
+                                <span class="url">Counter with history · …/Week12/Week12-2/counter/</span>
+                                <span class="arrow" aria-hidden="true">↗</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="link-row is-live" href="weather/" target="_blank" rel="noopener noreferrer">
+                                <span class="tag"><span class="live-dot" aria-hidden="true"></span>B · LIVE</span>
+                                <span class="url">Weather dashboard · …/Week12/Week12-2/weather/</span>
+                                <span class="arrow" aria-hidden="true">↗</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="link-row is-live" href="usestate/" target="_blank" rel="noopener noreferrer">
+                                <span class="tag"><span class="live-dot" aria-hidden="true"></span>C · LIVE</span>
+                                <span class="url">useState practice M1–M6 · …/Week12/Week12-2/usestate/</span>
+                                <span class="arrow" aria-hidden="true">↗</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="link-row is-live" href="useeffect/" target="_blank" rel="noopener noreferrer">
+                                <span class="tag"><span class="live-dot" aria-hidden="true"></span>D · LIVE</span>
+                                <span class="url">useEffect practice F1–F5 · …/Week12/Week12-2/useeffect/</span>
+                                <span class="arrow" aria-hidden="true">↗</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="link-row" href="https://github.com/asilbek-maker/Web-Programming/tree/main/Week12/Week12-2" target="_blank" rel="noopener noreferrer">
+                                <span class="tag">SOURCE</span>
+                                <span class="url">github.com/asilbek-maker/Web-Programming/tree/main/Week12/Week12-2</span>
+                                <span class="arrow" aria-hidden="true">↗</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <aside class="side-card" aria-labelledby="req-title">
+                    <h2 id="req-title">What’s inside</h2>
+                    <ul class="checklist">
+                        <li><span><strong>A.</strong> Counter: +1, −1, Reset, the last 5 values and Undo</span></li>
+                        <li><span><strong>B.</strong> Weather: Open-Meteo data, city or coordinate search, loading and error states, Use my location</span></li>
+                        <li><span><strong>C.</strong> useState: object state, toggles, adding and removing list items, lifting state up, derived values</span></li>
+                        <li><span><strong>D.</strong> useEffect: fetching with AbortController, <code>document.title</code>, fetch on mount, a stopwatch, a character count</span></li>
+                    </ul>
+                    <a class="button button-accent" href="weather/" target="_blank" rel="noopener noreferrer">Open the weather app <span aria-hidden="true">↗</span></a>
+                    <a class="button" href="https://github.com/asilbek-maker/Web-Programming/commits/main/Week12/Week12-2" target="_blank" rel="noopener noreferrer">View commits <span aria-hidden="true">→</span></a>
+                </aside>
+            </div>
+
+            <!-- A. Counter with history -->
+            <section class="panel" aria-labelledby="a-title" style="margin-top: 48px;">
+                <div class="panel-meta">
+                    <h2 id="a-title">A · Counter with history</h2>
+                    <span>counter-history · code challenge</span>
+                </div>
+                <ul class="item-list">
+                    <li><a class="item" href="counter/" target="_blank" rel="noopener noreferrer"><span class="item-number">Live</span><span><span class="item-title">Open the counter</span><span class="item-detail">Two state variables, <code>count</code> and <code>history</code>, updated together; Undo is disabled when there is nothing to undo</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/Web-Programming/blob/main/Week12/Week12-2/counter-history/src/CounterWithHistory.jsx" target="_blank" rel="noopener noreferrer"><span class="item-number">Code</span><span><span class="item-title">CounterWithHistory.jsx</span><span class="item-detail"><code>[...prev, next].slice(-5)</code> keeps the last five values without <code>push</code></span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                </ul>
+            </section>
+
+            <!-- B. Weather dashboard -->
+            <section class="panel" aria-labelledby="b-title" style="margin-top: 32px;">
+                <div class="panel-meta">
+                    <h2 id="b-title">B · Weather dashboard</h2>
+                    <span>weather-dashboard · useEffect + fetch</span>
+                </div>
+                <ul class="item-list">
+                    <li><a class="item" href="weather/" target="_blank" rel="noopener noreferrer"><span class="item-number">Live</span><span><span class="item-title">Open the weather dashboard</span><span class="item-detail">Temperature, wind, description and a 5-day forecast from Open-Meteo, which needs no API key</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/Web-Programming/blob/main/Week12/Week12-2/weather-dashboard/src/components/WeatherDashboard.jsx" target="_blank" rel="noopener noreferrer"><span class="item-number">Dash</span><span><span class="item-title">WeatherDashboard.jsx</span><span class="item-detail">Owns the state; the effect runs whenever <code>search</code> changes, and its cleanup aborts the old request</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/Web-Programming/blob/main/Week12/Week12-2/weather-dashboard/src/components/SearchForm.jsx" target="_blank" rel="noopener noreferrer"><span class="item-number">Search</span><span><span class="item-title">SearchForm.jsx</span><span class="item-detail">City and Coordinates tabs, input validation, and Use my location (geolocation)</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/Web-Programming/blob/main/Week12/Week12-2/weather-dashboard/src/components/StatusMessage.jsx" target="_blank" rel="noopener noreferrer"><span class="item-number">Status</span><span><span class="item-title">StatusMessage.jsx</span><span class="item-detail">Loading spinner, and messages for an unknown city, a rate limit (429) and no connection</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="https://github.com/asilbek-maker/Web-Programming/blob/main/Week12/Week12-2/weather-dashboard/src/api/openMeteo.js" target="_blank" rel="noopener noreferrer"><span class="item-number">API</span><span><span class="item-title">api/openMeteo.js</span><span class="item-detail"><code>findCity()</code> (geocoding) and <code>getWeather()</code> (forecast)</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                </ul>
+            </section>
+
+            <!-- C. useState practice -->
+            <section class="panel" aria-labelledby="c-title" style="margin-top: 32px;">
+                <div class="panel-meta">
+                    <h2 id="c-title">C · useState practice</h2>
+                    <span>usestate-practice · Monday class</span>
+                </div>
+                <ul class="item-list">
+                    <li><a class="item" href="counter/"><span class="item-number">M1</span><span><span class="item-title">Counter with history</span><span class="item-detail">Project A above</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="usestate/#cart-counter"><span class="item-number">M2</span><span><span class="item-title">CafeOrder.jsx</span><span class="item-detail">Video lecture challenge: 아메리카노, 김밥, 녹차 with − and +, never below 0, total computed in render</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="usestate/#toggle"><span class="item-number">M3</span><span><span class="item-title">ToggleDetails.jsx</span><span class="item-detail">Study guide 1: Show / Hide details with <code>aria-expanded</code></span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="usestate/#list"><span class="item-number">M4</span><span><span class="item-title">StudyList.jsx</span><span class="item-detail">Study guide 2: add an item with spread, remove it with <code>filter</code></span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="usestate/#lift-state"><span class="item-number">M5</span><span><span class="item-title">ScoreBoard.jsx</span><span class="item-detail">Study guide 3: the parent owns both scores and shows the total and the leader</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="usestate/#word-count"><span class="item-number">M6</span><span><span class="item-title">WordCount.jsx</span><span class="item-detail">End-of-slides practice: words, characters and reading time derived from the text</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                </ul>
+            </section>
+
+            <!-- D. useEffect practice -->
+            <section class="panel" aria-labelledby="d-title" style="margin-top: 32px;">
+                <div class="panel-meta">
+                    <h2 id="d-title">D · useEffect practice</h2>
+                    <span>useeffect-practice · Friday class</span>
+                </div>
+                <ul class="item-list">
+                    <li><a class="item" href="useeffect/#github-user"><span class="item-number">F1</span><span><span class="item-title">GitHubUser.jsx</span><span class="item-detail">Code challenge: avatar, bio, followers and repos; 404, rate-limit and network errors. Bonus: AbortController cleanup</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="useeffect/#title-sync"><span class="item-number">F2</span><span><span class="item-title">TitleSync.jsx</span><span class="item-detail">Study guide 1: the tab title follows the input, and the cleanup restores it</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="useeffect/#fetch-user"><span class="item-number">F3</span><span><span class="item-title">FetchUser.jsx</span><span class="item-detail">Study guide 2: fetch once on mount, with loading and error states</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="useeffect/#stopwatch"><span class="item-number">F4</span><span><span class="item-title">Stopwatch.jsx</span><span class="item-detail">Study guide 3: Start, Stop and Reset; <code>setInterval</code> is cleared in cleanup</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="useeffect/#char-count"><span class="item-number">F5</span><span><span class="item-title">CharCount.jsx</span><span class="item-detail">End-of-slides practice: the effect copies the text length into state</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                </ul>
+            </section>
+
+            <section class="git-section" aria-labelledby="how-title">
+                <p class="eyebrow">How the weather effect works</p>
+                <h2 id="how-title">Search changes → effect runs → old request cancelled</h2>
+                <div class="git-grid">
+                    <ol class="git-steps">
+                        <li><strong>One dependency.</strong> <code>search</code> is replaced with a new object on every submit, or by Use my location.</li>
+                        <li><strong>Resolve the place.</strong> A city name goes through the Open-Meteo geocoding API first. Coordinates are checked in the form.</li>
+                        <li><strong>Fetch the weather</strong> for that latitude and longitude, then store the place and the data together.</li>
+                        <li><strong>Errors.</strong> An unknown city, HTTP 429 and network failures each get their own message.</li>
+                        <li><strong>Cleanup.</strong> <code>controller.abort()</code> cancels the old request, so stale results never show.</li>
+                    </ol>
+                    <div class="terminal" role="region" aria-label="Effect code from WeatherDashboard.jsx">
+                        <p class="terminal-bar"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>weather-dashboard/src/components/WeatherDashboard.jsx</p>
+<pre><code>useEffect(() =&gt; {
+  const controller = new AbortController();
+
+  async function load() {
+    setStatus('loading');
+    try {
+      const where = search.kind === 'city'
+        ? await findCity(search.name, controller.signal)
+        : { ...search };
+      const data = await getWeather(
+        where.latitude, where.longitude, controller.signal);
+      setPlace(where);
+      setWeather(data);
+      setStatus('ready');
+    } catch (err) {
+      if (err.name === 'AbortError') return;
+      setError(err);
+      setStatus('error');
+    }
+  }
+
+  load();
+  return () =&gt; controller.abort(); <span class="c">// cleanup</span>
+}, [search]);</code></pre>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <nav class="pager" aria-label="Page navigation">
+            <a class="prev" href="../Week12-1/index.html"><small>← Previous</small><strong>Week 12-1</strong></a>
+            <a class="next" href="../index.html"><small>Back →</small><strong>Week 12</strong></a>
+        </nav>
+
+        <footer class="site-footer">
+            <p>© 2026 ASILBEK · WEB PROGRAMMING COURSE</p>
+            <a href="https://github.com/asilbek-maker/Web-Programming" target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a>
+        </footer>
+    </div>
+</body>
+</html>

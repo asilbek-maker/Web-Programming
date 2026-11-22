@@ -7,10 +7,10 @@ function App() {
       <p className="subtitle">Web Programming K0126_002 · Task 11-A: React Components &amp; Props</p>
 
       <div className="card-grid">
-        {/* My card. studentId is REQUIRED: put your real student ID here */}
+        {/* My card */}
         <StudentProfileCard
           name="Asilbek"
-          studentId="YOUR_STUDENT_ID"
+          studentId="202438394"
           major="Computer Engineering"
           year={3}
           gpa={3.75}

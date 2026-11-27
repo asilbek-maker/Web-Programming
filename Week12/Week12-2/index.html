@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#11120f">
-    <meta name="description" content="Week 12 Friday extra challenge: a counter with history, a weather dashboard with useEffect, six useState exercises and five useEffect exercises.">
+    <meta name="description" content="Week 12 Friday extra challenge: a counter with history, a weather dashboard with useEffect, six useState exercises and ten useEffect exercises, including the Friday lab.">
     <title>Friday Extra Challenge — Week 12</title>
     <link rel="stylesheet" href="../../assets/site.css">
 </head>
@@ -34,7 +34,7 @@
             <div class="report-grid">
                 <div>
                     <p class="lede">
-                        Four Vite + React projects in one folder. <strong>A</strong> is the counter with history code challenge. <strong>B</strong> is a weather dashboard that fetches live data in <code>useEffect</code>. <strong>C</strong> has the six Monday <code>useState</code> exercises, and <strong>D</strong> has the five Friday <code>useEffect</code> exercises. Each project builds into its own folder, which GitHub Pages serves.
+                        Four Vite + React projects in one folder. <strong>A</strong> is the counter with history code challenge. <strong>B</strong> is a weather dashboard that fetches live data in <code>useEffect</code>. <strong>C</strong> has the six Monday <code>useState</code> exercises, and <strong>D</strong> has ten <code>useEffect</code> exercises: the five from Friday class and the Friday lab tasks (tab-title reminders, a people directory, GitHub repositories, stopwatch laps and three bonuses). Each project builds into its own folder, which GitHub Pages serves.
                     </p>
 
                     <ul class="link-rows" aria-label="Live apps">
@@ -62,7 +62,7 @@
                         <li>
                             <a class="link-row is-live" href="useeffect/" target="_blank" rel="noopener noreferrer">
                                 <span class="tag"><span class="live-dot" aria-hidden="true"></span>D · LIVE</span>
-                                <span class="url">useEffect practice F1–F5 · …/Week12/Week12-2/useeffect/</span>
+                                <span class="url">useEffect practice F1–F10 · …/Week12/Week12-2/useeffect/</span>
                                 <span class="arrow" aria-hidden="true">↗</span>
                             </a>
                         </li>
@@ -82,7 +82,7 @@
                         <li><span><strong>A.</strong> Counter: +1, −1, Reset, the last 5 values and Undo</span></li>
                         <li><span><strong>B.</strong> Weather: Open-Meteo data, city or coordinate search, loading and error states, Use my location</span></li>
                         <li><span><strong>C.</strong> useState: object state, toggles, adding and removing list items, lifting state up, derived values</span></li>
-                        <li><span><strong>D.</strong> useEffect: fetching with AbortController, <code>document.title</code>, fetch on mount, a stopwatch, a character count</span></li>
+                        <li><span><strong>D.</strong> useEffect: fetching with AbortController, <code>document.title</code>, fetch on mount and on ID change, a stopwatch with laps, a resize listener, cancelling stale replies</span></li>
                     </ul>
                     <a class="button button-accent" href="weather/" target="_blank" rel="noopener noreferrer">Open the weather app <span aria-hidden="true">↗</span></a>
                     <a class="button" href="https://github.com/asilbek-maker/Web-Programming/commits/main/Week12/Week12-2" target="_blank" rel="noopener noreferrer">View commits <span aria-hidden="true">→</span></a>
@@ -136,14 +136,19 @@
             <section class="panel" aria-labelledby="d-title" style="margin-top: 32px;">
                 <div class="panel-meta">
                     <h2 id="d-title">D · useEffect practice</h2>
-                    <span>useeffect-practice · Friday class</span>
+                    <span>useeffect-practice · Friday class + Friday lab</span>
                 </div>
                 <ul class="item-list">
-                    <li><a class="item" href="useeffect/#github-user"><span class="item-number">F1</span><span><span class="item-title">GitHubUser.jsx</span><span class="item-detail">Code challenge: avatar, bio, followers and repos; 404, rate-limit and network errors. Bonus: AbortController cleanup</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="useeffect/#github-user"><span class="item-number">F1</span><span><span class="item-title">GitHubUser.jsx</span><span class="item-detail">Code challenge: avatar, bio, followers and repos; 404, rate-limit and network errors. Bonus: AbortController cleanup. Lab: recent repositories sorted by update or stars, filtered by language (<code>RepoList.jsx</code>)</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
                     <li><a class="item" href="useeffect/#title-sync"><span class="item-number">F2</span><span><span class="item-title">TitleSync.jsx</span><span class="item-detail">Study guide 1: the tab title follows the input, and the cleanup restores it</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
                     <li><a class="item" href="useeffect/#fetch-user"><span class="item-number">F3</span><span><span class="item-title">FetchUser.jsx</span><span class="item-detail">Study guide 2: fetch once on mount, with loading and error states</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
-                    <li><a class="item" href="useeffect/#stopwatch"><span class="item-number">F4</span><span><span class="item-title">Stopwatch.jsx</span><span class="item-detail">Study guide 3: Start, Stop and Reset; <code>setInterval</code> is cleared in cleanup</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="useeffect/#stopwatch"><span class="item-number">F4</span><span><span class="item-title">Stopwatch.jsx</span><span class="item-detail">Study guide 3: Start, Stop and Reset; <code>setInterval</code> is cleared in cleanup. Lab: Lap records splits and marks the fastest one</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
                     <li><a class="item" href="useeffect/#char-count"><span class="item-number">F5</span><span><span class="item-title">CharCount.jsx</span><span class="item-detail">End-of-slides practice: the effect copies the text length into state</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="useeffect/#tab-reminders"><span class="item-number">F6</span><span><span class="item-title">TabReminders.jsx</span><span class="item-detail">Friday lab E1: the unread count shows in the tab title, like <code>(3) Study list</code>; the cleanup restores it</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="useeffect/#people-directory"><span class="item-number">F7</span><span><span class="item-title">PeopleDirectory.jsx</span><span class="item-detail">Friday lab E2: fetch whenever the ID changes; a missing user (404), Retry and an 8-second timeout</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="useeffect/#window-width"><span class="item-number">F8</span><span><span class="item-title">WindowWidth.jsx</span><span class="item-detail">Bonus: a <code>resize</code> listener added in the effect and removed in cleanup</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="useeffect/#stale-replies"><span class="item-number">F9</span><span><span class="item-title">StaleReplies.jsx</span><span class="item-detail">Bonus: click Slow, then Fast; the cleanup cancels the slow reply so it cannot overwrite the fast one</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
+                    <li><a class="item" href="useeffect/#name-badge"><span class="item-number">F10</span><span><span class="item-title">NameBadge.jsx</span><span class="item-detail">Bonus: the full name and initials are worked out during render, so no effect is needed</span></span><span class="item-arrow" aria-hidden="true">↗</span></a></li>
                 </ul>
             </section>
 

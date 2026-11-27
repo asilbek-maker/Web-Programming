@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import RepoList from './RepoList.jsx'
 
 // F1: code challenge. Fetch a GitHub profile whenever the username changes.
 // Bonus: the cleanup aborts the previous request with an AbortController,
@@ -72,6 +73,7 @@ function GitHubUser() {
           </div>
         </div>
       )}
+      {status === 'ready' && user && <RepoList key={user.login} username={user.login} />}
     </div>
   )
 }

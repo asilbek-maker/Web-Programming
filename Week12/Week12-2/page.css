@@ -1,0 +1,82 @@
+/* Extra styles for the Week 12-2 page, on top of assets/site.css. */
+.report h1 .mark { color: var(--accent); }
+.lede.wide { max-width: 760px; }
+.lede code, .section-intro code, .ex code:not(pre code), .hw-card code { font-family: var(--mono); color: var(--ink); }
+
+.section-title {
+    margin: 64px 0 8px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+    font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+    letter-spacing: -.05em;
+    scroll-margin-top: 20px;
+}
+.section-intro { margin: 0 0 26px; max-width: 760px; color: var(--muted); }
+
+/* Homework cards (paper panels like the rest of the site) */
+.hw-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; margin-top: 20px; }
+.hw-card { display: flex; flex-direction: column; gap: 10px; padding: 26px 28px; border-radius: 18px; background: var(--paper); color: var(--ink-dark); }
+.hw-card h3 { margin: 0; font-size: 1.4rem; letter-spacing: -.03em; }
+.hw-card p { margin: 0; color: #3d3e37; line-height: 1.6; }
+.hw-card code { color: var(--ink-dark) !important; font-weight: 700; }
+.hw-tag { font-family: var(--mono); font-size: .7rem !important; letter-spacing: .08em; text-transform: uppercase; color: var(--rust) !important; }
+.hw-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 8px; }
+.hw-card .button { border-color: var(--ink-dark); }
+
+/* One exercise: header, goal, code | output, result */
+.ex {
+    margin-bottom: 22px;
+    padding: 24px 26px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--panel);
+    scroll-margin-top: 20px;
+}
+.ex > p { margin: 14px 0 0; color: #c9cac0; line-height: 1.65; }
+.ex > p strong { color: var(--ink); }
+.ex-head { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.ex-num {
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: var(--accent);
+    color: var(--ink-dark);
+    font: 700 .8rem var(--mono);
+}
+.ex-head h3 { flex: 1; margin: 0; font-size: 1.2rem; letter-spacing: -.02em; }
+.ex-file { color: var(--muted) !important; font-size: .8rem; }
+
+.ex-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+    margin-top: 16px;
+}
+.ex-grid figure { margin: 0; min-width: 0; }
+.ex-code pre { max-height: 520px; font-size: .78rem; line-height: 1.6; }
+.ex-out {
+    position: sticky;
+    top: 16px;
+    overflow: hidden;
+    border: 1px solid var(--accent);
+    border-radius: 16px;
+    background: var(--page);
+}
+.ex-out figcaption {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    color: var(--accent);
+    font: .72rem var(--mono);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+}
+.ex-out iframe { display: block; width: 100%; height: 240px; border: 0; background: var(--page); }
+
+@media (max-width: 860px) {
+    .ex-grid { grid-template-columns: 1fr; }
+    .ex-out { position: static; }
+    .ex { padding: 20px 18px; }
+}

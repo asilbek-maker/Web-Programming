@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!-- This page is written by practice-src/scripts/make-page.mjs (npm run page).
+     Edit practice-src/scripts/page.template.html or src/exercises.js, not this file. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#11120f">
+    <meta name="description" content="Week 12-2: React state and effects. The weather dashboard homework, plus the Monday useState and Friday useEffect practice, each shown as code next to its running output.">
+    <title>Week 12-2 — React state &amp; effects</title>
+    <link rel="stylesheet" href="../../assets/site.css">
+    <link rel="stylesheet" href="page.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="shell">
+        <header class="site-header">
+            <a class="brand" href="../../index.html" aria-label="Asilbek, course home">Asilbek<span>.</span></a>
+            <nav class="nav" aria-label="Main navigation">
+                <a class="hide-sm" href="#monday">Monday</a>
+                <a class="hide-sm" href="#friday">Friday</a>
+                <a href="../../index.html#course">All weeks</a>
+                <a class="pill" href="https://github.com/asilbek-maker" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </nav>
+        </header>
+
+        <main id="main-content" class="report" tabindex="-1">
+            <ol class="breadcrumbs" aria-label="Breadcrumb">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../index.html">Week 12</a></li>
+                <li aria-current="page">Week 12-2</li>
+            </ol>
+
+            <p class="eyebrow" style="margin-top: 40px;">K0126002 · Week 12 · useState &amp; useEffect</p>
+            <h1>React <span class="mark">state</span> &amp; effects</h1>
+            <p class="lede wide">The homework apps and every practice exercise from the Monday class (<code>useState</code>) and the Friday class (<code>useEffect</code>). Each exercise shows its real code next to the component running live. The apps are built with Vite and React; the source is in <code>Week12-2/practice-src</code> and <code>Week12-2/weather-src</code>.</p>
+
+            <h2 class="section-title" id="homework">Homework</h2>
+            <div class="hw-grid">
+                <article class="hw-card">
+                    <p class="hw-tag">Monday homework</p>
+                    <h3>Interactive shopping cart</h3>
+                    <p>Products with images and prices, add and remove buttons, quantity controls and a cart with the total. A <code>ShoppingCart</code> component owns the cart state.</p>
+                    <div class="hw-actions">
+                        <a class="button button-accent" href="../Week12-1/index.html">Open Week 12-1 →</a>
+                    </div>
+                </article>
+                <article class="hw-card">
+                    <p class="hw-tag">Friday homework</p>
+                    <h3>Weather dashboard</h3>
+                    <p>Temperature, wind, humidity and a description from the Open-Meteo API, plus a 5-day forecast. Search by city or by coordinates; <code>useEffect</code> fetches on every new search, with loading and error states (city not found, bad coordinates, rate limit, no connection). Bonus: “Use my location”.</p>
+                    <div class="hw-actions">
+                        <a class="button button-accent" href="weather/" target="_blank" rel="noopener noreferrer">Live app ↗</a>
+                        <a class="button" href="https://github.com/asilbek-maker/Web-Programming/tree/main/Week12/Week12-2/weather-src/src" target="_blank" rel="noopener noreferrer">Source ↗</a>
+                    </div>
+                </article>
+            </div>
+
+            <h2 class="section-title" id="monday">Monday practice: useState</h2>
+            <p class="section-intro">The code challenge, the video lecture challenge, the three study guide exercises and the practice from the last slide.</p>
+{{MONDAY}}
+
+            <h2 class="section-title" id="friday">Friday practice: useEffect</h2>
+            <p class="section-intro">The code challenge and its bonus, the three study guide exercises and the practice from the last slide. Every effect that starts something (a request, a timer) stops it again in its cleanup.</p>
+{{FRIDAY}}
+        </main>
+
+        <nav class="pager" aria-label="Page navigation">
+            <a class="prev" href="../Week12-1/index.html"><small>← Previous</small><strong>Week 12-1</strong></a>
+            <a class="next" href="../index.html"><small>Back →</small><strong>Week 12</strong></a>
+        </nav>
+
+        <footer class="site-footer">
+            <p>© 2026 ASILBEK · WEB PROGRAMMING COURSE</p>
+            <a href="https://github.com/asilbek-maker/Web-Programming/tree/main/Week12/Week12-2" target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a>
+        </footer>
+    </div>
+    <script>
+        // Each demo reports its height, so its iframe fits with no inner scrollbar.
+        window.addEventListener('message', function (event) {
+            if (event.origin !== location.origin || !event.data || event.data.type !== 'demo-height') return;
+            var frame = document.querySelector('iframe[data-demo="' + event.data.demo + '"]');
+            if (frame) frame.style.height = Math.ceil(event.data.height) + 'px';
+        });
+    </script>
+</body>
+</html>

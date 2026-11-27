@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<!-- This page is written by practice-src/scripts/make-page.mjs (npm run page).
+     Edit practice-src/scripts/page.template.html or src/exercises.js, not this file. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#11120f">
+    <meta name="description" content="Week 13-1: React forms and controlled components. The Student Profile Editor homework, the multi-step registration challenge, the study guide exercises and the video lecture challenge, each shown as code next to its running output.">
+    <title>Week 13-1 — React forms</title>
+    <link rel="stylesheet" href="../../assets/site.css">
+    <link rel="stylesheet" href="page.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="shell">
+        <header class="site-header">
+            <a class="brand" href="../../index.html" aria-label="Asilbek, course home">Asilbek<span>.</span></a>
+            <nav class="nav" aria-label="Main navigation">
+                <a class="hide-sm" href="#homework">Homework</a>
+                <a class="hide-sm" href="#study">Study guide</a>
+                <a href="../../index.html#course">All weeks</a>
+                <a class="pill" href="https://github.com/asilbek-maker" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </nav>
+        </header>
+
+        <main id="main-content" class="report" tabindex="-1">
+            <ol class="breadcrumbs" aria-label="Breadcrumb">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../index.html">Week 13</a></li>
+                <li aria-current="page">Week 13-1</li>
+            </ol>
+
+            <p class="eyebrow" style="margin-top: 40px;">K0126_002 · Week 13 · Monday · React forms</p>
+            <h1>React <span class="mark">forms</span> &amp; controlled inputs</h1>
+            <p class="lede wide">Forms where React state is the single source of truth: <code>value</code> + <code>onChange</code>, one handler for many fields, <code>e.preventDefault()</code>, an errors object for validation, and <code>useRef</code> for the file input. Each exercise shows its real code next to the component running live. The source is in <code>Week13-1/practice-src</code>.</p>
+
+            <ul class="hw-grid tasks" aria-label="What this week asks for">
+                <li class="hw-card"><p class="hw-tag">25% · Homework</p><h3>Profile editor + wizard</h3><p>The Student Profile Editor and the multi-step registration code challenge (page 29).</p><div class="hw-actions"><a class="button button-accent" href="#h1">H1 &amp; H2 ↓</a></div></li>
+                <li class="hw-card"><p class="hw-tag">25% · Study guide</p><h3>Exercises 1–3</h3><p>Character counter, contact form with validation, skills checklist.</p><div class="hw-actions"><a class="button button-accent" href="#s1">S1–S3 ↓</a></div></li>
+                <li class="hw-card"><p class="hw-tag">25% · Video lecture</p><h3>Page 13 challenge</h3><p>A course feedback form with radios, checkboxes and a live comment count.</p><div class="hw-actions"><a class="button button-accent" href="#v1">V1 ↓</a></div></li>
+            </ul>
+
+            <h2 class="section-title" id="homework">Homework</h2>
+            <p class="section-intro">The Student Profile Editor and the multi-step registration code challenge from page 29 (12.5% + 12.5%).</p>
+
+            <article class="ex" id="h1" aria-labelledby="h1-title">
+                <header class="ex-head">
+                    <span class="ex-num">H1</span>
+                    <h3 id="h1-title">Student profile editor</h3>
+                    <code class="ex-file">ProfileEditor.jsx</code>
+                </header>
+                <p><strong>Goal:</strong> A full form for a student management system: name, student ID (10 digits), major (dropdown), year (1–4 radio), bio and a photo (file + preview). All fields are required, the ID must be exactly 10 digits and the bio under 200 characters, with a live bio counter. On submit, show a “Profile Preview” card. Stretch: skills as tags (Enter to add, × to remove).</p>
+                <div class="ex-grid">
+                    <figure class="terminal ex-code">
+                        <figcaption class="terminal-bar"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>Code · homework/ProfileEditor.jsx</figcaption>
+                        <pre><code>import { useEffect, useRef, useState } from 'react'
+
+// Homework · Student profile editor.
+// Every text field is controlled (value + onChange, one handler for all).
+// The photo is a file input, which React cannot control, so it is read
+// through a ref. Errors are an object: no keys means the form is valid.
+const MAJORS = ['Computer Engineering', 'Software', 'Artificial Intelligence', 'Design']
+const BIO_LIMIT = 200
+const EMPTY = { name: '', studentId: '', major: '', year: '', bio: '' }
+
+function validate(form, photo) {
+  const errors = {}
+  if (!form.name.trim()) errors.name = 'Name is required.'
+  if (!/^\d{10}$/.test(form.studentId)) errors.studentId = 'Student ID must be exactly 10 digits.'
+  if (!form.major) errors.major = 'Choose a major.'
+  if (!form.year) errors.year = 'Choose a year.'
+  if (!form.bio.trim()) errors.bio = 'Write a short bio.'
+  else if (form.bio.length &gt;= BIO_LIMIT) errors.bio = `Bio must be under ${BIO_LIMIT} characters.`
+  if (!photo) errors.photo = 'Choose a profile photo.'
+  return errors
+}
+
+function ProfileEditor() {
+  const [form, setForm] = useState(EMPTY)
+  const [skills, setSkills] = useState(['react', 'forms'])
+  const [skillText, setSkillText] = useState('')
+  const [photo, setPhoto] = useState(null) // { name, url }
+  const [errors, setErrors] = useState({})
+  const [touched, setTouched] = useState({})
+  const [saved, setSaved] = useState(false)
+  const fileRef = useRef(null)
+
+  // The preview URL points at the file in memory; free it when it changes.
+  useEffect(() =&gt; {
+    if (!photo) return
+    return () =&gt; URL.revokeObjectURL(photo.url)
+  }, [photo])
+
+  function handleChange(e) {
+    const { name, value } = e.target
+    const next = { ...form, [name]: value }
+    setForm(next)
+    if (touched[name]) setErrors(validate(next, photo)) // keep a shown error up to date
+  }
+
+  function handleBlur(e) {
+    setTouched((t) =&gt; ({ ...t, [e.target.name]: true }))
+    setErrors(validate(form, photo))
+  }
+
+  function choosePhoto() {
+    const file = fileRef.current.files[0]
+    const next = file &amp;&amp; file.type.startsWith('image/') ? { name: file.name, url: URL.createObjectURL(file) } : null
+    setPhoto(next)
+    setTouched((t) =&gt; ({ ...t, photo: true }))
+    setErrors(validate(form, next))
+  }
+
+  function addSkill(e) {
+    if (e.key !== 'Enter') return
+    e.preventDefault() // Enter would otherwise submit the form
+    const tag = skillText.trim().toLowerCase()
+    if (tag &amp;&amp; !skills.includes(tag)) setSkills([...skills, tag])
+    setSkillText('')
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    const found = validate(form, photo)
+    setErrors(found)
+    setTouched({ name: true, studentId: true, major: true, year: true, bio: true, photo: true })
+    if (Object.keys(found).length === 0) setSaved(true)
+  }
+
+  const show = (field) =&gt; touched[field] &amp;&amp; errors[field]
+  const describe = (field) =&gt; (show(field) ? `${field}-error` : undefined)
+
+  if (saved) {
+    const initials = form.name.trim().split(/\s+/).map((w) =&gt; w[0]).slice(0, 2).join('').toUpperCase()
+    return (
+      &lt;section className="stack" aria-label="Profile preview"&gt;
+        &lt;p className="label"&gt;Profile preview&lt;/p&gt;
+        &lt;div className="card row profile"&gt;
+          {photo ? &lt;img src={photo.url} alt="" className="photo" /&gt; : &lt;span className="photo"&gt;{initials}&lt;/span&gt;}
+          &lt;div className="grow"&gt;
+            &lt;h3&gt;{form.name.trim()}&lt;/h3&gt;
+            &lt;p className="muted"&gt;ID {form.studentId} · Year {form.year}&lt;/p&gt;
+            &lt;p className="accent"&gt;{form.major}&lt;/p&gt;
+            &lt;p&gt;{form.bio}&lt;/p&gt;
+            &lt;p className="muted"&gt;bio: {form.bio.length} / {BIO_LIMIT}&lt;/p&gt;
+            {skills.length &gt; 0 &amp;&amp; &lt;ul className="chips"&gt;{skills.map((s) =&gt; &lt;li key={s}&gt;{s}&lt;/li&gt;)}&lt;/ul&gt;}
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;button type="button" className="btn" onClick={() =&gt; setSaved(false)}&gt;Edit profile&lt;/button&gt;
+      &lt;/section&gt;
+    )
+  }
+
+  return (
+    &lt;form className="stack" onSubmit={handleSubmit} noValidate&gt;
+      &lt;div className="field"&gt;
+        &lt;label htmlFor="pe-name"&gt;Name &lt;span aria-hidden="true"&gt;*&lt;/span&gt;&lt;/label&gt;
+        &lt;input id="pe-name" name="name" className="input" value={form.name} onChange={handleChange} onBlur={handleBlur}
+          autoComplete="name" aria-required="true" aria-invalid={!!show('name')} aria-describedby={describe('name')} /&gt;
+        {show('name') &amp;&amp; &lt;p id="name-error" className="error-text"&gt;{errors.name}&lt;/p&gt;}
+      &lt;/div&gt;
+
+      &lt;div className="field"&gt;
+        &lt;label htmlFor="pe-id"&gt;Student ID (10 digits) &lt;span aria-hidden="true"&gt;*&lt;/span&gt;&lt;/label&gt;
+        &lt;input id="pe-id" name="studentId" className="input" inputMode="numeric" value={form.studentId}
+          onChange={handleChange} onBlur={handleBlur} placeholder="2024123456"
+          aria-required="true" aria-invalid={!!show('studentId')} aria-describedby={describe('studentId')} /&gt;
+        {show('studentId') &amp;&amp; &lt;p id="studentId-error" className="error-text"&gt;{errors.studentId}&lt;/p&gt;}
+      &lt;/div&gt;
+
+      &lt;div className="field"&gt;
+        &lt;label htmlFor="pe-major"&gt;Major &lt;span aria-hidden="true"&gt;*&lt;/span&gt;&lt;/label&gt;
+        &lt;select id="pe-major" name="major" className="input" value={form.major} onChange={handleChange} onBlur={handleBlur}
+          aria-required="true" aria-invalid={!!show('major')} aria-describedby={describe('major')}&gt;
+          &lt;option value=""&gt;Choose a major…&lt;/option&gt;
+          {MAJORS.map((m) =&gt; &lt;option key={m}&gt;{m}&lt;/option&gt;)}
+        &lt;/select&gt;
+        {show('major') &amp;&amp; &lt;p id="major-error" className="error-text"&gt;{errors.major}&lt;/p&gt;}
+      &lt;/div&gt;
+
+      &lt;fieldset className="field" aria-describedby={describe('year')}&gt;
+        &lt;legend&gt;Year &lt;span aria-hidden="true"&gt;*&lt;/span&gt;&lt;/legend&gt;
+        &lt;div className="row"&gt;
+          {['1', '2', '3', '4'].map((y) =&gt; (
+            &lt;label key={y} className="choice"&gt;
+              &lt;input type="radio" name="year" value={y} checked={form.year === y} onChange={handleChange} onBlur={handleBlur} /&gt; Year {y}
+            &lt;/label&gt;
+          ))}
+        &lt;/div&gt;
+        {show('year') &amp;&amp; &lt;p id="year-error" className="error-text"&gt;{errors.year}&lt;/p&gt;}
+      &lt;/fieldset&gt;
+
+      &lt;div className="field"&gt;
+        &lt;label htmlFor="pe-bio"&gt;Bio &lt;span aria-hidden="true"&gt;*&lt;/span&gt;&lt;/label&gt;
+        &lt;textarea id="pe-bio" name="bio" className="input" rows="3" value={form.bio} onChange={handleChange} onBlur={handleBlur}
+          aria-required="true" aria-invalid={!!show('bio')} aria-describedby={`bio-count ${describe('bio') ?? ''}`.trim()} /&gt;
+        &lt;p id="bio-count" className={form.bio.length &gt;= BIO_LIMIT ? 'counter over' : 'counter'}&gt;{form.bio.length} / {BIO_LIMIT} characters&lt;/p&gt;
+        {show('bio') &amp;&amp; &lt;p id="bio-error" className="error-text"&gt;{errors.bio}&lt;/p&gt;}
+      &lt;/div&gt;
+
+      &lt;div className="field"&gt;
+        &lt;label htmlFor="pe-photo"&gt;Profile photo &lt;span aria-hidden="true"&gt;*&lt;/span&gt;&lt;/label&gt;
+        &lt;div className="row"&gt;
+          {photo &amp;&amp; &lt;img src={photo.url} alt="Chosen photo" className="photo small" /&gt;}
+          &lt;input id="pe-photo" type="file" accept="image/*" ref={fileRef} onChange={choosePhoto}
+            aria-invalid={!!show('photo')} aria-describedby={describe('photo')} /&gt;
+        &lt;/div&gt;
+        {show('photo') &amp;&amp; &lt;p id="photo-error" className="error-text"&gt;{errors.photo}&lt;/p&gt;}
+      &lt;/div&gt;
+
+      &lt;div className="field"&gt;
+        &lt;label htmlFor="pe-skill"&gt;Skills (press Enter to add)&lt;/label&gt;
+        &lt;ul className="chips" aria-label="Skills"&gt;
+          {skills.map((s) =&gt; (
+            &lt;li key={s}&gt;{s} &lt;button type="button" className="chip-x" aria-label={`Remove ${s}`}
+              onClick={() =&gt; setSkills(skills.filter((x) =&gt; x !== s))}&gt;×&lt;/button&gt;&lt;/li&gt;
+          ))}
+        &lt;/ul&gt;
+        &lt;input id="pe-skill" className="input" value={skillText} onChange={(e) =&gt; setSkillText(e.target.value)}
+          onKeyDown={addSkill} placeholder="e.g. css" /&gt;
+      &lt;/div&gt;
+
+      &lt;button type="submit" className="btn btn-accent"&gt;Save profile&lt;/button&gt;
+    &lt;/form&gt;
+  )
+}
+
+export default ProfileEditor</code></pre>
+                    </figure>
+                    <figure class="ex-out">
+                        <figcaption><span class="live-dot" aria-hidden="true"></span>Output · running</figcaption>
+                        <iframe src="practice/index.html?demo=profile-editor" data-demo="profile-editor" title="H1 running output" loading="lazy"></iframe>
+                    </figure>
+                </div>
+                <p><strong>Result:</strong> One <code>handleChange</code> serves every text field through <code>[name]: value</code>. <code>validate()</code> returns an errors object, and an empty object means the form can be saved. Errors appear after a field loses focus (<code>onBlur</code>), and are linked with <code>aria-describedby</code>. The photo is read with <code>useRef</code> and shown with <code>URL.createObjectURL</code>; an effect cleanup frees the old preview URL. Skills are an array: Enter adds a tag, × removes it.</p>
+            </article>
+
+            <article class="ex" id="h2" aria-labelledby="h2-title">
+                <header class="ex-head">
+                    <span class="ex-num">H2</span>
+                    <h3 id="h2-title">Code challenge: multi-step registration</h3>
+                    <code class="ex-file">MultiStepRegistration.jsx</code>
+                </header>
+                <p><strong>Goal:</strong> A 3-step wizard. Step 1: name (min 2) and email. Step 2: username (min 3, no spaces), password (min 8) and confirm password. Step 3: role (Student | TA | Instructor radio), newsletter checkbox and a read-only review. Next is enabled only when the step is valid, the progress shows “Step 2 of 3”, Previous keeps the data, and Submit calls <code>console.log(fullFormObject)</code>.</p>
+                <div class="ex-grid">
+                    <figure class="terminal ex-code">
+                        <figcaption class="terminal-bar"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>Code · homework/MultiStepRegistration.jsx</figcaption>
+                        <pre><code>import { useState } from 'react'
+
+// Code challenge (page 29) · A 3-step registration wizard.
+// All answers live in ONE form object, so Previous never loses data.
+// Errors are not stored: they are worked out from the form on every
+// render, so Next is enabled exactly when the current step is valid.
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const ROLES = ['Student', 'TA', 'Instructor']
+const STEPS = ['Personal info', 'Account setup', 'Preferences']
+
+function stepErrors(step, f) {
+  const e = {}
+  if (step === 1) {
+    if (f.name.trim().length &lt; 2) e.name = 'Name needs at least 2 characters.'
+    if (!EMAIL.test(f.email)) e.email = 'Enter a valid email address.'
+  }
+  if (step === 2) {
+    if (f.username.length &lt; 3 || /\s/.test(f.username)) e.username = 'At least 3 characters and no spaces.'
+    if (f.password.length &lt; 8) e.password = 'Password needs at least 8 characters.'
+    if (!f.confirm || f.confirm !== f.password) e.confirm = 'Passwords do not match.'
+  }
+  return e
+}
+
+function MultiStepRegistration() {
+  const [step, setStep] = useState(1)
+  const [form, setForm] = useState({
+    name: '', email: '', username: '', password: '', confirm: '', role: 'Student', newsletter: false,
+  })
+  const [touched, setTouched] = useState({})
+  const [sent, setSent] = useState(null)
+
+  const errors = stepErrors(step, form)
+  const valid = Object.keys(errors).length === 0
+
+  function handleChange(e) {
+    const { name, value, type, checked } = e.target
+    setForm((prev) =&gt; ({ ...prev, [name]: type === 'checkbox' ? checked : value }))
+  }
+
+  const blur = (e) =&gt; setTouched((t) =&gt; ({ ...t, [e.target.name]: true }))
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    if (step &lt; 3) {
+      if (valid) setStep(step + 1)
+      return
+    }
+    const { confirm: _confirm, ...fullFormObject } = form // the confirm copy is not needed
+    console.log(fullFormObject)
+    setSent(fullFormObject)
+  }
+
+  // Like the target result, the field name sits inside the input as a
+  // placeholder; the &lt;label&gt; is still there for screen readers.
+  // An error shows after the field is left, or at once for a confirm
+  // password that does not match.
+  function field(name, label, type = 'text', autoComplete) {
+    const early = name === 'confirm' &amp;&amp; form.confirm !== ''
+    const bad = (touched[name] || early) &amp;&amp; errors[name]
+    return (
+      &lt;div className="field"&gt;
+        &lt;label htmlFor={`ms-${name}`} className="sr-only"&gt;{label}&lt;/label&gt;
+        &lt;input id={`ms-${name}`} name={name} type={type} className="input" value={form[name]} placeholder={label}
+          onChange={handleChange} onBlur={blur} autoComplete={autoComplete}
+          aria-invalid={!!bad} aria-describedby={bad ? `ms-${name}-error` : undefined} /&gt;
+        {bad &amp;&amp; &lt;p id={`ms-${name}-error`} className="error-text"&gt;{errors[name]}&lt;/p&gt;}
+      &lt;/div&gt;
+    )
+  }
+
+  if (sent) {
+    return (
+      &lt;div className="stack wizard"&gt;
+        &lt;p className="notice ok" role="status"&gt;Registered! This is the object passed to console.log:&lt;/p&gt;
+        &lt;pre className="log"&gt;{JSON.stringify({ ...sent, password: '••••••••' }, null, 2)}&lt;/pre&gt;
+        &lt;button type="button" className="btn btn-dark" onClick={() =&gt; { setSent(null); setStep(1) }}&gt;Start again&lt;/button&gt;
+      &lt;/div&gt;
+    )
+  }
+
+  return (
+    &lt;form className="stack wizard" onSubmit={handleSubmit} noValidate aria-labelledby="ms-step"&gt;
+      &lt;div&gt;
+        &lt;h3 id="ms-step"&gt;Step {step} of 3 &lt;span className="step-name"&gt;· {STEPS[step - 1]}&lt;/span&gt;&lt;/h3&gt;
+        &lt;div className="steps" aria-hidden="true"&gt;
+          {STEPS.map((s, i) =&gt; &lt;span key={s} className={i &lt; step ? 'done' : ''} /&gt;)}
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      {step === 1 &amp;&amp; &lt;&gt;{field('name', 'Name', 'text', 'name')}{field('email', 'Email', 'email', 'email')}&lt;/&gt;}
+
+      {step === 2 &amp;&amp; (
+        &lt;&gt;
+          {field('username', 'Username', 'text', 'username')}
+          {field('password', 'Password', 'password', 'new-password')}
+          {field('confirm', 'Confirm password', 'password', 'new-password')}
+        &lt;/&gt;
+      )}
+
+      {step === 3 &amp;&amp; (
+        &lt;&gt;
+          &lt;fieldset className="field"&gt;
+            &lt;legend&gt;Role&lt;/legend&gt;
+            &lt;div className="row"&gt;
+              {ROLES.map((r) =&gt; (
+                &lt;label key={r} className="choice"&gt;
+                  &lt;input type="radio" name="role" value={r} checked={form.role === r} onChange={handleChange} /&gt; {r}
+                &lt;/label&gt;
+              ))}
+            &lt;/div&gt;
+          &lt;/fieldset&gt;
+          &lt;label className="choice"&gt;
+            &lt;input type="checkbox" name="newsletter" checked={form.newsletter} onChange={handleChange} /&gt; Subscribe to the newsletter
+          &lt;/label&gt;
+          &lt;dl className="summary" aria-label="Review"&gt;
+            &lt;dt&gt;Name&lt;/dt&gt;&lt;dd&gt;{form.name}&lt;/dd&gt;
+            &lt;dt&gt;Email&lt;/dt&gt;&lt;dd&gt;{form.email}&lt;/dd&gt;
+            &lt;dt&gt;Username&lt;/dt&gt;&lt;dd&gt;{form.username}&lt;/dd&gt;
+            &lt;dt&gt;Password&lt;/dt&gt;&lt;dd&gt;{'•'.repeat(form.password.length)}&lt;/dd&gt;
+            &lt;dt&gt;Role&lt;/dt&gt;&lt;dd&gt;{form.role}&lt;/dd&gt;
+            &lt;dt&gt;Newsletter&lt;/dt&gt;&lt;dd&gt;{form.newsletter ? 'Yes' : 'No'}&lt;/dd&gt;
+          &lt;/dl&gt;
+        &lt;/&gt;
+      )}
+
+      &lt;div className="row"&gt;
+        &lt;button type="button" className="btn btn-dark grow" onClick={() =&gt; setStep(step - 1)} disabled={step === 1}&gt;Previous&lt;/button&gt;
+        &lt;button type="submit" className="btn btn-next grow" disabled={!valid}&gt;{step &lt; 3 ? 'Next' : 'Submit'}&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+  )
+}
+
+export default MultiStepRegistration</code></pre>
+                    </figure>
+                    <figure class="ex-out">
+                        <figcaption><span class="live-dot" aria-hidden="true"></span>Output · running</figcaption>
+                        <iframe src="practice/index.html?demo=wizard" data-demo="wizard" title="H2 running output" loading="lazy"></iframe>
+                    </figure>
+                </div>
+                <p><strong>Result:</strong> All answers live in one object, so going back never loses anything. Errors are calculated from the form on every render instead of being stored, so <code>disabled={!valid}</code> on Next is always right. Submit logs the object and also shows it on the page, with the password hidden. It looks like the target result on the slide: a white card, a 3-part progress bar, field names inside the inputs, a red border when Confirm does not match, and a grey Next while the step is invalid.</p>
+            </article>
+
+            <h2 class="section-title" id="study">Study guide: exercises 1–3</h2>
+            <p class="section-intro">The three practice exercises at the end of the Week 13 Monday study guide (25%).</p>
+
+            <article class="ex" id="s1" aria-labelledby="s1-title">
+                <header class="ex-head">
+                    <span class="ex-num">S1</span>
+                    <h3 id="s1-title">Exercise 1: live character counter</h3>
+                    <code class="ex-file">BioCounter.jsx</code>
+                </header>
+                <p><strong>Goal:</strong> A controlled <code>&lt;textarea&gt;</code> with a maximum of 200 characters and a live “X / 200” count below it.</p>
+                <div class="ex-grid">
+                    <figure class="terminal ex-code">
+                        <figcaption class="terminal-bar"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>Code · study/BioCounter.jsx</figcaption>
+                        <pre><code>import { useState } from 'react'
+
+const MAX = 200
+
+// Study guide · Exercise 1: a live character counter.
+// The textarea is controlled, so the count is just bio.length.
+// The task says to "disable" the field at the limit, but a disabled
+// textarea cannot be edited at all, so you could never delete text.
+// Instead, slice() stops new text at 200 and the field stays usable.
+function BioCounter() {
+  const [bio, setBio] = useState('')
+  const left = MAX - bio.length
+
+  return (
+    &lt;div className="field"&gt;
+      &lt;label htmlFor="bio-field"&gt;Your bio&lt;/label&gt;
+      &lt;textarea id="bio-field" className="input" rows="4" value={bio} aria-describedby="bio-field-count"
+        onChange={(e) =&gt; setBio(e.target.value.slice(0, MAX))} placeholder="I study web programming at Gachon…" /&gt;
+      &lt;p id="bio-field-count" className={left &lt; 20 ? 'counter over' : 'counter'} aria-live="polite"&gt;
+        {bio.length} / {MAX}{left === 0 &amp;&amp; ' · limit reached'}
+      &lt;/p&gt;
+      &lt;button type="button" className="btn btn-small" onClick={() =&gt; setBio('')} disabled={!bio}&gt;Clear&lt;/button&gt;
+    &lt;/div&gt;
+  )
+}
+
+export default BioCounter</code></pre>
+                    </figure>
+                    <figure class="ex-out">
+                        <figcaption><span class="live-dot" aria-hidden="true"></span>Output · running</figcaption>
+                        <iframe src="practice/index.html?demo=bio-counter" data-demo="bio-counter" title="S1 running output" loading="lazy"></iframe>
+                    </figure>
+                </div>
+                <p><strong>Result:</strong> The count is simply <code>bio.length</code>. <code>slice(0, 200)</code> stops new text at the limit. The guide says to disable the field there, but a disabled textarea cannot be edited, so you could never delete anything; the counter turns red near the limit instead.</p>
+            </article>
+
+            <article class="ex" id="s2" aria-labelledby="s2-title">
+                <header class="ex-head">
+                    <span class="ex-num">S2</span>
+                    <h3 id="s2-title">Exercise 2: contact form with validation</h3>
+                    <code class="ex-file">ContactForm.jsx</code>
+                </header>
+                <p><strong>Goal:</strong> Name, Email and Message fields, all validated on submit, with errors next to each field. After a successful submit, show a “Thank you” message and reset the form.</p>
+                <div class="ex-grid">
+                    <figure class="terminal ex-code">
+                        <figcaption class="terminal-bar"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>Code · study/ContactForm.jsx</figcaption>
+                        <pre><code>import { useState } from 'react'
+
+// Study guide · Exercise 2: a contact form with validation.
+// One handler for all three fields. On submit, the errors object is
+// built; if it has keys, they are shown next to the fields. If not, the
+// form shows a thank-you message and resets.
+const EMPTY = { name: '', email: '', message: '' }
+const FIELDS = [
+  { name: 'name', label: 'Name' },
+  { name: 'email', label: 'Email', type: 'email' },
+  { name: 'message', label: 'Message' },
+]
+
+function ContactForm() {
+  const [form, setForm] = useState(EMPTY)
+  const [errors, setErrors] = useState({})
+  const [thanked, setThanked] = useState('')
+
+  function handleChange(e) {
+    const { name, value } = e.target
+    setForm((prev) =&gt; ({ ...prev, [name]: value }))
+    setErrors((prev) =&gt; ({ ...prev, [name]: '' })) // clear that field's error while typing
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    const errs = {}
+    if (!form.name.trim()) errs.name = 'Name is required.'
+    if (!form.email.trim()) errs.email = 'Email is required.'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = 'Enter a valid email address.'
+    if (!form.message.trim()) errs.message = 'Message is required.'
+    if (Object.keys(errs).length) {
+      setErrors(errs)
+      return
+    }
+    setThanked(form.name.trim())
+    setForm(EMPTY) // reset the form
+  }
+
+  if (thanked) {
+    return (
+      &lt;div className="stack"&gt;
+        &lt;p className="notice ok" role="status"&gt;Thank you, {thanked}! I will be in touch.&lt;/p&gt;
+        &lt;button type="button" className="btn" onClick={() =&gt; setThanked('')}&gt;Send another message&lt;/button&gt;
+      &lt;/div&gt;
+    )
+  }
+
+  return (
+    &lt;form className="stack" onSubmit={handleSubmit} noValidate&gt;
+      {FIELDS.map(({ name, label, type = 'text' }) =&gt; {
+        const Tag = name === 'message' ? 'textarea' : 'input'
+        return (
+          &lt;div className="field" key={name}&gt;
+            &lt;label htmlFor={`cf-${name}`}&gt;{label}&lt;/label&gt;
+            &lt;Tag id={`cf-${name}`} name={name} type={Tag === 'input' ? type : undefined} rows={Tag === 'textarea' ? 3 : undefined}
+              className="input" value={form[name]} onChange={handleChange}
+              aria-invalid={!!errors[name]} aria-describedby={errors[name] ? `cf-${name}-error` : undefined} /&gt;
+            {errors[name] &amp;&amp; &lt;p id={`cf-${name}-error`} className="error-text"&gt;{errors[name]}&lt;/p&gt;}
+          &lt;/div&gt;
+        )
+      })}
+      &lt;button type="submit" className="btn btn-accent"&gt;Send&lt;/button&gt;
+    &lt;/form&gt;
+  )
+}
+
+export default ContactForm</code></pre>
+                    </figure>
+                    <figure class="ex-out">
+                        <figcaption><span class="live-dot" aria-hidden="true"></span>Output · running</figcaption>
+                        <iframe src="practice/index.html?demo=contact-form" data-demo="contact-form" title="S2 running output" loading="lazy"></iframe>
+                    </figure>
+                </div>
+                <p><strong>Result:</strong> The three fields are rendered from one list and share one handler. Typing in a field clears its error. A valid submit shows the thank-you message and puts the form back to empty.</p>
+            </article>
+
+            <article class="ex" id="s3" aria-labelledby="s3-title">
+                <header class="ex-head">
+                    <span class="ex-num">S3</span>
+                    <h3 id="s3-title">Exercise 3: skills checklist with counter</h3>
+                    <code class="ex-file">SkillPicker.jsx</code>
+                </header>
+                <p><strong>Goal:</strong> Six programming skills as checkboxes, a live counter of the selected ones, and the warning “Please select at most 3 skills.” when more than 3 are checked.</p>
+                <div class="ex-grid">
+                    <figure class="terminal ex-code">
+                        <figcaption class="terminal-bar"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>Code · study/SkillPicker.jsx</figcaption>
+                        <pre><code>import { useState } from 'react'
+
+const SKILLS = ['HTML', 'CSS', 'JavaScript', 'React', 'Node.js', 'Python']
+const MAX = 3
+
+// Study guide · Exercise 3: a skills checklist with a counter.
+// Many checkboxes share one array in state: checking adds with spread,
+// unchecking removes with filter. Each box uses `checked`, not `value`.
+function SkillPicker() {
+  const [selected, setSelected] = useState([])
+
+  function toggle(skill, checked) {
+    setSelected((prev) =&gt; (checked ? [...prev, skill] : prev.filter((s) =&gt; s !== skill)))
+  }
+
+  return (
+    &lt;fieldset className="stack"&gt;
+      &lt;legend className="label"&gt;Pick your top skills&lt;/legend&gt;
+      &lt;div className="check-grid"&gt;
+        {SKILLS.map((skill) =&gt; (
+          &lt;label key={skill} className="choice box"&gt;
+            &lt;input type="checkbox" checked={selected.includes(skill)} onChange={(e) =&gt; toggle(skill, e.target.checked)} /&gt;
+            {skill}
+          &lt;/label&gt;
+        ))}
+      &lt;/div&gt;
+      &lt;p aria-live="polite"&gt;Selected: &lt;strong&gt;{selected.length} / {MAX}&lt;/strong&gt;{selected.length &gt; 0 &amp;&amp; ` · ${selected.join(', ')}`}&lt;/p&gt;
+      {selected.length &gt; MAX &amp;&amp; &lt;p className="notice error" role="alert"&gt;Please select at most {MAX} skills.&lt;/p&gt;}
+    &lt;/fieldset&gt;
+  )
+}
+
+export default SkillPicker</code></pre>
+                    </figure>
+                    <figure class="ex-out">
+                        <figcaption><span class="live-dot" aria-hidden="true"></span>Output · running</figcaption>
+                        <iframe src="practice/index.html?demo=skill-picker" data-demo="skill-picker" title="S3 running output" loading="lazy"></iframe>
+                    </figure>
+                </div>
+                <p><strong>Result:</strong> The checked skills are one array. Each checkbox uses <code>checked={selected.includes(skill)}</code> and reads <code>e.target.checked</code>.</p>
+            </article>
+
+            <h2 class="section-title" id="video">Video lecture: page 13 challenge</h2>
+            <p class="section-intro">The practice challenge on page 13 of the Week 13 Monday video lecture (25%).</p>
+
+            <article class="ex" id="v1" aria-labelledby="v1-title">
+                <header class="ex-head">
+                    <span class="ex-num">V1</span>
+                    <h3 id="v1-title">Course feedback form</h3>
+                    <code class="ex-file">FeedbackForm.jsx</code>
+                </header>
+                <p><strong>Goal:</strong> Student name (required), student ID (8 digits), a rating with radio buttons (⭐⭐⭐⭐⭐ / ⭐⭐⭐⭐ / ⭐⭐⭐), “topics covered well” checkboxes (HTML, CSS, JavaScript, Git, React), and comments (max 300) with a live count. On submit, validate and say “Thank you!” with the name. Bonus: disable Submit while a required field is empty.</p>
+                <div class="ex-grid">
+                    <figure class="terminal ex-code">
+                        <figcaption class="terminal-bar"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>Code · video/FeedbackForm.jsx</figcaption>
+                        <pre><code>import { useState } from 'react'
+
+// Video lecture (page 13) · Course feedback form.
+// Text fields, radio buttons (one string), checkboxes (an array) and a
+// textarea with a live count, all controlled. Bonus: Submit stays
+// disabled while any required field is empty.
+const RATINGS = ['⭐⭐⭐⭐⭐', '⭐⭐⭐⭐', '⭐⭐⭐']
+const TOPICS = ['HTML', 'CSS', 'JavaScript', 'Git', 'React']
+const MAX = 300
+
+function FeedbackForm() {
+  const [form, setForm] = useState({ name: '', studentId: '', rating: '', comments: '' })
+  const [topics, setTopics] = useState([])
+  const [errors, setErrors] = useState({})
+  const [done, setDone] = useState(false)
+
+  function handleChange(e) {
+    const { name, value } = e.target
+    setForm((prev) =&gt; ({ ...prev, [name]: name === 'comments' ? value.slice(0, MAX) : value }))
+  }
+
+  function toggleTopic(topic) {
+    setTopics((prev) =&gt; (prev.includes(topic) ? prev.filter((t) =&gt; t !== topic) : [...prev, topic]))
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    const errs = {}
+    if (!form.name.trim()) errs.name = 'Name is required.'
+    if (!/^\d{8}$/.test(form.studentId)) errs.studentId = 'Student ID must be 8 digits.'
+    if (!form.rating) errs.rating = 'Pick a rating.'
+    setErrors(errs)
+    if (Object.keys(errs).length === 0) setDone(true)
+  }
+
+  // Bonus: required fields that are still empty
+  const missing = !form.name.trim() || !form.studentId || !form.rating
+
+  if (done) {
+    return (
+      &lt;div className="stack"&gt;
+        &lt;p className="notice ok" role="status"&gt;Thank you, {form.name.trim()}! Your feedback ({form.rating}) was received.&lt;/p&gt;
+        &lt;button type="button" className="btn" onClick={() =&gt; setDone(false)}&gt;Edit feedback&lt;/button&gt;
+      &lt;/div&gt;
+    )
+  }
+
+  return (
+    &lt;form className="stack" onSubmit={handleSubmit} noValidate&gt;
+      &lt;div className="two-up"&gt;
+        &lt;div className="field"&gt;
+          &lt;label htmlFor="fb-name"&gt;Student name *&lt;/label&gt;
+          &lt;input id="fb-name" name="name" className="input" value={form.name} onChange={handleChange}
+            aria-invalid={!!errors.name} aria-describedby={errors.name ? 'fb-name-error' : undefined} /&gt;
+          {errors.name &amp;&amp; &lt;p id="fb-name-error" className="error-text"&gt;{errors.name}&lt;/p&gt;}
+        &lt;/div&gt;
+        &lt;div className="field"&gt;
+          &lt;label htmlFor="fb-id"&gt;Student ID (8 digits) *&lt;/label&gt;
+          &lt;input id="fb-id" name="studentId" className="input" inputMode="numeric" value={form.studentId} onChange={handleChange}
+            aria-invalid={!!errors.studentId} aria-describedby={errors.studentId ? 'fb-id-error' : undefined} /&gt;
+          {errors.studentId &amp;&amp; &lt;p id="fb-id-error" className="error-text"&gt;{errors.studentId}&lt;/p&gt;}
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;fieldset className="field"&gt;
+        &lt;legend&gt;Rating *&lt;/legend&gt;
+        &lt;div className="row"&gt;
+          {RATINGS.map((r, i) =&gt; (
+            &lt;label key={r} className="choice"&gt;
+              &lt;input type="radio" name="rating" value={r} checked={form.rating === r} onChange={handleChange} /&gt;
+              &lt;span role="img" aria-label={`${5 - i} stars`}&gt;{r}&lt;/span&gt;
+            &lt;/label&gt;
+          ))}
+        &lt;/div&gt;
+        {errors.rating &amp;&amp; &lt;p className="error-text"&gt;{errors.rating}&lt;/p&gt;}
+      &lt;/fieldset&gt;
+
+      &lt;fieldset className="field"&gt;
+        &lt;legend&gt;Topics covered well&lt;/legend&gt;
+        &lt;div className="row"&gt;
+          {TOPICS.map((t) =&gt; (
+            &lt;label key={t} className="choice"&gt;
+              &lt;input type="checkbox" checked={topics.includes(t)} onChange={() =&gt; toggleTopic(t)} /&gt; {t}
+            &lt;/label&gt;
+          ))}
+        &lt;/div&gt;
+      &lt;/fieldset&gt;
+
+      &lt;div className="field"&gt;
+        &lt;label htmlFor="fb-comments"&gt;Comments&lt;/label&gt;
+        &lt;textarea id="fb-comments" name="comments" className="input" rows="3" value={form.comments} onChange={handleChange}
+          aria-describedby="fb-count" /&gt;
+        &lt;p id="fb-count" className="counter"&gt;{form.comments.length} / {MAX}&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;button type="submit" className="btn btn-accent" disabled={missing}&gt;Send feedback&lt;/button&gt;
+    &lt;/form&gt;
+  )
+}
+
+export default FeedbackForm</code></pre>
+                    </figure>
+                    <figure class="ex-out">
+                        <figcaption><span class="live-dot" aria-hidden="true"></span>Output · running</figcaption>
+                        <iframe src="practice/index.html?demo=feedback-form" data-demo="feedback-form" title="V1 running output" loading="lazy"></iframe>
+                    </figure>
+                </div>
+                <p><strong>Result:</strong> Text, radios and the textarea share one handler; the topics are an array. <code>missing</code> is worked out during render and disables the button, and the 8-digit check runs on submit.</p>
+            </article>
+        </main>
+
+        <nav class="pager" aria-label="Page navigation">
+            <a class="prev" href="../../Week12/Week12-2/index.html"><small>← Previous</small><strong>Week 12-2</strong></a>
+            <a class="next" href="../index.html"><small>Back →</small><strong>Week 13</strong></a>
+        </nav>
+
+        <footer class="site-footer">
+            <p>© 2026 ASILBEK · WEB PROGRAMMING COURSE</p>
+            <a href="https://github.com/asilbek-maker/Web-Programming/tree/main/Week13/Week13-1" target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a>
+        </footer>
+    </div>
+    <script>
+        // Each demo reports its height, so its iframe fits with no inner scrollbar.
+        window.addEventListener('message', function (event) {
+            if (event.origin !== location.origin || !event.data || event.data.type !== 'demo-height') return;
+            var frame = document.querySelector('iframe[data-demo="' + event.data.demo + '"]');
+            if (frame) frame.style.height = Math.ceil(event.data.height) + 'px';
+        });
+    </script>
+</body>
+</html>
